@@ -42,7 +42,7 @@ export default function QuizSelector() {
       <LanguageSwitcher />
       
       <button
-        onClick={() => router.back()}
+        onClick={() => router.push('/')}
         className="fixed top-6 left-6 z-50 flex items-center group"
       >
         <div className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 
