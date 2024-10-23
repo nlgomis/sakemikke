@@ -12,10 +12,10 @@ export default function QuizSelector() {
 
   const quizOptions = [
     {
-      id: 'mood',
-      name: t.quiz.options.mood.name,
-      description: t.quiz.options.mood.description,
-      path: '/quiz/mood',
+      id: 'beginner',
+      name: t.quiz.options.beginner.name,
+      description: t.quiz.options.beginner.description,
+      path: '/quiz/beginner',
       gradient: 'from-purple-500/20 to-blue-500/20',
       borderColor: 'border-purple-400/30'
     },

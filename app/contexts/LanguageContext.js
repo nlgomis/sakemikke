@@ -18,9 +18,9 @@ const translations = {
       back: 'Back',
       startQuiz: 'Start Quiz',
       options: {
-        mood: {
-          name: 'Mood',
-          description: 'Find sake based on your current mood and occasion'
+        beginner: {
+          name: 'Beginner',
+          description: 'Recommended for those new to sake'
         },
         taste: {
           name: 'Taste',
@@ -30,6 +30,36 @@ const translations = {
           name: 'Food Pairing',
           description: 'Perfect sake pairings for Japanese cuisine'
         }
+      }
+    },
+    beginner: {
+      questions: {
+        drink: 'What do you usually drink?',
+        concern: 'What aspects of sake make you hesitant?',
+        occasion: 'When would you like to drink sake?'
+      },
+      options: {
+        drinks: {
+          wine: 'Wine',
+          beer: 'Beer',
+          highball: 'Highball',
+          none: "Don't drink"
+        },
+        concerns: {
+          sweet: 'Sweet taste',
+          dry: 'Dry taste',
+          alcohol: 'Alcohol presence'
+        },
+        occasions: {
+          relax: 'When relaxing',
+          food: 'With meals'
+        }
+      },
+      result: {
+        title: 'Recommended Sake',
+        subtitle: 'This sake is perfect for you',
+        tryAgain: 'Try Another Quiz',
+        backToQuiz: 'Back to Quiz Selection'
       }
     }
   },
@@ -47,9 +77,9 @@ const translations = {
       back: '戻る',
       startQuiz: 'クイズを始める',
       options: {
-        mood: {
-          name: '気分',
-          description: '気分や場面に合わせて日本酒を見つける'
+        beginner: {
+          name: '初心者',
+          description: '日本酒を始めて飲む方におすすめ'
         },
         taste: {
           name: '味わい',
@@ -59,6 +89,36 @@ const translations = {
           name: '和食',
           description: '和食に合う日本酒を見つける'
         }
+      }
+    },
+    beginner: {
+      questions: {
+        drink: '普段はお酒飲みますか',
+        concern: '日本酒のどんな所に苦手意識持っていますか',
+        occasion: 'どんな場面で飲みたいですか'
+      },
+      options: {
+        drinks: {
+          wine: 'ワイン',
+          beer: 'ビール',
+          highball: 'ハイボール',
+          none: '飲まない'
+        },
+        concerns: {
+          sweet: '甘い感じ',
+          dry: '辛口',
+          alcohol: 'お酒感'
+        },
+        occasions: {
+          relax: 'リラックス時',
+          food: '食事と一緒に'
+        }
+      },
+      result: {
+        title: 'おすすめの日本酒',
+        subtitle: 'あなたにぴったりの日本酒です',
+        tryAgain: 'もう一度クイズを試す',
+        backToQuiz: 'クイズ選択に戻る'
       }
     }
   }
@@ -72,31 +132,26 @@ const languages = [
 const LanguageContext = createContext();
 
 export function LanguageProvider({ children }) {
-  // Initialize with a function to avoid running localStorage on server
   const [language, setLanguage] = useState(() => {
-    // Only run on client side
     if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('preferredLanguage');
-      return saved || 'ja';
+      return localStorage.getItem('preferredLanguage') || 'ja';
     }
     return 'ja';
   });
 
-  // Update localStorage when language changes
   useEffect(() => {
     localStorage.setItem('preferredLanguage', language);
   }, [language]);
 
   const t = translations[language];
 
-  // Handle hydration mismatch by delaying render
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
     setMounted(true);
   }, []);
 
   if (!mounted) {
-    return null; // or a loading state
+    return null;
   }
 
   return (
