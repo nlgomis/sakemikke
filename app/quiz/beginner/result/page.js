@@ -4,7 +4,6 @@
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useLanguage } from '../../../contexts/LanguageContext';
 import { getResult } from '../getResult';
-import LanguageSwitcher from '../../../components/LanguageSwitcher';
 
 export default function QuizResult() {
   const router = useRouter();
@@ -36,33 +35,9 @@ export default function QuizResult() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white flex flex-col">
-      <LanguageSwitcher />
+    <div className="min-h-screen bg-black text-white flex flex-col pb-16">
       
-      <button
-        onClick={() => router.push('/')}
-        className="fixed top-6 left-6 z-50 flex items-center group"
-      >
-        <div className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 
-                      hover:bg-white/20 transition-all duration-300 border border-white/30">
-          <svg 
-            className="w-5 h-5 text-white transform group-hover:-translate-x-0.5 transition-transform duration-300" 
-            fill="none" 
-            stroke="currentColor" 
-            viewBox="0 0 24 24"
-          >
-            <path 
-              strokeLinecap="round" 
-              strokeLinejoin="round" 
-              strokeWidth={2} 
-              d="M15 19l-7-7 7-7"
-            />
-          </svg>
-        </div>
-        <span className="ml-2 text-white/70 group-hover:text-white text-sm font-light tracking-wider transition-colors duration-300">
-          {t.quiz.back}
-        </span>
-      </button>
+     
 
       <main className="flex-1 flex flex-col items-center justify-center p-4">
         <div className="max-w-2xl w-full text-center space-y-8">

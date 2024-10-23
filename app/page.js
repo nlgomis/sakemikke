@@ -46,7 +46,7 @@ export default function Home() {
 
   return (
     <div className="relative flex flex-col min-h-screen bg-black">
-      <LanguageSwitcher />
+     
       
       <div 
         ref={vantaRef} 

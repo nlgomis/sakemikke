@@ -10,7 +10,7 @@ export default function LanguageSwitcher() {
   const { setLanguage, languages } = useLanguage();
 
   return (
-    <div className="fixed top-6 right-6 z-50">
+    <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 

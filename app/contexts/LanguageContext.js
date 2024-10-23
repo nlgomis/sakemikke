@@ -5,6 +5,12 @@ import { createContext, useContext, useState, useEffect } from 'react';
 
 const translations = {
   en: {
+    navigation:{
+      quiz: 'Quiz',
+      types: 'Types of Sake',
+      about: 'About',
+      contact: 'Contact'
+    },
     home: {
       title: 'SAKEMIKKE',
       subtitle: 'Discover Your Perfect Sake Journey',
@@ -64,6 +70,12 @@ const translations = {
     }
   },
   ja: {
+    navigation:{
+      quiz: '診断',
+      types: '日本酒の種類',
+      about: 'About',
+      contact: 'Contact'
+    },
     home: {
       title: 'SAKEMIKKE',
       subtitle: '完璧な日本酒との出会い',
