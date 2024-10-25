@@ -41,7 +41,7 @@ export default function QuizSelector() {
     <div className="min-h-screen bg-black">
       
 
-      <main className="container mx-auto px-4 pt-16">
+      <main className="container mx-auto px-4 pt-32">
         <div className="text-center mb-16">
           <h1 className="text-4xl sm:text-5xl font-light text-white mb-6 tracking-wider">
             {t.quiz.title}

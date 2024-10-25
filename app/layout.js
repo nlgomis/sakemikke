@@ -10,7 +10,7 @@ export default function RootLayout({ children }) {
         <LanguageProvider>
           <Navigation />
           {/* Add padding-top to account for fixed navbar */}
-          <div className="pt-16">
+          <div>
             {children}
           </div>
         </LanguageProvider>
