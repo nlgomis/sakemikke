@@ -12,7 +12,7 @@ export default function BeginnerQuiz() {
     answers: {}
   });
 
-  // 各ボタンのアニメーションクラスを保持する状態
+  // 各ボタンのアニメーションクラスを保持
   const [buttonAnimations, setButtonAnimations] = useState([]);
 
   // コンポーネントマウント時とquestion変更時に新しいアニメーションを割り当て
@@ -115,7 +115,7 @@ export default function BeginnerQuiz() {
           </div>
 
           {/* Options Section */}
-          <div className="grid grid-cols-2 gap-24">
+          <div className="grid grid-cols-2 gap-12 w-[50%] mx-auto">
             {currentQuestion.options.map((option, index) => {
               const isLastInThree = currentQuestion.options.length === 3 && index === 2;
               
@@ -135,9 +135,11 @@ export default function BeginnerQuiz() {
                     transition-all duration-300
                     hover:scale-105
                     hover:shadow-lg
+                    w-full
+                    mx-auto
                     group
                     ${buttonAnimations[index] || ''}
-                    ${isLastInThree ? 'col-span-2 mx-auto w-1/2' : ''}
+                    ${isLastInThree ? 'col-span-2 mx-auto w-[calc(50%-1rem)]' : ''}
                   `}
                 >
                   <span className="text-center">{option.label}</span>
