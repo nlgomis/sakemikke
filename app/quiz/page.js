@@ -31,7 +31,7 @@ export default function QuizSelector() {
       id: 'food',
       name: t.quiz.options.food.name,
       description: t.quiz.options.food.description,
-      path: '/quiz/food',
+      path: '/quiz/washoku',
       gradient: 'from-teal-500/20 to-emerald-500/20',
       borderColor: 'border-teal-400/30'
     }
