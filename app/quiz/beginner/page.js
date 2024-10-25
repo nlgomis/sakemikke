@@ -139,7 +139,7 @@ export default function BeginnerQuiz() {
                     mx-auto
                     group
                     ${buttonAnimations[index] || ''}
-                    ${isLastInThree ? 'col-span-2 mx-auto w-[calc(50%-1rem)]' : ''}
+                    ${isLastInThree ? 'col-span-2 mx-auto max-w-[calc(50%-1rem)]' : ''}
                   `}
                 >
                   <span className="text-center">{option.label}</span>
