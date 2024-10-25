@@ -97,7 +97,7 @@ export default function BeginnerQuiz() {
   return (
     <div className="min-h-screen bg-black text-white flex flex-col">
       <main className="flex-1 flex flex-col items-center justify-center p-4">
-        <div className="w-full max-w-2xl mx-auto space-y-12">
+        <div className="w-full  max-w-2xl mx-auto space-y-12">
           {/* Question Section */}
           <div className="text-center space-y-8">
             <div className="p-8 rounded-2xl bg-gradient-quiz from-quiz-primary to-quiz-secondary border border-quiz-primary-dark/30">
