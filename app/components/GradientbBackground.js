@@ -1,80 +1,83 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
-const GradientBackground = ({ className = "" }) => {
-  const blobs = [
-    { 
-      color: '#163a6a', 
-      position: '-left-64 lg:-left-64 -left-32', 
-      delay: '',
-      size: 'lg:w-[800px] lg:h-[800px] w-[500px] h-[650px]',
-      opacity: 0.7,
-      animation: 'animate-blob-slow'
-    },
-    { 
-      color: '#453055', 
-      position: 'lg:left-1/4 left-1/4 lg:-top-48 -top-24', 
-      delay: 'animation-delay-2000',
-      size: 'lg:w-[650px] lg:h-[650px] w-[400px] h-[500px]',
-      opacity: 0.7,
-      animation: 'animate-blob-reverse'
-    },
-    { 
-      color: '#000000', 
-      position: 'lg:-right-48 -right-24 lg:-top-48 -top-24', 
-      delay: 'animation-delay-4000',
-      size: 'lg:w-[550px] lg:h-[550px] w-[375px] h-[375px]',
-      opacity: 0.8,
-      animation: 'animate-blob'
-    },
-    { 
-      color: '#1c314e', 
-      position: 'lg:-right-48 -right-24 lg:-top-28 -top-14', 
-      delay: 'animation-delay-1000',
-      size: 'lg:w-[700px] lg:h-[800px] w-[400px] h-[450px]',
-      opacity: 0.9,
-      animation: 'animate-blob-slow'
-    },
-    { 
-      color: '#000000', 
-      position: 'lg:-left-48 -left-24 bottom-0', 
-      delay: 'animation-delay-3000',
-      size: 'lg:w-[750px] lg:h-[750px] w-[375px] h-[375px]',
-      opacity: 0.8,
-      animation: 'animate-blob-reverse'
-    },
-    { 
-      color: '#060460', 
-      position: 'lg:left-1/2 left-1/5 lg:-bottom-40 -bottom-20', 
-      delay: 'animation-delay-5000',
-      size: 'lg:w-[800px] lg:h-[750px] w-[425px] h-[375px]',
-      opacity: 0.7,
-      animation: 'animate-blob'
-    },
-    { 
-      color: '#453055', 
-      position: 'lg:-right-32 -right-16 lg:-bottom-40 -bottom-20', 
-      delay: 'animation-delay-6000',
-      size: 'lg:w-[500px] lg:h-[500px] w-[400px] h-[400px]',
-      opacity: 0.7,
-      animation: 'animate-blob-slow'
+const GradientBackground = () => {
+  const interBubbleRef = useRef(null);
+  
+  useEffect(() => {
+    let curX = 0;
+    let curY = 0;
+    let tgX = 0;
+    let tgY = 0;
+
+    const interBubble = interBubbleRef.current;
+
+    function move() {
+      curX += (tgX - curX) / 20;
+      curY += (tgY - curY) / 20;
+      
+      if (interBubble) {
+        interBubble.style.transform = `translate(${Math.round(curX)}px, ${Math.round(curY)}px)`;
+      }
+      
+      requestAnimationFrame(move);
     }
-  ];
+
+    const handleMouseMove = (event) => {
+      tgX = event.clientX;
+      tgY = event.clientY;
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    move();
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
 
   return (
-    <div className={`fixed inset-0 w-full h-full ${className}`}>
-      <div className="absolute inset-0 bg-black" />
-      <div className="absolute inset-0 blur-[70px]">
-        {blobs.map((blob, index) => (
-          <div 
-            key={index}
-            className={`absolute ${blob.position} ${blob.size} rounded-full ${blob.animation} ${blob.delay}`}
-            style={{ 
-              backgroundColor: blob.color,
-              mixBlendMode: 'lighten',
-              opacity: blob.opacity
-            }}
+    <div className="fixed w-screen h-screen">
+      <div className="absolute inset-0 z-10 flex items-center justify-center text-white text-8xl font-dongle opacity-80 select-none text-shadow">
+      </div>
+      
+      <div className="relative w-full h-full overflow-hidden bg-gradient-to-br from-[rgb(0,0,0)] to-[rgb(0,0,0)]">
+        <svg  className="hidden">
+          <defs>
+            <filter id="goo">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+              <feColorMatrix
+                in="blur"
+                mode="matrix"
+                values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8"
+                result="goo"
+              />
+              <feBlend in="SourceGraphic" in2="goo" />
+            </filter>
+          </defs>
+        </svg>
+        
+        <div className="w-full h-full filter-goo blur-[40px]">
+          {/* 青 */}
+          <div className="absolute w-4/5 h-4/5 top-[10%] left-[10%] bg-[radial-gradient(circle_at_center,rgba(18,113,255,0.8)_0,rgba(18,113,255,0)_50%)] mix-blend-hard-light animate-moveVertical" />
+          
+          {/* 紫 */}
+          <div className="absolute w-4/5 h-4/5 top-[10%] left-[10%] bg-[radial-gradient(circle_at_center,rgba(221,74,255,0.8)_0,rgba(221,74,255,0)_50%)] mix-blend-hard-light animate-moveInCircleReverse origin-[-400px_center]" />
+          
+          {/* 水 */}
+          <div className="absolute w-4/5 h-4/5 top-[calc(10%+200px)] left-[calc(10%-500px)] bg-[radial-gradient(circle_at_center,rgba(100,220,255,0.8)_0,rgba(100,220,255,0)_50%)] mix-blend-hard-light animate-moveInCircle origin-[400px_center]" />
+          
+          {/* 赤 */}
+          <div className="absolute w-4/5 h-4/5 top-[10%] left-[10%] bg-[radial-gradient(circle_at_center,rgba(200,50,50,0.8)_0,rgba(200,50,50,0)_50%)] mix-blend-hard-light animate-moveHorizontal origin-[-200px_center] opacity-70" />
+
+          {/* 黄 */}
+          <div className="absolute w-[160%] h-[160%] top-[-30%] left-[-30%] bg-[radial-gradient(circle_at_center,rgba(180,180,50,0.8)_0,rgba(180,180,50,0)_50%)] mix-blend-hard-light animate-moveInCircle origin-[-800px_200px]" />
+          
+          {/* マウスの動きに合わせて動く色（紫） */}
+          <div
+            ref={interBubbleRef}
+            className="absolute w-full h-full top-[-50%] left-[-50%] bg-[radial-gradient(circle_at_center,rgba(140,100,255,0.8)_0,rgba(140,100,255,0)_50%)] mix-blend-hard-light opacity-70"
           />
-        ))}
+        </div>
       </div>
     </div>
   );
