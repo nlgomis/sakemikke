@@ -35,6 +35,10 @@ module.exports = {
                     "50%": { transform: "translateY(50%)" },
                     "100%": { transform: "translateY(-50%)" },
                 },
+                moveInCircleReverse: {
+                    '0%': { transform: 'rotate(360deg)' },
+                    '100%': { transform: 'rotate(0deg)' },
+                },
                 moveHorizontal: {
                     "0%": { transform: "translateX(-50%) translateY(-10%)" },
                     "50%": { transform: "translateX(50%) translateY(10%)" },
