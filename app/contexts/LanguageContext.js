@@ -13,9 +13,9 @@ const translations = {
     home: {
       title: 'SAKEMIKKE',
       subtitle: 'Discover Your Perfect Sake Journey',
-      startButton: 'Start Your Journey',
+      startButton: 'SAKEMIKKE',
       exploreButton: 'Explore Sake',
-      copyright: '© 2024 SAKEMIKKE. All rights reserved.'
+      copyright: '© 2025 SAKEMIKKE. All rights reserved.'
     },
     quiz: {
       title: 'Choose Your Path',
@@ -156,14 +156,14 @@ const translations = {
       quiz: '診断',
       types: '日本酒の種類',
       about: 'About',
-      contact: 'Contact'
+      contact: 'お問い合わせ'
     },
     home: {
-      title: 'SAKEMIKKE',
-      subtitle: '完璧な日本酒との出会い',
-      startButton: '旅を始める',
+      title: '酒みっけ',
+      subtitle: 'あなたにピッタリの、日本酒との出会い',
+      startButton: '酒見っけ',
       exploreButton: '日本酒を探る',
-      copyright: '© 2024 SAKEMIKKE. All rights reserved.'
+      copyright: '© 2025 SAKEMIKKE. All rights reserved.'
     },
     quiz: {
       title: 'あなたの選択',
