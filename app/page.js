@@ -75,7 +75,7 @@ export default function Home() {
             <div className="flex flex-col space-y-4 sm:space-y-0 sm:flex-row sm:justify-center sm:space-x-6 px-4">
               <Link 
                 href="/quiz"
-                className="inline-block px-8 sm:px-12 lg:px-24 py-3 bg-black/20 hover:bg-white/20 text-white
+                className="inline-block px-8 sm:px-32 py-3 hover:bg-white/20 text-white
                           transition-all duration-300 border border-white text-base sm:text-lg
                           w-full sm:w-auto"
               >
