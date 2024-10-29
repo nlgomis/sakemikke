@@ -22,10 +22,13 @@ export default function Navigation() {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50">
+    <nav className={`
+      fixed top-0 left-0 w-full z-50 
+      transition-all duration-300 ease-in-out
+      ${isOpen ? 'bg-black/30 h-screen backdrop-blur-sm' : 'bg-transparent h-28'}
+    `}>
       {/* Background with blur and gradient - only on desktop */}
       <div className="absolute inset-0" />
-      {/* <div className="absolute inset-0 md:bg-black/30 md:backdrop-blur-sm" /> */}
       
       {/* Navigation content */}
       <div className="relative h-28 px-6 flex items-center justify-between">
@@ -34,44 +37,13 @@ export default function Navigation() {
           {/* Logo */}
           <Link href="/" className="flex items-center">
             <Image
-              src="/images/logo.png" // ロゴ画像のパスを適切に設定してください
+              src="/images/logo.png"
               alt="Logo"
               width={50}
               height={50}
               className="object-contain"
             />
           </Link>
-          
-          {/* Back button */}
-          {/* {pathname !== '/' && (
-            <button
-              onClick={() => {
-                if (pathname.startsWith('/quiz/')) {
-                  router.push('/quiz');
-                } else {
-                  router.push('/');
-                }
-              }}
-              className="flex items-center group"
-            >
-              <div className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 
-                            hover:bg-white/20 transition-all duration-300 border border-white/30">
-                <svg 
-                  className="w-5 h-5 text-white transform group-hover:-translate-x-0.5 transition-transform duration-300" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  viewBox="0 0 24 24"
-                >
-                  <path 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    strokeWidth={2} 
-                    d="M15 19l-7-7 7-7"
-                  />
-                </svg>
-              </div>
-            </button>
-          )} */}
         </div>
 
         {/* Desktop Navigation */}
@@ -104,14 +76,23 @@ export default function Navigation() {
           <LanguageSwitcher />
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden flex items-center justify-center w-10 h-10 rounded-full
-                      bg-white/10 hover:bg-white/20 transition-all duration-300 border border-white/30"
+            className={`
+              md:hidden flex items-center justify-center w-10 h-10 rounded-full
+              transition-all duration-300
+              ${isOpen 
+                ? 'bg-white/20 border-white/40 rotate-180' 
+                : 'bg-white/10 border-white/30 rotate-0'
+              }
+              border hover:bg-white/20
+            `}
           >
-            {isOpen ? (
-              <X className="w-5 h-5 text-white" />
-            ) : (
-              <Menu className="w-5 h-5 text-white" />
-            )}
+            <div className="transition-transform duration-300">
+              {isOpen ? (
+                <X className="w-5 h-5 text-white" />
+              ) : (
+                <Menu className="w-5 h-5 text-white" />
+              )}
+            </div>
           </button>
         </div>
       </div>
@@ -119,34 +100,44 @@ export default function Navigation() {
       {/* Mobile menu */}
       <div
         className={`
-          md:hidden absolute w-full bg-black/30 backdrop-blur-sm
-          transition-all duration-300 ease-in-out border-t border-white/10
-          ${isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 pointer-events-none overflow-hidden'}
+          md:hidden absolute w-full
+          transition-all duration-300 ease-in-out
+          ${isOpen 
+            ? 'opacity-100 translate-y-0' 
+            : 'opacity-0 -translate-y-4 pointer-events-none'
+          }
         `}
       >
         <div className="py-4 px-6 space-y-4">
-          {navItems.map((item) => (
+          {navItems.map((item, index) => (
             <Link
               key={item.path}
               href={item.path}
               onClick={() => setIsOpen(false)}
               className={`
                 block py-3 px-4 rounded-lg 
+                transition-all duration-300
+                transform
+                ${isOpen 
+                  ? 'translate-x-0 opacity-100' 
+                  : 'translate-x-4 opacity-0'
+                }
+                transition-delay-${index * 50}
                 ${pathname === item.path 
-                  ? 'bg-white/10 text-white' 
+                  ? 'bg-black/10 text-white' 
                   : 'text-white/70 hover:bg-white/5 hover:text-white'
                 }
-                transition-all duration-300 text-base font-light tracking-wider
+                text-base font-light tracking-wider
               `}
+              style={{
+                transitionDelay: `${index * 50}ms`
+              }}
             >
               {item.name}
             </Link>
           ))}
         </div>
       </div>
-
-      {/* Bottom border */}
-      {/* <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div> */}
     </nav>
   );
 }
