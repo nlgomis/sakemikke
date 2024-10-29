@@ -67,7 +67,7 @@ export default function Home() {
             </div>
 
             {/* Subtitle */}
-            <p className="text-lg sm:text-xl lg:text-2xl text-blue-100/90 font-light tracking-wide mb-8 sm:mb-12 px-4">
+            <p className="text-lg sm:text-xl lg:text-2xl text-blue-100/90 font-light tracking-wide sm:tracking-[.40em] mb-8 sm:mb-12 px-4">
               {t.home.subtitle}
             </p>
 
