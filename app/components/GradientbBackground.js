@@ -5,7 +5,7 @@ const GradientBackground = () => {
 
     const gradients = [
         {
-            color: "18,113,255", // 青
+            color: "0, 37, 206", // 青
             top: "10%",
             left: "10%",
             width: "w-4/5",
@@ -15,7 +15,7 @@ const GradientBackground = () => {
             opacity: "",
         },
         {
-            color: "221,74,255", // 紫
+            color: "77, 53, 137", // 紫
             top: "10%",
             left: "10%",
             width: "w-4/5",
@@ -25,7 +25,7 @@ const GradientBackground = () => {
             opacity: "",
         },
         {
-            color: "100,220,255", // 水
+            color: "186, 218, 255", // グレイブルー
             top: "calc(10%+200px)",
             left: "calc(10%-500px)",
             width: "w-4/5",
@@ -35,7 +35,7 @@ const GradientBackground = () => {
             opacity: "",
         },
         {
-            color: "200,50,50", // 赤
+            color: "0, 234, 255", // 水色
             top: "10%",
             left: "10%",
             width: "w-4/5",
@@ -45,7 +45,7 @@ const GradientBackground = () => {
             opacity: "opacity-70",
         },
         {
-            color: "180,180,50", // 黄
+            color: "0, 234, 255", // 水色
             top: "-30%",
             left: "-30%",
             width: "w-[160%]",
@@ -94,7 +94,7 @@ const GradientBackground = () => {
         <div className="fixed w-screen h-screen">
             <div className="absolute inset-0 z-10 flex items-center justify-center text-white text-8xl font-dongle opacity-80 select-none text-shadow"></div>
 
-            <div className="relative w-full h-full overflow-hidden bg-gradient-to-br from-[rgb(0,17,82)] to-[rgb(108,0,162)] ">
+            <div className="relative w-full h-full overflow-hidden bg-gradient-to-br from-[rgb(0,41,114)] via-[rgb(44,52,127)]  to-[rgb(64,47,127)]">
                 <svg className="hidden">
                     <defs>
                         <filter id="goo">

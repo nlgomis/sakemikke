@@ -27,6 +27,7 @@ module.exports = {
                 "float-6": "float6 10.5s ease-in-out infinite",
                 "float-7": "float7 9.2s ease-in-out infinite",
                 "float-8": "float8 8.8s ease-in-out infinite",
+                disco: 'disco 1.5s linear infinite',
             },
             keyframes: {
                 fadeIn: {
@@ -138,10 +139,15 @@ module.exports = {
                         transform: "translate(15px, -15px) rotate(1.2deg)",
                     },
                 },
+
+                disco: {
+                    '0%': { transform: 'translateY(-50%) rotate(0deg)' },
+                    '100%': { transform: 'translateY(-50%) rotate(360deg)' },
+                },
             },
             backgroundImage: {
-                "gradient-quiz":
-                    "linear-gradient(to bottom right, var(--tw-gradient-stops))",
+                "gradient-quiz":"linear-gradient(to bottom right, var(--tw-gradient-stops))",
+                'gradient-conic': 'conic-gradient(var(--tw-gradient-stops))',
             },
             colors: {
                 quiz: {
