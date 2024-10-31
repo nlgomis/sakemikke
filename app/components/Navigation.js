@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter, usePathname } from 'next/navigation';
@@ -13,6 +13,31 @@ export default function Navigation() {
   const pathname = usePathname();
   const { t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
+
+  // メディアクエリを監視してモバイルメニューを制御
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(min-width: 768px)');
+
+    // メディアクエリの変更を監視する関数
+    const handleMediaQueryChange = (e) => {
+      if (e.matches) {
+        setIsOpen(false);
+      }
+    };
+
+    // 初期チェック
+    if (mediaQuery.matches) {
+      setIsOpen(false);
+    }
+
+    // リスナーを追加
+    mediaQuery.addEventListener('change', handleMediaQueryChange);
+
+    // クリーンアップ
+    return () => {
+      mediaQuery.removeEventListener('change', handleMediaQueryChange);
+    };
+  }, []);
 
   const navItems = [
     { name: t.navigation.quiz, path: '/quiz' },
