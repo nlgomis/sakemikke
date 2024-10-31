@@ -1,56 +1,12 @@
 "use client";
 
 import Link from 'next/link';
-import { useRef, useEffect, useState } from 'react';
 import LanguageSwitcher from './components/LanguageSwitcher';
 
 export default function HomeClient({ lang, translations: t }) {
-  const [vantaEffect, setVantaEffect] = useState(null);
-  const vantaRef = useRef(null);
-
-  useEffect(() => {
-    const loadVanta = async () => {
-      if (!vantaEffect) {
-        const HALO = (await import('vanta/dist/vanta.halo.min')).default;
-        const THREE = await import('three');
-        
-        setVantaEffect(
-          HALO({
-            el: vantaRef.current,
-            THREE: THREE,
-            mouseControls: true,
-            touchControls: true,
-            gyroControls: false,
-            minHeight: 200.00,
-            minWidth: 200.00,
-            backgroundColor: 0x0a0f2d,
-            baseColor: 0x1a59,
-            amplitudeFactor: 1,
-            xOffset: 0,
-            yOffset: 0,
-            size: 2,
-            scaleMobile: 1.00
-          })
-        );
-      }
-    };
-
-    loadVanta();
-
-    return () => {
-      if (vantaEffect) vantaEffect.destroy();
-    };
-  }, [vantaEffect]);
-
   return (
     <div className="relative flex flex-col min-h-screen bg-black">
       <LanguageSwitcher />
-      
-      <div 
-        ref={vantaRef} 
-        className="fixed top-0 left-0 w-full h-full z-0"
-        aria-hidden="true"
-      />
 
       <main className="relative z-10 flex-grow flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8 py-16">
         <div className="max-w-3xl w-full text-center">

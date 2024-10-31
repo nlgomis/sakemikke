@@ -2,49 +2,12 @@
 "use client";
 
 import Link from 'next/link';
-import { useRef, useEffect, useState } from 'react';
 import { useLanguage } from './contexts/LanguageContext';
 import LanguageSwitcher from './components/LanguageSwitcher';
 import GradientBackground from './components/GradientbBackground';
 import Image from 'next/image';
 export default function Home() {
   const { t } = useLanguage();
-  // const vantaRef = useRef(null);
-  // const [mounted, setMounted] = useState(false);
-
-  // useEffect(() => {
-  //   const initVanta = async () => {
-  //     const HALO = (await import('vanta/dist/vanta.halo.min')).default;
-  //     const THREE = await import('three');
-      
-  //     const effect = HALO({
-  //       el: vantaRef.current,
-  //       THREE: THREE,
-  //       mouseControls: true,
-  //       touchControls: true,
-  //       gyroControls: false,
-  //       minHeight: 200.00,
-  //       minWidth: 200.00,
-  //       backgroundColor: 0x000000,
-  //       baseColor: 0x1a59,
-  //       amplitudeFactor: 1,
-  //       xOffset: 0,
-  //       yOffset: 0,
-  //       size: 2,
-  //       scaleMobile: 1.00
-  //     });
-
-  //     return () => {
-  //       if (effect) effect.destroy();
-  //     };
-  //   };
-
-  //   if (!mounted) {
-  //     setMounted(true);
-  //     initVanta();
-  //   }
-  // }, [mounted]);
-
   return (
     <div className="relative min-h-screen">
       <GradientBackground className="fixed inset-0 z-0" />
@@ -74,9 +37,10 @@ export default function Home() {
             {/* Buttons Container */}
             <div className="flex flex-col space-y-4 sm:space-y-0 sm:flex-row sm:justify-center sm:space-x-6 px-4">
 
-              <Link href="/quiz" className="relative overflow-hidden rounded-lg py-8 md:py-8 px-6 sm:px-32 text-base sm:text-lg w-4/5 mx-auto sm:w-1/2">
+              <Link href="/quiz" className="relative overflow-hidden rounded-full py-8 px-6 sm:px-32 text-base sm:text-lg w-4/5 mx-auto sm:w-1/2">
+                
     
-                <span className="absolute inset-[3px] z-10 flex items-center justify-center rounded-lg bg-indigo-950 bg-gradient-to-t from-blue-950 text-white hover:bg-indigo-950/20  duration-300 hover:scale-[1.15] transition-all">
+                <span className="absolute inset-[2px] z-10 flex items-center justify-center rounded-full bg-indigo-950 bg-gradient-to-t from-blue-950 text-white hover:bg-indigo-950/70 duration-500 hover:scale-x-[1.02] hover:scale-y-[1.066] transition-all">
                   {t.home.startButton}
                 </span>
 

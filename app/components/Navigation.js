@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter, usePathname } from 'next/navigation';
 import { useLanguage } from '../contexts/LanguageContext';
+import AuthButton from './AuthButton';
 import LanguageSwitcher from './LanguageSwitcher';
 import { Menu, X } from 'lucide-react';
 
@@ -98,6 +99,7 @@ export default function Navigation() {
 
         {/* Right side controls */}
         <div className="flex items-center justify-end space-x-4">
+          <AuthButton/>
           <LanguageSwitcher />
           <button
             onClick={() => setIsOpen(!isOpen)}
