@@ -29,7 +29,7 @@ const translations = {
       title: 'Choose Your Path',
       subtitle: 'Select a quiz type to find your perfect sake',
       back: 'Back',
-      startQuiz: 'Start Quiz',
+      startQuiz: 'Start',
       options: {
         beginner: {
           name: 'Beginner',
@@ -185,7 +185,7 @@ const translations = {
       title: 'あなたの選択',
       subtitle: '最適な日本酒を見つけるためのクイズを選んでください',
       back: '戻る',
-      startQuiz: 'クイズを始める',
+      startQuiz: 'スタート',
       options: {
         beginner: {
           name: '初心者',
