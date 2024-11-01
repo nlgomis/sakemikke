@@ -17,6 +17,14 @@ const translations = {
       exploreButton: 'Explore Sake',
       copyright: '© 2025 SAKEMIKKE. All rights reserved.'
     },
+    auth: {
+      login: {
+        name: 'login',
+      },
+      register: {
+        name: 'sign up',
+      },
+    },
     quiz: {
       title: 'Choose Your Path',
       subtitle: 'Select a quiz type to find your perfect sake',
@@ -164,6 +172,14 @@ const translations = {
       startButton: '酒見っけ',
       exploreButton: '日本酒を探る',
       copyright: '© 2025 SAKEMIKKE. All rights reserved.'
+    },
+    auth: {
+      login: {
+        name: 'ログイン',
+      },
+      register: {
+        name: 'サインアップ',
+      },
     },
     quiz: {
       title: 'あなたの選択',
