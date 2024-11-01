@@ -141,6 +141,7 @@ export default function BeginnerQuiz() {
                     ${buttonAnimations[index] || ''}
                     ${isLastInThree ? 'col-span-2 mx-auto max-w-[calc(50%-1rem)]' : ''}
                   `}
+                  //test
                 >
                   <span className="text-center">{option.label}</span>
                   <svg 
