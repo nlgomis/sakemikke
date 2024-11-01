@@ -92,7 +92,7 @@ const GradientBackground = () => {
 
     return (
         <div className="fixed w-screen h-screen">
-            <div className="absolute inset-0 z-10 flex items-center justify-center text-white text-8xl font-dongle opacity-80 select-none text-shadow"></div>
+            <div className="absolute inset-0 z-[-10] flex items-center justify-center text-white text-8xl font-dongle opacity-80 select-none text-shadow"></div>
 
             <div className="relative w-full h-full overflow-hidden bg-gradient-to-br from-[rgb(0,41,114)] via-[rgb(44,52,127)]  to-[rgb(64,47,126)]">
                 <svg className="hidden">
