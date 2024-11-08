@@ -2,6 +2,20 @@
 
 import { createContext, useContext, useState, useEffect } from 'react';
 
+const getGreeting = (language) => {
+  const hour = new Date().getHours();
+  
+  if (language === 'ja') {
+    if (hour >= 5 && hour < 12) return 'おはようございます、';
+    if (hour >= 12 && hour < 17) return 'こんにちは、';
+    return 'こんばんは、';
+  } else {
+    if (hour >= 5 && hour < 12) return 'Good morning, ';
+    if (hour >= 12 && hour < 17) return 'Hello, ';
+    return 'Good evening, ';
+  }
+};
+
 const translations = {
   en: {
     navigation:{
@@ -18,12 +32,16 @@ const translations = {
       copyright: '© 2025 SAKEMIKKE. All rights reserved.'
     },
     auth: {
+      greeting: getGreeting('en'),
       login: {
-        name: 'login',
+        name: 'Login'
+      },
+      logout: {
+        name: 'Logout'
       },
       register: {
-        name: 'sign up',
-      },
+        name: 'Sign up'
+      }
     },
     quiz: {
       title: 'Choose Your Path',
@@ -174,12 +192,16 @@ const translations = {
       copyright: '© 2025 SAKEMIKKE. All rights reserved.'
     },
     auth: {
+      greeting: getGreeting('ja'),
       login: {
-        name: 'ログイン',
+        name: 'ログイン'
+      },
+      logout: {
+        name: 'ログアウト'
       },
       register: {
-        name: 'サインアップ',
-      },
+        name: 'サインアップ'
+      }
     },
     quiz: {
       title: 'あなたの選択',
@@ -325,26 +347,35 @@ const languages = [
 const LanguageContext = createContext();
 
 export function LanguageProvider({ children }) {
-  const [language, setLanguage] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return localStorage.getItem('preferredLanguage') || 'ja';
-    }
-    return 'ja';
-  });
-
-  useEffect(() => {
-    localStorage.setItem('preferredLanguage', language);
-  }, [language]);
-
-  const t = translations[language];
-
   const [mounted, setMounted] = useState(false);
+  const [language, setLanguage] = useState('ja'); // Default to 'ja'
+
   useEffect(() => {
+    // Only access localStorage after component mounts on client
+    const storedLanguage = localStorage.getItem('preferredLanguage');
+    if (storedLanguage) {
+      setLanguage(storedLanguage);
+    }
     setMounted(true);
   }, []);
 
+  useEffect(() => {
+    // Only update localStorage after initial mount
+    if (mounted) {
+      localStorage.setItem('preferredLanguage', language);
+    }
+  }, [language, mounted]);
+
+  // Provide initial translations even before mount
+  const t = translations[language] || translations.ja;
+
+  // You can optionally return a loading state or initial state during SSR
   if (!mounted) {
-    return null;
+    return (
+      <LanguageContext.Provider value={{ language: 'ja', t: translations.ja, languages }}>
+        {children}
+      </LanguageContext.Provider>
+    );
   }
 
   return (
