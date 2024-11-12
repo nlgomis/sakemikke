@@ -16,17 +16,25 @@ export default function Profile() {
   const [isEditing, setIsEditing] = useState(false);
   const [newUsername, setNewUsername] = useState('');
   const [updateError, setUpdateError] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (!isAuthenticated) {
-      router.push('/login');
-    }
+    // Set initial username when user data is available
     if (user?.name) {
       setNewUsername(user.name);
+      setIsLoading(false);
     }
-  }, [isAuthenticated, router, user]);
+  }, [user]);
 
-  if (!isAuthenticated) {
+  useEffect(() => {
+    // Check authentication and redirect if needed
+    if (!isLoading && !isAuthenticated) {
+      router.push('/login');
+    }
+  }, [isAuthenticated, isLoading, router]);
+
+  // Show nothing while checking authentication
+  if (isLoading || !isAuthenticated) {
     return null;
   }
 
