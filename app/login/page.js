@@ -22,9 +22,8 @@ export default function LoginPage() {
     };
 
     try {
-      const API_URL = process.env.NODE_ENV === 'production'
-        ? process.env.BACK_URL + '/users/login'
-        : 'https://sakemikke-server-d7f7dhdgabfaawa5.japaneast-01.azurewebsites.net/api/users/login';
+      const API_URL = 'https://sakemikke-server-d7f7dhdgabfaawa5.japaneast-01.azurewebsites.net/api/users/login';
+       
       
         const response = await fetch(API_URL, {
           method: 'POST',
