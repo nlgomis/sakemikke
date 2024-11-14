@@ -91,10 +91,12 @@ const GradientBackground = () => {
     }, []);
 
     return (
-        <div className="fixed w-screen h-screen">
-            <div className="absolute inset-0 z-[-10] flex items-center justify-center text-white text-8xl font-dongle opacity-80 select-none text-shadow"></div>
+        <div className="fixed w-screen h-screen z-[-10]">
+            <div className="absolute inset-0 flex items-center justify-center text-white text-8xl font-dongle opacity-80 select-none text-shadow"></div>
 
-            <div className="relative w-full h-full overflow-hidden bg-gradient-to-br from-[rgb(0,41,114)] via-[rgb(44,52,127)]  to-[rgb(64,47,126)]">
+
+            {/* <div className="relative w-full h-full overflow-hidden bg-gradient-to-br to-[rgb(2,0,52)] from-[rgb(6,225,251)]  via-[rgb(7,20,171)]"> */}
+            <div className="relative w-full h-full overflow-hidden bg-[url('/images/background.png')] bg-center bg-cover">
                 <svg className="hidden">
                     <defs>
                         <filter id="goo">

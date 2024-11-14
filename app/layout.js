@@ -1,8 +1,10 @@
 // app/layout.js
-'use client';
+
+"use client"
 
 import './globals.css'
 import Navigation from './components/Navigation'
+
 import { LanguageProvider } from './contexts/LanguageContext'
 import { AuthProvider } from './contexts/AuthContext'
 
@@ -19,7 +21,7 @@ function ClientWrapper({ children }) {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="bg-black">
+      <body className="bg-black overflow-x-hidden">
         <ClientWrapper>
           <Navigation />
           <div>
