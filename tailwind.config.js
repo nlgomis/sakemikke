@@ -33,8 +33,13 @@ module.exports = {
         "spin-custom2": "spinCustom2 10s linear infinite",
         "spin-custom3": "spinCustom3 5s linear infinite",
         "spin-custom4": "spinCustom4 15s linear infinite",
+        scrollLine: "scrollLine 1.5s ease-in-out infinite",
       },
       keyframes: {
+        scrollLine: {
+          "0%": { transform: "translateY(-100%)" },
+          "100%": { transform: "translateY(100%)" },
+        },
         fadeIn: {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" },
@@ -186,20 +191,6 @@ module.exports = {
         customRed: "#D6193E",
         customBlue: "#0225CB",
         customViolet: "#4F358A",
-      },
-    },
-  },
-
-  theme: {
-    extend: {
-      animation: {
-        scrollLine: "scrollLine 1.5s ease-in-out infinite",
-      },
-      keyframes: {
-        scrollLine: {
-          "0%": { transform: "translateY(-100%)" },
-          "100%": { transform: "translateY(100%)" },
-        },
       },
     },
   },
