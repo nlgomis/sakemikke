@@ -8,6 +8,7 @@ import LanguageSwitcher from "../components/LanguageSwitcher";
 import GradientBackground from "../components/GradientbBackground";
 import SpinningRings from "../components/SpinniongRings";
 
+
 export default function QuizSelector() {
     const router = useRouter();
     const { t } = useLanguage();
@@ -102,3 +103,4 @@ export default function QuizSelector() {
         </div>
     );
 }
+

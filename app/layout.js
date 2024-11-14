@@ -1,19 +1,33 @@
 // app/layout.js
+
 "use client"
+
 import './globals.css'
-import { LanguageProvider } from './contexts/LanguageContext'
 import Navigation from './components/Navigation'
+
+import { LanguageProvider } from './contexts/LanguageContext'
+import { AuthProvider } from './contexts/AuthContext'
+
+function ClientWrapper({ children }) {
+  return (
+    <LanguageProvider>
+      <AuthProvider>
+        {children}
+      </AuthProvider>
+    </LanguageProvider>
+  );
+}
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="bg-black overflow-x-hidden">
-        <LanguageProvider>
+        <ClientWrapper>
           <Navigation />
-          {/* Add padding-top to account for fixed navbar */}
           <div>
             {children}
           </div>
-        </LanguageProvider>
+        </ClientWrapper>
       </body>
     </html>
   );
