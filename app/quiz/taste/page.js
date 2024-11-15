@@ -20,7 +20,7 @@ export default function TasteQuiz() {
     const questions = [
         {
             question: t.taste.questions.taste,
-            gradient: "from-purple-500/20 to-blue-500/20",
+            gradient: "from-purple-500 to-blue-500",
             border: "border-white",
             options: [
                 { value: "キレ", label: t.taste.options.tastes.kire },
@@ -31,7 +31,7 @@ export default function TasteQuiz() {
         },
         {
             question: t.taste.questions.mood,
-            gradient: "from-blue-500/20 to-teal-500/20",
+            gradient: "from-blue-500 to-teal-500",
             border: "border-white",
             options: [
                 { value: "さわやか", label: t.taste.options.moods.refreshing },
@@ -42,7 +42,7 @@ export default function TasteQuiz() {
         },
         {
             question: t.taste.questions.pairing,
-            gradient: "from-teal-500/20 to-emerald-500/20",
+            gradient: "from-teal-500 to-emerald-500",
             border: "border-white",
             options: [
                 { value: "洋食", label: t.taste.options.pairings.western },
@@ -103,33 +103,57 @@ export default function TasteQuiz() {
         }
     };
 
+    const handleBack = () => {
+        if (state.currentQuestion > 0) {
+            const newAnswers = { ...state.answers };
+            // 現在の質問に対応する回答を削除
+            switch (state.currentQuestion - 1) {
+                case 0:
+                    delete newAnswers.taste;
+                    break;
+                case 1:
+                    delete newAnswers.mood;
+                    break;
+                case 2:
+                    delete newAnswers.pairing;
+                    break;
+            }
+            setState({
+                currentQuestion: state.currentQuestion - 1,
+                answers: newAnswers,
+            });
+        }
+    };
+
     const currentQuestion = questions[state.currentQuestion];
 
     const getOffsetClass = (index, optionsLength) => {
         if (optionsLength === 5) {
-            return index === 1 || index === 3 ? "lg:translate-y-36" : "";
+            return index === 1 || index === 3 ? "translate-y-1/2" : "";
         } else if (optionsLength === 4) {
-            return index === 1 || index === 3 ? "lg:translate-y-36" : "";
+            return index === 1 || index === 3 ? "translate-y-1/2" : "";
         } else if (optionsLength === 3) {
-            return index === 1 ? "lg:translate-y-36" : "";
+            return index === 1 ? "translate-y-1/2" : "";
         } else if (optionsLength === 2) {
-            return index === 1 ? "lg:translate-y-36" : "";
+            return index === 1 ? "translate-y-1/2" : "";
         }
         return "";
     };
 
+    // 選択肢の数に応じてコンテナのスタイルを決定する関数
     const getContainerStyle = (optionsLength) => {
+        const baseStyle = "grid gap-6 lg:gap-0 xl:gap-4 w-full";
         switch (optionsLength) {
             case 2:
-                return "grid grid-cols-2 place-items-center gap-6 sm:gap-12 max-w-3xl";
+                return `${baseStyle} grid-cols-2  lg:grid-cols-2  max-w-[300px] sm:max-w-md lg:max-w-sm xl:max-w-md 2xl:max-w-lg`;
             case 3:
-                return "grid grid-cols-2 place-items-center lg:grid-cols-3 gap-6 sm:gap-12 max-w-3xl lg:max-w-4xl [&>*:last-child]:col-span-2 [&>*:last-child]:lg:col-span-1 [&>*:last-child]:mx-auto";
+                return `${baseStyle} grid-cols-2 lg:grid-cols-3  max-w-[300px] sm:max-w-md lg:max-w-xl xl:max-w-2xl 2xl:max-w-3xl`;
             case 4:
-                return "grid grid-cols-2 lg:grid-cols-4 place-items-center gap-6 sm:gap-12 lg:gap-24 max-w-2xl lg:max-w-5xl";
+                return `${baseStyle} grid-cols-2 lg:grid-cols-4  max-w-[300px] sm:max-w-md lg:max-w-3xl xl:max-w-4xl 2xl:max-w-5xl`;
             case 5:
-                return "grid grid-cols-2 lg:grid-cols-5 place-items-center gap-6 sm:gap-12 lg:gap-24 max-w-2xl lg:max-w-6xl";
+                return `${baseStyle} grid-cols-2 lg:grid-cols-5 max-w-[300px] sm:max-w-md lg:max-w-4xl xl:max-w-6xl 2xl:max-w-7xl`;
             default:
-                return "grid grid-cols-1 place-items-center gap-6 sm:gap-12 max-w-2xl lg:max-w-5xl";
+                return `${baseStyle} grid-cols-1 max-w-5xl`;
         }
     };
 
@@ -171,44 +195,35 @@ export default function TasteQuiz() {
     return (
         <div className="min-h-screen text-white flex flex-col">
             <GradientBackground />
-            <main className="flex-1 flex flex-col items-center lg:justify-center px-4 pt-40 lg:pt-0">
+            <main className="flex-1 flex flex-col items-center 2xl:justify-center px-4 pt-28 2xl:pt-0">
                 <div className="w-full mx-auto space-y-12">
-                    <div className="text-center mx-auto space-y-8 max-w-2xl">
+                    {/* Question Section */}
+                    <div className="text-center mx-auto max-w-2xl">
                         <div className="p-8 rounded-2xl">
-                            <h2 className="text-3xl font-light tracking-wider">
+                            <h2 className="text-xl md:text-2xl lg:text-3xl font-light tracking-wider">
                                 {currentQuestion.question}
                             </h2>
                         </div>
 
-                        <div className="h-2 bg-white/10 rounded-full">
+                        <div className="h-2 bg-white rounded-full">
                             <div
                                 className={`h-2 rounded-full transition-all duration-500 bg-gradient-to-r ${currentQuestion.gradient}`}
-                                style={{
-                                    width: `${
-                                        ((state.currentQuestion + 1) /
-                                            questions.length) * 100
-                                    }%`,
-                                }}
+                                style={{width: `${((state.currentQuestion + 1) / questions.length) * 100}%`}}
                             />
                         </div>
+
                     </div>
 
-
                     {/* Options Section */}
-                    <MobileLayout currentQuestion={currentQuestion} handleAnswer={handleAnswer} />
-                    <div
-                        className={`${getContainerStyle(
-                            currentQuestion.options.length
-                        )} mx-auto w-full hidden lg:grid`}
-                    >
+                    <div className={`${getContainerStyle(currentQuestion.options.length)} mx-auto`}>
                         {currentQuestion.options.map((option, index) => (
                             <div
-                                key={option.value}
-                                className={`w-36 h-36 sm:w-48 sm:h-48 lg:w-60 lg:h-60 flex-shrink-0 transition-all duration-300 hover:scale-105 ${getOffsetClass(
-                                    index,
-                                    currentQuestion.options.length
-                                )}`}
-                            >
+                            key={option.value}
+                            className={`aspect-square w-full h-full  transition-all duration-300 hover:scale-105 ${getOffsetClass(
+                                index,
+                                currentQuestion.options.length
+                            )}`}
+                        >
                                 <button
                                     onClick={() => handleAnswer(option.value)}
                                     className={`
@@ -220,6 +235,8 @@ export default function TasteQuiz() {
                                         p-4 space-y-2
                                         text-lg font-light tracking-wide
                                         group
+                                        transition-all duration-300 
+                                        hover:scale-105
                                         ${buttonAnimations[index] || ""}
                                     `}
                                 >
@@ -230,6 +247,25 @@ export default function TasteQuiz() {
                                 </button>
                             </div>
                         ))}
+                    </div>
+
+                    {/* BackButton */}
+                    <div className="text-center pb-12 lg:pt-20 xl:pt-28 ">
+                    {state.currentQuestion > 0 ? (
+                            <button
+                                onClick={handleBack}
+                                className="border border-white px-4 py-2 translate-y-1/2 rounded-full hover:bg-opacity-20 transition-all duration-300"
+                            >
+                                ← 前の回答に戻る
+                            </button>
+                        ) : (
+                            <button
+                                onClick={() => router.push('/quiz/')}
+                                className="border border-white px-4 py-2 translate-y-1/2 rounded-full hover:bg-opacity-20 transition-all duration-300"
+                            >
+                                ← 診断選択ページに戻る
+                            </button>
+                        )}
                     </div>
                 </div>
             </main>

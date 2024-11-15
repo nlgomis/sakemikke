@@ -8,7 +8,6 @@ import LanguageSwitcher from "../components/LanguageSwitcher";
 import GradientBackground from "../components/GradientbBackground";
 import SpinningRings from "../components/SpinniongRings";
 
-
 export default function QuizSelector() {
     const router = useRouter();
     const { t } = useLanguage();
@@ -39,7 +38,7 @@ export default function QuizSelector() {
             <div className="absolute">
                 <GradientBackground />
             </div>
-            <main className="container h-full mx-auto flex flex-col items-center justify-center px-4 pt-40 md:pt-0 relative z-1">
+            <main className="container h-full mx-auto flex flex-col items-center lg:justify-center px-4 pt-28 lg:pt-0 relative">
                 <div className="text-center mb-16">
                     <h1 className="text-4xl sm:text-5xl font-light text-white mb-12 tracking-wider">
                         {t.quiz.title}
@@ -79,7 +78,7 @@ export default function QuizSelector() {
                                 
                             `}
                         >
-                            <SpinningRings/>
+                            <SpinningRings />
                             <div className=" flex flex-col items-center justify-center gap-12">
                                 <div>
                                     <h2 className="text-3xl font-light text-white mb-4 tracking-wider">
@@ -103,4 +102,3 @@ export default function QuizSelector() {
         </div>
     );
 }
-
