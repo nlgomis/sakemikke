@@ -22,6 +22,21 @@ module.exports = {
         '2xl': '1536px',
         '3xl': '1920px',
       },
+      height: {
+        'screen': [
+          '100vh','100dvh'
+        ]
+      },
+      minHeight: {
+        'screen': [
+          '100vh','100dvh'
+        ]
+      },
+      maxHeight: {
+        'screen': [
+          '100vh','100dvh'
+        ]
+      },
       animation: {
         fadeIn: "fadeIn 0.5s ease-in forwards",
         moveInCircle: "moveInCircle 40s linear infinite",
@@ -180,9 +195,9 @@ module.exports = {
         },
       },
       backgroundImage: {
-        "gradient-quiz":
-          "linear-gradient(to bottom right, var(--tw-gradient-stops))",
+        "gradient-quiz":"linear-gradient(to bottom right, var(--tw-gradient-stops))",
         "gradient-conic": "conic-gradient(var(--tw-gradient-stops))",
+        "gradient-lr" : "linear-gradient2(to left right, var(--tw-gradient-stops))",
       },
       colors: {
         quiz: {
@@ -200,6 +215,12 @@ module.exports = {
         customRed: "#D6193E",
         customBlue: "#0225CB",
         customViolet: "#4F358A",
+        skyBlue1: "#DBF1F9",
+        skyBlue2: "#74D2E4",
+        skyBlue3: "#32B7D6",
+        skyBlue4: "#A1D9EE",
+        skyBlue5: "#4DAFCB",
+        skyBlue6: "#2CA5C5",
       },
     },
   },

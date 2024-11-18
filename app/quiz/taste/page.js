@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -72,8 +72,6 @@ export default function TasteQuiz() {
         setButtonAnimations(shuffledAnimations);
     }, [state.currentQuestion]);
 
-    
-
     const handleAnswer = (answer) => {
         const newAnswers = { ...state.answers };
 
@@ -145,13 +143,13 @@ export default function TasteQuiz() {
         const baseStyle = "grid gap-6 lg:gap-0 xl:gap-4 w-full";
         switch (optionsLength) {
             case 2:
-                return `${baseStyle} grid-cols-2  lg:grid-cols-2  max-w-[300px] sm:max-w-md lg:max-w-sm xl:max-w-md 2xl:max-w-lg`;
+                return `${baseStyle} grid-cols-2  lg:grid-cols-2  max-w-[220px] lg:max-h-[244px] sm:max-w-md lg:max-w-sm xl:max-w-md 2xl:max-w-lg`;
             case 3:
-                return `${baseStyle} grid-cols-2 lg:grid-cols-3  max-w-[300px] sm:max-w-md lg:max-w-xl xl:max-w-2xl 2xl:max-w-3xl`;
+                return `${baseStyle} grid-cols-2 lg:grid-cols-3  max-w-[220px] lg:max-h-[244px] sm:max-w-md lg:max-w-xl xl:max-w-2xl 2xl:max-w-3xl`;
             case 4:
-                return `${baseStyle} grid-cols-2 lg:grid-cols-4  max-w-[300px] sm:max-w-md lg:max-w-3xl xl:max-w-4xl 2xl:max-w-5xl`;
+                return `${baseStyle} grid-cols-2 lg:grid-cols-4  max-w-[220px] lg:max-h-[244px] sm:max-w-md lg:max-w-3xl xl:max-w-4xl 2xl:max-w-5xl`;
             case 5:
-                return `${baseStyle} grid-cols-2 lg:grid-cols-5 max-w-[300px] sm:max-w-md lg:max-w-4xl xl:max-w-6xl 2xl:max-w-7xl`;
+                return `${baseStyle} grid-cols-2 lg:grid-cols-5 max-w-[220px] lg:max-h-[244px] sm:max-w-md lg:max-w-4xl xl:max-w-6xl 2xl:max-w-7xl`;
             default:
                 return `${baseStyle} grid-cols-1 max-w-5xl`;
         }
@@ -195,48 +193,56 @@ export default function TasteQuiz() {
     return (
         <div className="min-h-screen text-white flex flex-col">
             <GradientBackground />
-            <main className="flex-1 flex flex-col items-center 2xl:justify-center px-4 pt-28 2xl:pt-0">
-                <div className="w-full mx-auto space-y-12">
+            <main className="flex-1 flex flex-col items-center justify-center pt-16 px-4 lg:pt-0">
+                <div className="w-full mx-auto flex flex-col justify-between gap-12 h-[608px] sm:h-[950px] md:h-[958px] lg:h-[546px] xl:h-[584px] 2xl:h-[610px]">
                     {/* Question Section */}
-                    <div className="text-center mx-auto max-w-2xl">
+                    <div className="text-center mx-auto w-full max-w-3xl">
                         <div className="p-8 rounded-2xl">
-                            <h2 className="text-xl md:text-2xl lg:text-3xl font-light tracking-wider">
+                            <h2 className="text-xl md:text-2xl lg:text-3xl font-light min-h-[calc(2em+1rem)] tracking-wider ">
                                 {currentQuestion.question}
                             </h2>
                         </div>
 
-                        <div className="h-2 bg-white rounded-full">
+                        {/* Progress Bar */}
+                        <div className="h-2  bg-white w-[90%] mx-auto rounded-full">
                             <div
                                 className={`h-2 rounded-full transition-all duration-500 bg-gradient-to-r ${currentQuestion.gradient}`}
-                                style={{width: `${((state.currentQuestion + 1) / questions.length) * 100}%`}}
+                                style={{
+                                    width: `${
+                                        ((state.currentQuestion + 1) /
+                                            questions.length) *
+                                        100
+                                    }%`,
+                                }}
                             />
                         </div>
-
                     </div>
 
                     {/* Options Section */}
-                    <div className={`${getContainerStyle(currentQuestion.options.length)} mx-auto`}>
+                    <div
+                        className={`${getContainerStyle(
+                            currentQuestion.options.length
+                        )} mx-auto`}
+                    >
                         {currentQuestion.options.map((option, index) => (
                             <div
-                            key={option.value}
-                            className={`aspect-square w-full h-full  transition-all duration-300 hover:scale-105 ${getOffsetClass(
-                                index,
-                                currentQuestion.options.length
-                            )}`}
-                        >
+                                key={option.value}
+                                className={`aspect-square w-full h-full transition-all duration-300 md:hover:scale-105 ${getOffsetClass(
+                                    index,
+                                    currentQuestion.options.length
+                                )}`}
+                            >
                                 <button
                                     onClick={() => handleAnswer(option.value)}
                                     className={`
                                         relative
                                         w-full
                                         h-full
+                                        aspect-square
                                         rounded-full
                                         flex flex-col items-center justify-center
                                         p-4 space-y-2
                                         text-lg font-light tracking-wide
-                                        group
-                                        transition-all duration-300 
-                                        hover:scale-105
                                         ${buttonAnimations[index] || ""}
                                     `}
                                 >
@@ -250,20 +256,20 @@ export default function TasteQuiz() {
                     </div>
 
                     {/* BackButton */}
-                    <div className="text-center pb-12 lg:pt-20 xl:pt-28 ">
-                    {state.currentQuestion > 0 ? (
+                    <div className="w-full flex justify-center translate-y-3/4 lg:mt-20">
+                        {state.currentQuestion > 0 ? (
                             <button
                                 onClick={handleBack}
-                                className="border border-white px-4 py-2 translate-y-1/2 rounded-full hover:bg-opacity-20 transition-all duration-300"
+                                className="border border-white px-4 py-2 rounded-full md:hover:bg-opacity-20 transition-all duration-300"
                             >
                                 ← 前の回答に戻る
                             </button>
                         ) : (
                             <button
-                                onClick={() => router.push('/quiz/')}
-                                className="border border-white px-4 py-2 translate-y-1/2 rounded-full hover:bg-opacity-20 transition-all duration-300"
+                                onClick={() => router.push("/quiz/")}
+                                className="border border-white px-4 py-2 rounded-full md:hover:bg-opacity-20 transition-all duration-300"
                             >
-                                ← 診断選択ページに戻る
+                                ← 前のページに戻る
                             </button>
                         )}
                     </div>
