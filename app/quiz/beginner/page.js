@@ -218,7 +218,7 @@ export default function BeginnerQuiz() {
         <div className="min-h-screen text-white flex flex-col">
             <GradientBackground />
             <main className="flex-1 flex flex-col items-center justify-center pt-16 px-4 lg:pt-0">
-                <div className="w-full mx-auto flex flex-col justify-between gap-12 h-[608px] sm:h-[950px] md:h-[958px] lg:h-[546px] xl:h-[584px] 2xl:h-[610px]">
+                <div className="w-full mx-auto flex flex-col justify-between lg:gap-12 h-[518px] sm:h-[870px] md:h-[880px] lg:h-[546px] xl:h-[584px] 2xl:h-[610px]">
                     {/* Question Section */}
                     <div className="text-center mx-auto w-full max-w-3xl">
                         <div className="p-8 rounded-2xl">
