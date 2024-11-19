@@ -30,21 +30,21 @@ export default function Home() {
             </div>
 
             {/* Subtitle */}
-            <p className="text-lg sm:text-xl lg:text-2xl text-blue-100/90 font-light tracking-wide sm:tracking-[.40em] mb-8 sm:mb-12 2xl:mb-16 px-4">
+            <p className=" text-base xs:text-lg sm:text-xl lg:text-2xl text-blue-100/90 font-light tracking-wide sm:tracking-[.40em] mb-8 sm:mb-12 2xl:mb-16 px-4">
               {t.home.subtitle}
             </p>
 
             {/* Buttons Container */}
             <div className="flex flex-col space-y-4 sm:space-y-0 sm:flex-row sm:justify-center sm:space-x-6 px-4">
 
-              <Link href="/quiz" className="relative overflow-hidden rounded-full py-8 px-6 sm:px-32 text-base sm:text-lg w-4/5 mx-auto sm:w-1/2">
+              <Link href="/quiz" className="relative overflow-hidden rounded-full py-7 px-3 xs:py-8 xs:px-6 sm:px-32 text-sm sm:text-base w-4/5 mx-auto sm:w-1/2">
                 
     
-                <span className="absolute inset-[2px] z-10 flex items-center justify-center rounded-full bg-indigo-950 bg-gradient-to-t from-blue-950 text-white hover:bg-indigo-950/70 duration-500 hover:scale-x-[1.02] hover:scale-y-[1.066] transition-all">
+                <span className="absolute inset-[2px] z-10 flex items-center justify-center rounded-full bg-gradient-to-l from-cyan-800/30 md:hover:bg-red-600 text-white duration-300 md:hover:scale-x-[1.02] md:hover:scale-y-[1.066] transition-all">
                   {t.home.startButton}
                 </span>
 
-                <span aria-hidden className="absolute inset-0 z-0 scale-x-[2.0] blur before:absolute before:inset-0 before:top-1/2 before:aspect-square before:animate-disco before:bg-gradient-conic before:from-fuchsia-500 before:via-blue-600  before:to-cyan-400 " />
+                <span aria-hidden className="absolute inset-0 z-0 scale-x-[2.0] blur before:absolute before:inset-0 before:top-1/2 before:aspect-square before:animate-disco before:bg-gradient-to-l before:from-white before:via-skyBlue2  before:to-skyBlue3 " />
 
             </Link>
             </div>

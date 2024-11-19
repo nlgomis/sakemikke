@@ -204,22 +204,22 @@ const translations = {
       }
     },
     quiz: {
-      title: 'あなたの選択',
-      subtitle: '最適な日本酒を見つけるためのクイズを選んでください',
+      title: 'あなただけの日本酒が見つかる',
+      subtitle: 'あなたの今の気分はこの3つのうちのどれ?',
       back: '戻る',
       startQuiz: 'スタート',
       options: {
         beginner: {
           name: '初心者',
-          description: '日本酒を始めて飲む方におすすめ'
+          description: '日本酒に興味がある'
         },
         taste: {
           name: '味わい',
-          description: '好みの味に合わせて日本酒を見つける'
+          description: '味わいから選びたい方'
         },
         food: {
           name: '和食',
-          description: '和食に合う日本酒を見つける'
+          description: '日本酒に合わせたい'
         }
       }
     },
