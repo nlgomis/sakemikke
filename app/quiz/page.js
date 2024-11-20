@@ -38,9 +38,9 @@ export default function QuizSelector() {
             <div className="absolute">
                 <GradientBackground />
             </div>
-            <main className="container h-full w-full mx-auto flex flex-col items-center md:justify-center px-4 pt-28 md:pt-0 relative">
-                <div className="text-center mb-8 sm:mb-16">
-                    <h1 className="text-xl sm:text-4xl lg:text-5xl font-light text-white mb-6 md:mb-12 tracking-wider">
+            <main className="container h-full w-full mx-auto flex flex-col items-center sm:justify-center px-4 pt-28 sm:pt-0 relative">
+                <div className="text-center mb-8 sm:mb-12">
+                    <h1 className="text-xl sm:text-4xl lg:text-5xl font-light text-white mb-3 md:mb-4 tracking-wider">
                         {t.quiz.title}
                     </h1>
                     <p className="text-base sm:text-xl lg:text-2xl text-blue-100/90 font-light tracking-wide">
@@ -48,7 +48,7 @@ export default function QuizSelector() {
                     </p>
                 </div>
 
-                <div className="grid sm:grid-cols-3 gap-6 lg:gap-12 xl:gap-16 max-w-full mx-auto ">
+                <div className="grid sm:grid-cols-3 gap-6 lg:gap-12 xl:gap-16  max-w-[175.5px] sm:max-w-[575px]  md:max-w-[636px]  lg:max-w-[745.5px] xl:max-w-[777.5px] mx-auto ">
                     {quizOptions.map((option) => (
                         <Link
                             key={option.id}

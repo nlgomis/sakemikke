@@ -3,6 +3,8 @@
 @tailwind components;
 @tailwind utilities;
 
+/* @import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho&display=swap'); */
+
 @property --angle {
     syntax: "<angle>";
     inherits: true;

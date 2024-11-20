@@ -200,7 +200,7 @@ export default function WashokuQuiz() {
     return (
         <div className="min-h-screen text-white flex flex-col">
             <GradientBackground />
-            <main className="flex-1 flex flex-col items-center justify-center pt-16 px-4 lg:pt-0">
+            <main className="flex-1 flex flex-col items-center justify-center pt-16 3xs:pt-8 2xs:pt-0 xs:pt-16 px-4 lg:pt-0">
                 <div className="w-full mx-auto flex flex-col justify-between lg:gap-12 h-[518px] sm:h-[870px] md:h-[880px] lg:h-[546px] xl:h-[584px] 2xl:h-[610px] ">
                     {/* Question Section */}
                     <div className="text-center mx-auto w-full max-w-3xl">
@@ -265,16 +265,16 @@ export default function WashokuQuiz() {
                         {state.currentQuestion > 0 ? (
                             <button
                                 onClick={handleBack}
-                                className="border border-white px-4 py-2 rounded-full md:hover:bg-opacity-20 transition-all duration-300"
+                                className="border border-white px-8 py-2 rounded-full md:hover:bg-opacity-20 transition-all duration-300"
                             >
-                                ← 前の回答に戻る
+                                前のページへ
                             </button>
                         ) : (
                             <button
                                 onClick={() => router.push("/quiz/")}
-                                className="border border-white px-4 py-2 rounded-full md:hover:bg-opacity-20 transition-all duration-300"
+                                className="border border-white px-8 py-2 rounded-full md:hover:bg-opacity-20 transition-all duration-300"
                             >
-                                ← 前のページに戻る
+                                前のページへ
                             </button>
                         )}
                     </div>

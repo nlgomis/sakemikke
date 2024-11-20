@@ -13,7 +13,12 @@ module.exports = {
     ],
     theme: {
         extend: {
+            fontFamily: {
+                'shippori': ['Shippori Mincho', 'serif'],
+            },
             screens: {
+              "3xs": "360px",
+                "2xs": "390px",
                 xs: "480px",
                 sm: "640px",
                 md: "768px",
