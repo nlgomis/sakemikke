@@ -32,7 +32,7 @@ const translations = {
       copyright: '© 2025 SAKEMIKKE. All rights reserved.'
     },
     auth: {
-      greeting: getGreeting('en'),
+      greeting: '\'s Page',
       login: {
         name: 'Login'
       },
@@ -192,7 +192,7 @@ const translations = {
       copyright: '© 2025 SAKEMIKKE. All rights reserved.'
     },
     auth: {
-      greeting: getGreeting('ja'),
+      greeting: 'のページ',
       login: {
         name: 'ログイン'
       },
