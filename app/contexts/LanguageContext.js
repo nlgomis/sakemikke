@@ -192,7 +192,7 @@ const translations = {
       copyright: '© 2025 SAKEMIKKE. All rights reserved.'
     },
     auth: {
-      greeting: 'のページ',
+      greeting: 'の個人ページ',
       login: {
         name: 'ログイン'
       },
