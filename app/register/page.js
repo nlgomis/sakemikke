@@ -168,7 +168,7 @@ export default function RegisterPage() {
             </div>
           </div>
         </div>
-
+                
         {/* Footer */}
         <div className="p-6 text-center">
           <div className="text-white/40 text-md font-light">

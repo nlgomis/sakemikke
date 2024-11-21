@@ -18,6 +18,7 @@ export default function WashokuQuiz() {
 
     const [buttonAnimations, setButtonAnimations] = useState([]);
 
+    // Update animations when current question changes
     useEffect(() => {
         const currentQ = getCurrentQuestion();
         const animations = [
@@ -38,6 +39,16 @@ export default function WashokuQuiz() {
         setButtonAnimations(shuffledAnimations);
     }, [state.currentQuestion]);
 
+    // Update subQuestions when language changes or answers change
+    useEffect(() => {
+        if (state.answers.category) {
+            setState(prev => ({
+                ...prev,
+                subQuestions: getSubQuestions(state.answers.category)
+            }));
+        }
+    }, [t, state.answers.category]); // Add t as a dependency
+
     const categories = [
         { value: "刺身", label: t.washoku.options.categories.sashimi },
         { value: "椀盛", label: t.washoku.options.categories.soup },
@@ -46,32 +57,36 @@ export default function WashokuQuiz() {
         { value: "鍋", label: t.washoku.options.categories.nabe },
     ];
 
-    const subQuestions = {
-        刺身: [
-            { value: "ぶり", label: t.washoku.options.sashimi.buri },
-            { value: "サーモン", label: t.washoku.options.sashimi.salmon },
-            { value: "ヒラメ", label: t.washoku.options.sashimi.hirame },
-        ],
-        椀盛: [
-            { value: "潮仕立て", label: t.washoku.options.soup.shio },
-            { value: "白味噌仕立て", label: t.washoku.options.soup.white },
-            { value: "八丁味噌仕立て", label: t.washoku.options.soup.hatcho },
-        ],
-        焼き魚: [
-            { value: "サバの塩焼き", label: t.washoku.options.grilled.saba },
-            { value: "ブリの照り焼き", label: t.washoku.options.grilled.buri },
-            { value: "鰆の西京焼き", label: t.washoku.options.grilled.sawara },
-        ],
-        揚げ物: [
-            { value: "鶏の竜田揚げ", label: t.washoku.options.fried.chicken },
-            { value: "とんかつ", label: t.washoku.options.fried.pork },
-            { value: "アナゴの天ぷら", label: t.washoku.options.fried.anago },
-        ],
-        鍋: [
-            { value: "寄せ鍋", label: t.washoku.options.nabe.yose },
-            { value: "すき焼き", label: t.washoku.options.nabe.sukiyaki },
-            { value: "ブリしゃぶ", label: t.washoku.options.nabe.buri },
-        ],
+    const getSubQuestions = (category) => {
+        const subQuestionsMap = {
+            刺身: [
+                { value: "ぶり", label: t.washoku.options.sashimi.buri },
+                { value: "サーモン", label: t.washoku.options.sashimi.salmon },
+                { value: "ヒラメ", label: t.washoku.options.sashimi.hirame },
+            ],
+            椀盛: [
+                { value: "潮仕立て", label: t.washoku.options.soup.shio },
+                { value: "白味噌仕立て", label: t.washoku.options.soup.white },
+                { value: "八丁味噌仕立て", label: t.washoku.options.soup.hatcho },
+            ],
+            焼き魚: [
+                { value: "サバの塩焼き", label: t.washoku.options.grilled.saba },
+                { value: "ブリの照り焼き", label: t.washoku.options.grilled.buri },
+                { value: "鰆の西京焼き", label: t.washoku.options.grilled.sawara },
+            ],
+            揚げ物: [
+                { value: "鶏の竜田揚げ", label: t.washoku.options.fried.chicken },
+                { value: "とんかつ", label: t.washoku.options.fried.pork },
+                { value: "アナゴの天ぷら", label: t.washoku.options.fried.anago },
+            ],
+            鍋: [
+                { value: "寄せ鍋", label: t.washoku.options.nabe.yose },
+                { value: "すき焼き", label: t.washoku.options.nabe.sukiyaki },
+                { value: "ブリしゃぶ", label: t.washoku.options.nabe.buri },
+            ],
+        };
+
+        return subQuestionsMap[category] || [];
     };
 
     const handleAnswer = (answer) => {
@@ -82,7 +97,7 @@ export default function WashokuQuiz() {
             setState({
                 currentQuestion: 1,
                 answers: newAnswers,
-                subQuestions: subQuestions[answer],
+                subQuestions: getSubQuestions(answer),
             });
         } else {
             newAnswers.specific = answer;
@@ -113,25 +128,17 @@ export default function WashokuQuiz() {
     const handleBack = () => {
         if (state.currentQuestion > 0) {
             const newAnswers = { ...state.answers };
-            // 現在の質問に対応する回答を削除
-            switch (state.currentQuestion - 1) {
-                case 0:
-                    delete newAnswers.category;
-                    break;
-                case 1:
-                    delete newAnswers.specific;
-                    break;
-            }
+            delete newAnswers.category;
             setState({
                 currentQuestion: state.currentQuestion - 1,
                 answers: newAnswers,
+                subQuestions: null,
             });
         }
     };
 
-
-
     const currentQuestion = getCurrentQuestion();
+
 
     const getOffsetClass = (index, optionsLength) => {
         if (optionsLength === 5) {
@@ -205,9 +212,9 @@ export default function WashokuQuiz() {
             <main className="flex-1 flex flex-col items-center 2xl:justify-center px-4 pt-28 2xl:pt-0">
                 <div className="w-full mx-auto space-y-12">
                     {/* Question Section */}
-                    <div className="text-center mx-auto  max-w-2xl">
+                    <div className="text-center mx-auto max-w-2xl">
                         <div className="p-8 rounded-2xl">
-                            <h2 className="text-xl md:text-2xl lg:text-3xl  font-light tracking-wider">
+                            <h2 className="text-xl md:text-2xl lg:text-3xl font-light tracking-wider">
                                 {currentQuestion.question}
                             </h2>
                         </div>
@@ -226,12 +233,12 @@ export default function WashokuQuiz() {
                     <div className={`${getContainerStyle(currentQuestion.options.length)} mx-auto`}>
                         {currentQuestion.options.map((option, index) => (
                             <div
-                            key={option.value}
-                            className={`aspect-square w-full h-full  transition-all duration-300 hover:scale-105 ${getOffsetClass(
-                                index,
-                                currentQuestion.options.length
-                            )}`}
-                        >
+                                key={option.value}
+                                className={`aspect-square w-full h-full transition-all duration-300 hover:scale-105 ${getOffsetClass(
+                                    index,
+                                    currentQuestion.options.length
+                                )}`}
+                            >
                                 <button
                                     onClick={() => handleAnswer(option.value)}
                                     className={`
@@ -258,7 +265,7 @@ export default function WashokuQuiz() {
                     </div>
                     {/* BackButton */}
                     <div className="text-center pb-12 lg:pt-20 xl:pt-28">
-                    {state.currentQuestion > 0 ? (
+                        {state.currentQuestion > 0 ? (
                             <button
                                 onClick={handleBack}
                                 className="border border-white px-4 py-2 translate-y-1/2 rounded-full hover:bg-opacity-20 transition-all duration-300"
