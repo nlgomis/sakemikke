@@ -25,17 +25,22 @@ const LocationTimeHeader = () => {
   return (
     <div className="w-full px-4">
       <div className="container mx-auto pb-10">
-        <div className="flex items-center justify-around gap-56 text-sm md:text-base text-white">
-          {/* Location */}
-          <div className="font text-lg tracking-wider flex-1 text-right ">
-            TOKYO JAPAN
+        <div className="flex items-center justify-between gap-20 sm:gap-8 md:gap-16 lg:gap-56 text-sm md:text-base text-white">
+          {/* Location with Icon */}
+          <div className="font text-sm md:text-lg tracking-wider flex-1 text-right flex items-center justify-end">
+            <img
+              src="/images/marker.png"
+              alt="Location Icon"
+              className="w-6 h-6 mr-2"
+            />
+            <span>TOKYO JAPAN</span>
           </div>
 
-          {/* Center Line */}
+          {/* Center Line - 非表示にする */}
           <div className="hidden md:block h-[1px] bg-white/60 flex-1" />
 
           {/* Time */}
-          <div className="font text-lg tracking-wider flex-1 text-left ">
+          <div className="font text-base md:text-lg tracking-widest text-left flex-1 space-x-2">
             {time}
           </div>
         </div>
@@ -136,9 +141,9 @@ export default function Component() {
         <section className="relative h-screen flex flex-col justify-center items-center px-4 sm:px-8">
           {/* メインコンテンツ */}
           <div className="relative w-full max-w-[90vw] sm:max-w-3xl mx-auto">
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-12 tracking-tighter">
+            <h1 className="text-4xl md:text-7xl lg:text-8xl font-bold mb-12 tracking-tighter">
               <span className="block text-center sm:text-left">HEY!</span>
-              <span className="block text-center sm:text-left">
+              <span className="block text-center sm:text-left whitespace-nowrap">
                 WE&apos;RE SAKEMIKKE!
               </span>
             </h1>
@@ -222,18 +227,15 @@ export default function Component() {
           <div className="w-full min-h-[300px] md:min-h-[400px] p-4 md:p-8">
             <div className="container mx-auto">
               <div className="flex flex-col items-center border-t border-b border-white py-6 md:py-12">
-                <div className="flex flex-col md:flex-row gap-4 md:gap-8 justify-center w-full">
+                <div className="flex flex-col  md:flex-row gap-4 md:gap-8 justify-center w-full">
                   {sections.map((section) => (
                     <div
                       key={section.title}
-                      className="relative group w-full md:w-auto"
+                      className="relative group w-full md:w-auto cursor-default"
                       onMouseEnter={() => setHoveredSection(section.title)}
                       onMouseLeave={() => setHoveredSection(null)}
                     >
-                      <div
-                        className="w-full md:w-48 h-32 md:h-48 border border-white overflow-hidden cursor-pointer transition-all duration-500 ease-in-out hover:bg-white hover:bg-opacity-10"
-                        role="button"
-                      >
+                      <div className="w-full md:w-48 h-32 md:h-48 border border-white overflow-hidden  transition-all duration-500 ease-in-out hover:bg-white hover:bg-opacity-10 ">
                         <div className="relative h-full w-full">
                           {/* Title Container */}
                           <div
@@ -269,48 +271,50 @@ export default function Component() {
             </div>
           </div>
         </section>
-        {/* Features Grid */}
         <section className="py-24 px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl md:text-3xl text-center mb-16">
+            <h2 className="text-2xl md:text-3xl text-center mb-20">
               酒見っけの独自性
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
               {[
-                { num: "1", text: "豊富な選択肢" },
-                { num: "2", text: "初心者でもわかりやすい説明" },
-                { num: "3", text: "銘酒の詳細" },
-                { num: "4", text: "ユーザー履歴の閲覧" },
-                { num: "5", text: "多言語 海外の人にも" },
-                { num: "6", text: "PC・スマホ どこでも、いつでも" },
+                { num: "1", text: "豊富な選択肢​​" },
+                { num: "2", text: "初心者でも​​わかりやすい説明" },
+                { num: "3", text: "銘酒の詳細​​" },
+                { num: "4", text: "ユーザー履歴の​​閲覧" },
+                { num: "5", text: "多言語 海外の人にも​​" },
+                { num: "6", text: "PC・スマホ どこでも、いつでも​​" },
               ].map((feature) => (
                 <div
                   key={feature.num}
-                  className="bg-black/30 backdrop-blur-sm p-8 rounded-lg h-48 flex flex-col justify-center"
+                  className="bg-white/10 backdrop-blur-md border border-white/20 shadow-lg px-8 py-14 rounded-lg flex flex-col justify-center"
                 >
                   <div className="flex items-center gap-3 mb-4">
                     <div className="flex flex-col items-center">
-                      <div className="w-3 h-3 bg-red-600 rounded-full" />
-                      <div className="w-3 h-3 bg-white rounded-full my-1" />
-                      <div className="w-3 h-3 bg-white rounded-full" />
+                      <div className="w-4 h-4 bg-white rounded-full" />
+                      <div className="w-4 h-4 bg-white rounded-full my-1" />
+                      <div className="w-4 h-4 bg-red-600 rounded-full" />
                     </div>
-                    <span className="text-3xl font-bold">{feature.num}</span>
+
+                    <span className="text-4xl font-bold self-end -mb-0.5">
+                      {feature.num}
+                    </span>
                   </div>
-                  <p className="text-base mt-6">{feature.text}</p>
+                  <p className="text-lg mt-6 leading-tight">{feature.text}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
         <section className="w-full py-12">
-          <div className="container mx-auto">
-            <div className="relative">
-              <div className="absolute inset-x-0 top-0 h-px bg-white" />
+          <div className="relative w-full">
+            <div className="absolute inset-x-0 top-0 h-px bg-white" />
+            <div className="container mx-auto">
               <h2 className="py-6 text-center text-2xl font-medium tracking-wider text-white sm:text-3xl md:text-4xl">
                 ここに見っけ！ あなたの一杯、
               </h2>
-              <div className="absolute inset-x-0 bottom-0 h-px bg-white" />
             </div>
+            <div className="absolute inset-x-0 bottom-0 h-px bg-white" />
           </div>
         </section>
         {/* Testimonials */}
@@ -454,7 +458,7 @@ export default function Component() {
             </div>
             {/* Copyright Section */}
             <div className="mb-6 mt-12 md:mt-10 lg:mt-12 text-center text-xs md:text-sm">
-              © 2024 SAKEMIKKE. All rights reserved.
+              © 2025 SAKEMIKKE. All rights reserved.
             </div>
           </div>
         </footer>
