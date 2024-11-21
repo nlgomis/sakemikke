@@ -24,7 +24,7 @@
     max-height: 64px;
     min-width: 220px;
     min-height: 56px;
-    --border-width: 4px;
+    --border-width: 2px;
     --radius: 100px;
     border: var(--border-width) solid transparent;
     display: flex;
