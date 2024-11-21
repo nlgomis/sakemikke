@@ -5,8 +5,6 @@ import { useRouter } from "next/navigation";
 import { useLanguage } from "../../contexts/LanguageContext";
 import SpinningRings from "@/app/components/SpinniongRings";
 import GradientBackground from "@/app/components/GradientbBackground";
-import Image from "next/image";
-import MobileLayout from "@/app/components/MobileLayout";
 
 export default function WashokuQuiz() {
     const router = useRouter();
@@ -19,6 +17,7 @@ export default function WashokuQuiz() {
 
     const [buttonAnimations, setButtonAnimations] = useState([]);
 
+    // Update animations when current question changes
     useEffect(() => {
         const currentQ = getCurrentQuestion();
         const animations = [
@@ -31,14 +30,24 @@ export default function WashokuQuiz() {
             "animate-float-7",
             "animate-float-8",
         ];
-
+ 
         const shuffledAnimations = [...animations]
             .sort(() => Math.random() - 0.5)
             .slice(0, currentQ.options.length);
-
+ 
         setButtonAnimations(shuffledAnimations);
     }, [state.currentQuestion]);
-
+ 
+    // Update subQuestions when language changes or answers change
+    useEffect(() => {
+        if (state.answers.category) {
+            setState(prev => ({
+                ...prev,
+                subQuestions: getSubQuestions(state.answers.category)
+            }));
+        }
+    }, [t, state.answers.category]); // Add t as a dependency
+ 
     const categories = [
         { value: "刺身", label: t.washoku.options.categories.sashimi },
         { value: "椀盛", label: t.washoku.options.categories.soup },
@@ -46,44 +55,48 @@ export default function WashokuQuiz() {
         { value: "揚げ物", label: t.washoku.options.categories.fried },
         { value: "鍋", label: t.washoku.options.categories.nabe },
     ];
-
-    const subQuestions = {
-        刺身: [
-            { value: "ぶり", label: t.washoku.options.sashimi.buri },
-            { value: "サーモン", label: t.washoku.options.sashimi.salmon },
-            { value: "ヒラメ", label: t.washoku.options.sashimi.hirame },
-        ],
-        椀盛: [
-            { value: "潮仕立て", label: t.washoku.options.soup.shio },
-            { value: "白味噌仕立て", label: t.washoku.options.soup.white },
-            { value: "八丁味噌仕立て", label: t.washoku.options.soup.hatcho },
-        ],
-        焼き魚: [
-            { value: "サバの塩焼き", label: t.washoku.options.grilled.saba },
-            { value: "ブリの照り焼き", label: t.washoku.options.grilled.buri },
-            { value: "鰆の西京焼き", label: t.washoku.options.grilled.sawara },
-        ],
-        揚げ物: [
-            { value: "鶏の竜田揚げ", label: t.washoku.options.fried.chicken },
-            { value: "とんかつ", label: t.washoku.options.fried.pork },
-            { value: "アナゴの天ぷら", label: t.washoku.options.fried.anago },
-        ],
-        鍋: [
-            { value: "寄せ鍋", label: t.washoku.options.nabe.yose },
-            { value: "すき焼き", label: t.washoku.options.nabe.sukiyaki },
-            { value: "ブリしゃぶ", label: t.washoku.options.nabe.buri },
-        ],
+ 
+    const getSubQuestions = (category) => {
+        const subQuestionsMap = {
+            刺身: [
+                { value: "ぶり", label: t.washoku.options.sashimi.buri },
+                { value: "サーモン", label: t.washoku.options.sashimi.salmon },
+                { value: "ヒラメ", label: t.washoku.options.sashimi.hirame },
+            ],
+            椀盛: [
+                { value: "潮仕立て", label: t.washoku.options.soup.shio },
+                { value: "白味噌仕立て", label: t.washoku.options.soup.white },
+                { value: "八丁味噌仕立て", label: t.washoku.options.soup.hatcho },
+            ],
+            焼き魚: [
+                { value: "サバの塩焼き", label: t.washoku.options.grilled.saba },
+                { value: "ブリの照り焼き", label: t.washoku.options.grilled.buri },
+                { value: "鰆の西京焼き", label: t.washoku.options.grilled.sawara },
+            ],
+            揚げ物: [
+                { value: "鶏の竜田揚げ", label: t.washoku.options.fried.chicken },
+                { value: "とんかつ", label: t.washoku.options.fried.pork },
+                { value: "アナゴの天ぷら", label: t.washoku.options.fried.anago },
+            ],
+            鍋: [
+                { value: "寄せ鍋", label: t.washoku.options.nabe.yose },
+                { value: "すき焼き", label: t.washoku.options.nabe.sukiyaki },
+                { value: "ブリしゃぶ", label: t.washoku.options.nabe.buri },
+            ],
+        };
+ 
+        return subQuestionsMap[category] || [];
     };
-
+ 
     const handleAnswer = (answer) => {
         const newAnswers = { ...state.answers };
-
+ 
         if (state.currentQuestion === 0) {
             newAnswers.category = answer;
             setState({
                 currentQuestion: 1,
                 answers: newAnswers,
-                subQuestions: subQuestions[answer],
+                subQuestions: getSubQuestions(answer),
             });
         } else {
             newAnswers.specific = answer;
@@ -92,7 +105,7 @@ export default function WashokuQuiz() {
             );
         }
     };
-
+ 
     const getCurrentQuestion = () => {
         if (state.currentQuestion === 0) {
             return {
@@ -110,28 +123,22 @@ export default function WashokuQuiz() {
             };
         }
     };
-
+ 
     const handleBack = () => {
         if (state.currentQuestion > 0) {
             const newAnswers = { ...state.answers };
-            // 現在の質問に対応する回答を削除
-            switch (state.currentQuestion - 1) {
-                case 0:
-                    delete newAnswers.category;
-                    break;
-                case 1:
-                    delete newAnswers.specific;
-                    break;
-            }
+            delete newAnswers.category;
             setState({
                 currentQuestion: state.currentQuestion - 1,
                 answers: newAnswers,
+                subQuestions: null,
             });
         }
     };
-
+ 
     const currentQuestion = getCurrentQuestion();
-
+ 
+ 
     const getOffsetClass = (index, optionsLength) => {
         if (optionsLength === 5) {
             return index === 1 || index === 3 ? "translate-y-1/2" : "";
@@ -144,7 +151,7 @@ export default function WashokuQuiz() {
         }
         return "";
     };
-
+ 
     // 選択肢の数に応じてコンテナのスタイルを決定する関数
     const getContainerStyle = (optionsLength) => {
         const baseStyle = "grid gap-6 lg:gap-0 xl:gap-4 w-full";
@@ -152,7 +159,7 @@ export default function WashokuQuiz() {
             case 2:
                 return `${baseStyle} grid-cols-2  lg:grid-cols-2  max-w-[220px] lg:max-h-[244px] sm:max-w-md lg:max-w-sm xl:max-w-md 2xl:max-w-lg`;
             case 3:
-                return `${baseStyle} grid-cols-2 lg:grid-cols-3  max-w-[220px] lg:max-h-[244px] sm:max-w-md lg:max-w-xl xl:max-w-2xl 2xl:max-w-3xl`;
+                return `${baseStyle} grid-cols-2 lg:grid-cols-3  max-w-[220px] lg:max-h-[244px] sm:max-w-md lg:max-w-[537.6px] xl:max-w-2xl 2xl:max-w-3xl`;
             case 4:
                 return `${baseStyle} grid-cols-2 lg:grid-cols-4  max-w-[220px] lg:max-h-[244px] sm:max-w-md lg:max-w-3xl xl:max-w-4xl 2xl:max-w-5xl`;
             case 5:
@@ -161,7 +168,7 @@ export default function WashokuQuiz() {
                 return `${baseStyle} grid-cols-1 max-w-5xl`;
         }
     };
-
+ 
     const customRings = [
         {
             color: "#fff",
@@ -232,7 +239,7 @@ export default function WashokuQuiz() {
                         {currentQuestion.options.map((option, index) => (
                             <div
                                 key={option.value}
-                                className={`aspect-square w-full h-full transition-all duration-300 md:hover:scale-105 ${getOffsetClass(
+                                className={`aspect-square w-full h-full transition-all duration-300 md:hover: ${getOffsetClass(
                                     index,
                                     currentQuestion.options.length
                                 )}`}

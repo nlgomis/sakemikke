@@ -35,11 +35,10 @@ export default function Home() {
                         </p>
 
                         {/* Buttons Container */}
-                        
-                            <Link href="/quiz" className=" text-white">
-                                <HomeButton>{t.home.startButton}</HomeButton>
-                            </Link>
-                        
+
+                        <Link href="/quiz" className=" text-white">
+                            <HomeButton>{t.home.startButton}</HomeButton>
+                        </Link>
                     </div>
                 </main>
 
