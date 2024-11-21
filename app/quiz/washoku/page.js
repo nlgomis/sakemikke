@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useLanguage } from "../../contexts/LanguageContext";
 import SpinningRings from "@/app/components/SpinniongRings";
 import GradientBackground from "@/app/components/GradientbBackground";
- 
+
 export default function WashokuQuiz() {
     const router = useRouter();
     const { t } = useLanguage();
@@ -16,7 +16,7 @@ export default function WashokuQuiz() {
     });
  
     const [buttonAnimations, setButtonAnimations] = useState([]);
- 
+
     // Update animations when current question changes
     useEffect(() => {
         const currentQ = getCurrentQuestion();
@@ -203,7 +203,7 @@ export default function WashokuQuiz() {
             animation: "animate-spin-custom4",
         },
     ];
- 
+
     return (
         <div className="min-h-screen text-white flex flex-col">
             <GradientBackground />
@@ -216,7 +216,7 @@ export default function WashokuQuiz() {
                                 {currentQuestion.question}
                             </h2>
                         </div>
- 
+
                         {/* Progress Bar */}
                         <div className="h-2  bg-white w-[90%] mx-auto rounded-full">
                             <div
@@ -266,7 +266,7 @@ export default function WashokuQuiz() {
                             </div>
                         ))}
                     </div>
- 
+
                     {/* BackButton */}
                     <div className="w-full flex justify-center translate-y-3/4 lg:mt-20">
                         {state.currentQuestion > 0 ? (

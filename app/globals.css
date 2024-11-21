@@ -3,6 +3,171 @@
 @tailwind components;
 @tailwind utilities;
 
+/* @import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho&display=swap'); */
+
+@property --angle {
+    syntax: "<angle>";
+    inherits: true;
+    initial-value: 0turn;
+}
+
+@keyframes spin {
+    to {
+        --angle: 1turn;
+    }
+}
+
+.gradient-border {
+    position: relative;
+    border-radius: 100px;
+    max-width: 368px;
+    max-height: 64px;
+    min-width: 220px;
+    min-height: 56px;
+    --border-width: 4px;
+    --radius: 100px;
+    border: var(--border-width) solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+@media (min-width: 640px) {
+    .gradient-border {
+        width: 306px;
+        height: 64px;
+    }
+}
+
+@media (min-width: 768px) {
+    .gradient-border {
+        width: 320px;
+        height: 64px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .gradient-border {
+        width: 368px;
+        height: 64px;
+    }
+}
+
+.gradient-border::before {
+    content: " ";
+    position: absolute;
+    inset: calc(var(--border-width) * -1);
+    z-index: -1;
+    border: inherit;
+    border-radius: inherit;
+    background-image: conic-gradient(
+        from var(--angle) at 50% 50%,
+        #eeebff 0deg,
+        #00bfff 90deg,
+        #3dfcff 180deg,
+        #7dd4ff 270deg,
+        #eeebff 360deg
+    );
+    background-origin: border-box;
+    -webkit-mask: linear-gradient(black, black), linear-gradient(black, black);
+    mask: linear-gradient(black, black), linear-gradient(black, black);
+    -webkit-mask-clip: content-box, border-box;
+    mask-clip: content-box, border-box;
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: spin 3s linear infinite running;
+}
+
+.gradient-border .glow {
+    position: absolute;
+    inset: calc(var(--border-width) * -1);
+    border-radius: inherit;
+}
+
+.gradient-border .glow::after {
+    content: "";
+    position: absolute;
+    inset: calc(var(--border-width) * -1);
+    z-index: -1;
+    border: calc(var(--border-width) * 2) solid transparent;
+    border-radius: inherit;
+    background-image: conic-gradient(
+        from var(--angle) at 50% 50%,
+        #eeebff 0deg,
+        transparent 90deg,
+        transparent 180deg,
+        transparent 270deg,
+        #eeebff 360deg
+    );
+    background-origin: border-box;
+    -webkit-mask: linear-gradient(black, black), linear-gradient(black, black);
+    mask: linear-gradient(black, black), linear-gradient(black, black);
+    -webkit-mask-clip: content-box, border-box;
+    mask-clip: content-box, border-box;
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: spin 4s linear infinite running;
+}
+
+.white-glow {
+    filter: blur(20px);
+}
+.purple-glow {
+    filter: blur(7px);
+}
+.red-glow {
+    filter: blur(8px);
+}
+.cyan-glow {
+    filter: blur(15px);
+}
+
+.gradient-border .purple-glow::after {
+    background-image: conic-gradient(
+        from var(--angle) at 50% 50%,
+        transparent 0deg,
+        #00b7ff 90deg,
+        transparent 180deg
+    );
+    border: calc(var(--border-width) * 1) solid transparent;
+}
+
+.gradient-border .red-glow::after {
+    background-image: conic-gradient(
+        from var(--angle) at 50% 50%,
+        transparent 180deg,
+        #43dcff 270deg,
+        transparent 360deg
+    );
+    border: calc(var(--border-width) * 1) solid transparent;
+}
+
+.gradient-border .cyan-glow::after {
+    background-image: conic-gradient(
+        from var(--angle) at 50% 50%,
+        transparent 90deg,
+        #3dfcff 180deg,
+        transparent 270deg
+    );
+    border: calc(var(--border-width) * 2) solid transparent;
+}
+
+.gradient-border:hover {
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.gradient-border span {
+    transition: transform 0.3s ease;
+}
+
+.gradient-border:hover span {
+    transform: scale(1.05);
+}
 
 .animation-delay-1000 {
     animation-delay: 1s;
