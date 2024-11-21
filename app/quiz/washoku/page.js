@@ -1,12 +1,11 @@
 "use client";
-
+ 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useLanguage } from "../../contexts/LanguageContext";
 import SpinningRings from "@/app/components/SpinniongRings";
 import GradientBackground from "@/app/components/GradientbBackground";
-import MobileLayout from "@/app/components/MobileLayout";
-
+ 
 export default function WashokuQuiz() {
     const router = useRouter();
     const { t } = useLanguage();
@@ -15,9 +14,9 @@ export default function WashokuQuiz() {
         answers: {},
         subQuestions: null,
     });
-
+ 
     const [buttonAnimations, setButtonAnimations] = useState([]);
-
+ 
     // Update animations when current question changes
     useEffect(() => {
         const currentQ = getCurrentQuestion();
@@ -31,14 +30,14 @@ export default function WashokuQuiz() {
             "animate-float-7",
             "animate-float-8",
         ];
-
+ 
         const shuffledAnimations = [...animations]
             .sort(() => Math.random() - 0.5)
             .slice(0, currentQ.options.length);
-
+ 
         setButtonAnimations(shuffledAnimations);
     }, [state.currentQuestion]);
-
+ 
     // Update subQuestions when language changes or answers change
     useEffect(() => {
         if (state.answers.category) {
@@ -48,7 +47,7 @@ export default function WashokuQuiz() {
             }));
         }
     }, [t, state.answers.category]); // Add t as a dependency
-
+ 
     const categories = [
         { value: "刺身", label: t.washoku.options.categories.sashimi },
         { value: "椀盛", label: t.washoku.options.categories.soup },
@@ -56,7 +55,7 @@ export default function WashokuQuiz() {
         { value: "揚げ物", label: t.washoku.options.categories.fried },
         { value: "鍋", label: t.washoku.options.categories.nabe },
     ];
-
+ 
     const getSubQuestions = (category) => {
         const subQuestionsMap = {
             刺身: [
@@ -85,13 +84,13 @@ export default function WashokuQuiz() {
                 { value: "ブリしゃぶ", label: t.washoku.options.nabe.buri },
             ],
         };
-
+ 
         return subQuestionsMap[category] || [];
     };
-
+ 
     const handleAnswer = (answer) => {
         const newAnswers = { ...state.answers };
-
+ 
         if (state.currentQuestion === 0) {
             newAnswers.category = answer;
             setState({
@@ -106,7 +105,7 @@ export default function WashokuQuiz() {
             );
         }
     };
-
+ 
     const getCurrentQuestion = () => {
         if (state.currentQuestion === 0) {
             return {
@@ -124,7 +123,7 @@ export default function WashokuQuiz() {
             };
         }
     };
-
+ 
     const handleBack = () => {
         if (state.currentQuestion > 0) {
             const newAnswers = { ...state.answers };
@@ -136,10 +135,10 @@ export default function WashokuQuiz() {
             });
         }
     };
-
+ 
     const currentQuestion = getCurrentQuestion();
-
-
+ 
+ 
     const getOffsetClass = (index, optionsLength) => {
         if (optionsLength === 5) {
             return index === 1 || index === 3 ? "translate-y-1/2" : "";
@@ -152,24 +151,24 @@ export default function WashokuQuiz() {
         }
         return "";
     };
-
+ 
     // 選択肢の数に応じてコンテナのスタイルを決定する関数
     const getContainerStyle = (optionsLength) => {
         const baseStyle = "grid gap-6 lg:gap-0 xl:gap-4 w-full";
         switch (optionsLength) {
             case 2:
-                return `${baseStyle} grid-cols-2  lg:grid-cols-2  max-w-[300px] sm:max-w-md lg:max-w-sm xl:max-w-md 2xl:max-w-lg`;
+                return `${baseStyle} grid-cols-2  lg:grid-cols-2  max-w-[220px] lg:max-h-[244px] sm:max-w-md lg:max-w-sm xl:max-w-md 2xl:max-w-lg`;
             case 3:
-                return `${baseStyle} grid-cols-2 lg:grid-cols-3  max-w-[300px] sm:max-w-md lg:max-w-xl xl:max-w-2xl 2xl:max-w-3xl`;
+                return `${baseStyle} grid-cols-2 lg:grid-cols-3  max-w-[220px] lg:max-h-[244px] sm:max-w-md lg:max-w-[537.6px] xl:max-w-2xl 2xl:max-w-3xl`;
             case 4:
-                return `${baseStyle} grid-cols-2 lg:grid-cols-4  max-w-[300px] sm:max-w-md lg:max-w-3xl xl:max-w-4xl 2xl:max-w-5xl`;
+                return `${baseStyle} grid-cols-2 lg:grid-cols-4  max-w-[220px] lg:max-h-[244px] sm:max-w-md lg:max-w-3xl xl:max-w-4xl 2xl:max-w-5xl`;
             case 5:
-                return `${baseStyle} grid-cols-2 lg:grid-cols-5 max-w-[300px] sm:max-w-md lg:max-w-4xl xl:max-w-6xl 2xl:max-w-7xl`;
+                return `${baseStyle} grid-cols-2 lg:grid-cols-5 max-w-[220px] lg:max-h-[244px] sm:max-w-md lg:max-w-4xl xl:max-w-6xl 2xl:max-w-7xl`;
             default:
                 return `${baseStyle} grid-cols-1 max-w-5xl`;
         }
     };
-
+ 
     const customRings = [
         {
             color: "#fff",
@@ -204,37 +203,43 @@ export default function WashokuQuiz() {
             animation: "animate-spin-custom4",
         },
     ];
-
-    
+ 
     return (
         <div className="min-h-screen text-white flex flex-col">
             <GradientBackground />
-            <main className="flex-1 flex flex-col items-center 2xl:justify-center px-4 pt-28 2xl:pt-0">
-                <div className="w-full mx-auto space-y-12">
+            <main className="flex-1 flex flex-col items-center justify-center pt-16 3xs:pt-8 2xs:pt-0 xs:pt-16 px-4 lg:pt-0">
+                <div className="w-full mx-auto flex flex-col justify-between lg:gap-12 h-[518px] sm:h-[870px] md:h-[880px] lg:h-[546px] xl:h-[584px] 2xl:h-[610px] ">
                     {/* Question Section */}
-                    <div className="text-center mx-auto max-w-2xl">
+                    <div className="text-center mx-auto w-full max-w-3xl">
                         <div className="p-8 rounded-2xl">
-                            <h2 className="text-xl md:text-2xl lg:text-3xl font-light tracking-wider">
+                            <h2 className="text-xl md:text-2xl lg:text-3xl font-light min-h-[calc(2em+1rem)] tracking-wider">
                                 {currentQuestion.question}
                             </h2>
                         </div>
-
-                        <div className="h-2 bg-white rounded-full">
+ 
+                        {/* Progress Bar */}
+                        <div className="h-2  bg-white w-[90%] mx-auto rounded-full">
                             <div
                                 className={`h-2 rounded-full transition-all duration-500 bg-gradient-to-r ${currentQuestion.gradient}`}
                                 style={{
-                                    width: `${((state.currentQuestion + 1) / 2) * 100}%`,
+                                    width: `${
+                                        ((state.currentQuestion + 1) / 2) * 100
+                                    }%`,
                                 }}
                             />
                         </div>
                     </div>
-
+ 
                     {/* Options Section */}
-                    <div className={`${getContainerStyle(currentQuestion.options.length)} mx-auto`}>
+                    <div
+                        className={`${getContainerStyle(
+                            currentQuestion.options.length
+                        )} mx-auto`}
+                    >
                         {currentQuestion.options.map((option, index) => (
                             <div
                                 key={option.value}
-                                className={`aspect-square w-full h-full transition-all duration-300 hover:scale-105 ${getOffsetClass(
+                                className={`aspect-square w-full h-full transition-all duration-300 md:hover: ${getOffsetClass(
                                     index,
                                     currentQuestion.options.length
                                 )}`}
@@ -245,13 +250,11 @@ export default function WashokuQuiz() {
                                         relative
                                         w-full
                                         h-full
+                                        aspect-square
                                         rounded-full
                                         flex flex-col items-center justify-center
                                         p-4 space-y-2
                                         text-lg font-light tracking-wide
-                                        group
-                                        transition-all duration-300 
-                                        hover:scale-105
                                         ${buttonAnimations[index] || ""}
                                     `}
                                 >
@@ -263,21 +266,22 @@ export default function WashokuQuiz() {
                             </div>
                         ))}
                     </div>
+ 
                     {/* BackButton */}
-                    <div className="text-center pb-12 lg:pt-20 xl:pt-28">
+                    <div className="w-full flex justify-center translate-y-3/4 lg:mt-20">
                         {state.currentQuestion > 0 ? (
                             <button
                                 onClick={handleBack}
-                                className="border border-white px-4 py-2 translate-y-1/2 rounded-full hover:bg-opacity-20 transition-all duration-300"
+                                className="border border-white px-8 py-2 rounded-full md:hover:bg-opacity-20 transition-all duration-300"
                             >
-                                ← 前の回答に戻る
+                                前のページへ
                             </button>
                         ) : (
                             <button
-                                onClick={() => router.push('/quiz/')}
-                                className="border border-white px-4 py-2 translate-y-1/2 rounded-full hover:bg-opacity-20 transition-all duration-300"
+                                onClick={() => router.push("/quiz/")}
+                                className="border border-white px-8 py-2 rounded-full md:hover:bg-opacity-20 transition-all duration-300"
                             >
-                                ← 診断選択ページに戻る
+                                前のページへ
                             </button>
                         )}
                     </div>
