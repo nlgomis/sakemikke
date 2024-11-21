@@ -19,7 +19,7 @@ export default function AuthButton() {
 
     const authenticatedOptions = user && user.name ? [
         { 
-            name: `${t.auth.greeting}${user.name}${language === 'ja' ? '様' : ''}`,
+            name: `${user.name}${language === 'ja' ? '様' : ''}${t.auth.greeting}`,
             path: '/profile', // Add path instead of action
             className: "text-green-400"
         },
