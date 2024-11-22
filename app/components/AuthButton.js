@@ -1,4 +1,3 @@
-// app/components/AuthButton.js
 'use client';
 
 import { useState } from "react";
@@ -6,11 +5,17 @@ import Link from "next/link";
 import { useLanguage } from '../contexts/LanguageContext';
 import { useAuth } from '../contexts/AuthContext';
 import { User, LogOut } from "lucide-react";
+import { useClickOutside } from '../hooks/useClickOutside';
 
 export default function AuthButton() {
     const [isOpen, setIsOpen] = useState(false);
     const { t, language } = useLanguage();
     const { user, logout } = useAuth();
+
+    // Use the click outside hook
+    const dropdownRef = useClickOutside(() => {
+        setIsOpen(false);
+    });
 
     const handleLogout = () => {
         logout();
@@ -20,7 +25,7 @@ export default function AuthButton() {
     const authenticatedOptions = user && user.name ? [
         { 
             name: `${user.name}${language === 'ja' ? '様' : ''}${t.auth.greeting}`,
-            path: '/profile', // Add path instead of action
+            path: '/profile',
             className: "text-green-400"
         },
         { 
@@ -35,11 +40,10 @@ export default function AuthButton() {
         { name: t.auth.register.name, path: '/register' },
     ];
 
-    // If user is null or user.name is undefined, show unauthenticated options
     const options = user && user.name ? authenticatedOptions : unauthenticatedOptions;
 
     return (
-        <div className="relative">
+        <div className="relative" ref={dropdownRef}>
             <button
                 onClick={() => setIsOpen(!isOpen)}
                 className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 border border-white/30"

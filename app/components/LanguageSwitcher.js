@@ -1,16 +1,21 @@
-// app/components/LanguageSwitcher.js
 "use client";
 
 import { useState } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Globe } from 'lucide-react';
+import { useClickOutside } from '../hooks/useClickOutside';
 
 export default function LanguageSwitcher() {
   const [isOpen, setIsOpen] = useState(false);
   const { setLanguage, languages } = useLanguage();
 
+  // Use the click outside hook
+  const dropdownRef = useClickOutside(() => {
+    setIsOpen(false);
+  });
+
   return (
-    <div className="relative">
+    <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 
