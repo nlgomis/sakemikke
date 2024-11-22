@@ -57,7 +57,26 @@
     }
 }
 
-.gradient-border::before {
+
+.gradient-border2 {
+    position: relative;
+    border-radius: 100px;
+    width: 170px;
+    height: 42px;
+    --border-width: 2px;
+    --radius: 100px;
+    border: var(--border-width) solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.gradient-border::before,
+.gradient-border2::before {
     content: " ";
     position: absolute;
     inset: calc(var(--border-width) * -1);
@@ -82,13 +101,15 @@
     animation: spin 3s linear infinite running;
 }
 
-.gradient-border .glow {
+.gradient-border .glow,
+.gradient-border2 .glow {
     position: absolute;
     inset: calc(var(--border-width) * -1);
     border-radius: inherit;
 }
 
-.gradient-border .glow::after {
+.gradient-border .glow::after,
+.gradient-border2 .glow::after {
     content: "";
     position: absolute;
     inset: calc(var(--border-width) * -1);
@@ -126,7 +147,8 @@
     filter: blur(15px);
 }
 
-.gradient-border .purple-glow::after {
+.gradient-border .purple-glow::after,
+.gradient-border2 .purple-glow::after {
     background-image: conic-gradient(
         from var(--angle) at 50% 50%,
         transparent 0deg,
@@ -136,7 +158,8 @@
     border: calc(var(--border-width) * 1) solid transparent;
 }
 
-.gradient-border .red-glow::after {
+.gradient-border .red-glow::after
+.gradient-border2 .red-glow::after {
     background-image: conic-gradient(
         from var(--angle) at 50% 50%,
         transparent 180deg,
@@ -146,7 +169,8 @@
     border: calc(var(--border-width) * 1) solid transparent;
 }
 
-.gradient-border .cyan-glow::after {
+.gradient-border .cyan-glow::after,
+.gradient-border2 .cyan-glow::after {
     background-image: conic-gradient(
         from var(--angle) at 50% 50%,
         transparent 90deg,
@@ -156,16 +180,19 @@
     border: calc(var(--border-width) * 2) solid transparent;
 }
 
-.gradient-border:hover {
+.gradient-border:hover,
+.gradient-border2:hover {
     background-color: transparent;
     cursor: pointer;
 }
 
-.gradient-border span {
+.gradient-border span,
+.gradient-border2 span {
     transition: transform 0.3s ease;
 }
 
-.gradient-border:hover span {
+.gradient-border:hover span,
+.gradient-border2:hover span  {
     transform: scale(1.05);
 }
 

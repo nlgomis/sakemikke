@@ -49,12 +49,6 @@ const SpinningRings = ({
                         .match(/.{2}/g)
                         .map((x) => parseInt(x, 16));
 
-                    // 境界線のカラー用のRGBA値を計算
-                    // const borderRgbaColor = ring.color
-                    //     .replace(/^#/, "")
-                    //     .match(/.{2}/g)
-                    //     .map((x) => parseInt(x, 16));
-
                     return (
                         <div
                             key={index}

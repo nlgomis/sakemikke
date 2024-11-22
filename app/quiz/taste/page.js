@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useLanguage } from "../../contexts/LanguageContext";
 import SpinningRings from "@/app/components/SpinniongRings";
 import GradientBackground from "@/app/components/GradientbBackground";
-import MobileLayout from "@/app/components/MobileLayout";
+import BackButton from "@/app/components/BackButton";
 
 export default function TasteQuiz() {
     const router = useRouter();
@@ -241,7 +241,7 @@ export default function TasteQuiz() {
                                         aspect-square
                                         rounded-full
                                         flex flex-col items-center justify-center
-                                        p-4 space-y-2
+                                        p-4
                                         text-lg font-light tracking-wide
                                         ${buttonAnimations[index] || ""}
                                     `}
@@ -257,21 +257,15 @@ export default function TasteQuiz() {
 
                     {/* BackButton */}
                     <div className="w-full flex justify-center translate-y-3/4 lg:mt-20">
-                        {state.currentQuestion > 0 ? (
-                            <button
-                                onClick={handleBack}
-                                className="border border-white px-8 py-2 rounded-full md:hover:bg-opacity-20 transition-all duration-300"
-                            >
-                                前のページへ
-                            </button>
-                        ) : (
-                            <button
-                                onClick={() => router.push("/quiz/")}
-                                className="border border-white px-8 py-2 rounded-full md:hover:bg-opacity-20 transition-all duration-300"
-                            >
-                                前のページへ
-                            </button>
-                        )}
+                        <BackButton
+                            onClick={
+                                state.currentQuestion > 0
+                                    ? handleBack
+                                    : () => router.push("/quiz/")
+                            }
+                        >
+                            前のページへ
+                        </BackButton>
                     </div>
                 </div>
             </main>

@@ -194,6 +194,13 @@ module.exports = {
                 "gradient-lr":
                     "linear-gradient2(to left right, var(--tw-gradient-stops))",
             },
+            backgroundSiz: {
+                "auto" : "auto",
+                "cover" : "cover",
+                "contain" : "contain",
+                "90%": "90%",
+                "80%": "80%",
+            },
             colors: {
                 quiz: {
                     primary: {

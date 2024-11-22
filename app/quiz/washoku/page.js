@@ -5,7 +5,8 @@ import { useRouter } from "next/navigation";
 import { useLanguage } from "../../contexts/LanguageContext";
 import SpinningRings from "@/app/components/SpinniongRings";
 import GradientBackground from "@/app/components/GradientbBackground";
-
+import BackButton from "@/app/components/BackButton";
+import Image from "next/image";
 export default function WashokuQuiz() {
     const router = useRouter();
     const { t } = useLanguage();
@@ -16,6 +17,38 @@ export default function WashokuQuiz() {
     });
  
     const [buttonAnimations, setButtonAnimations] = useState([]);
+
+    const categoryImages = {
+        刺身: "/images/sashimi.png",
+        椀盛: "/images/soup.png",
+        焼き魚: "/images/grilled-fish.png",
+        揚げ物: "/images/fried-dishes.png",
+        鍋: "/images/hot-pot.png",
+    };
+
+    // サブカテゴリーと画像のマッピング
+    const subCategoryImages = {
+        // 刺身のサブカテゴリー
+        ぶり: "/images/sashimi-buri.png",
+        サーモン: "/images/sashimi-salmon.png",
+        ヒラメ: "/images/sashimi-seabream.png",
+        // 椀盛のサブカテゴリー
+        潮仕立て: "/images/clear-soup.png",
+        白味噌仕立て: "/images/white-miso.png",
+        八丁味噌仕立て: "/images/red-miso.png",
+        // 焼き魚のサブカテゴリー
+        サバの塩焼き: "/images/saba.png",
+        ブリの照り焼き: "/images/buriyaki.png",
+        鰆の西京焼き: "/images/sawara-withmiso.png",
+        // 揚げ物のサブカテゴリー
+        鶏の竜田揚げ: "/images/karaage.png",
+        とんかつ: "/images/pork-cutlet.png",
+        アナゴの天ぷら: "/images/tempura.png",
+        // 鍋のサブカテゴリー
+        寄せ鍋: "/images/yose-nabe.png",
+        すき焼き: "/images/sukiyaki.png",
+        ブリしゃぶ: "/images/buri-shabu.png",
+    };
 
     // Update animations when current question changes
     useEffect(() => {
@@ -30,24 +63,24 @@ export default function WashokuQuiz() {
             "animate-float-7",
             "animate-float-8",
         ];
- 
+
         const shuffledAnimations = [...animations]
             .sort(() => Math.random() - 0.5)
             .slice(0, currentQ.options.length);
- 
+
         setButtonAnimations(shuffledAnimations);
     }, [state.currentQuestion]);
- 
+
     // Update subQuestions when language changes or answers change
     useEffect(() => {
         if (state.answers.category) {
-            setState(prev => ({
+            setState((prev) => ({
                 ...prev,
-                subQuestions: getSubQuestions(state.answers.category)
+                subQuestions: getSubQuestions(state.answers.category),
             }));
         }
     }, [t, state.answers.category]); // Add t as a dependency
- 
+
     const categories = [
         { value: "刺身", label: t.washoku.options.categories.sashimi },
         { value: "椀盛", label: t.washoku.options.categories.soup },
@@ -55,7 +88,7 @@ export default function WashokuQuiz() {
         { value: "揚げ物", label: t.washoku.options.categories.fried },
         { value: "鍋", label: t.washoku.options.categories.nabe },
     ];
- 
+
     const getSubQuestions = (category) => {
         const subQuestionsMap = {
             刺身: [
@@ -66,17 +99,35 @@ export default function WashokuQuiz() {
             椀盛: [
                 { value: "潮仕立て", label: t.washoku.options.soup.shio },
                 { value: "白味噌仕立て", label: t.washoku.options.soup.white },
-                { value: "八丁味噌仕立て", label: t.washoku.options.soup.hatcho },
+                {
+                    value: "八丁味噌仕立て",
+                    label: t.washoku.options.soup.hatcho,
+                },
             ],
             焼き魚: [
-                { value: "サバの塩焼き", label: t.washoku.options.grilled.saba },
-                { value: "ブリの照り焼き", label: t.washoku.options.grilled.buri },
-                { value: "鰆の西京焼き", label: t.washoku.options.grilled.sawara },
+                {
+                    value: "サバの塩焼き",
+                    label: t.washoku.options.grilled.saba,
+                },
+                {
+                    value: "ブリの照り焼き",
+                    label: t.washoku.options.grilled.buri,
+                },
+                {
+                    value: "鰆の西京焼き",
+                    label: t.washoku.options.grilled.sawara,
+                },
             ],
             揚げ物: [
-                { value: "鶏の竜田揚げ", label: t.washoku.options.fried.chicken },
+                {
+                    value: "鶏の竜田揚げ",
+                    label: t.washoku.options.fried.chicken,
+                },
                 { value: "とんかつ", label: t.washoku.options.fried.pork },
-                { value: "アナゴの天ぷら", label: t.washoku.options.fried.anago },
+                {
+                    value: "アナゴの天ぷら",
+                    label: t.washoku.options.fried.anago,
+                },
             ],
             鍋: [
                 { value: "寄せ鍋", label: t.washoku.options.nabe.yose },
@@ -84,13 +135,13 @@ export default function WashokuQuiz() {
                 { value: "ブリしゃぶ", label: t.washoku.options.nabe.buri },
             ],
         };
- 
+
         return subQuestionsMap[category] || [];
     };
- 
+
     const handleAnswer = (answer) => {
         const newAnswers = { ...state.answers };
- 
+
         if (state.currentQuestion === 0) {
             newAnswers.category = answer;
             setState({
@@ -105,7 +156,7 @@ export default function WashokuQuiz() {
             );
         }
     };
- 
+
     const getCurrentQuestion = () => {
         if (state.currentQuestion === 0) {
             return {
@@ -123,7 +174,7 @@ export default function WashokuQuiz() {
             };
         }
     };
- 
+
     const handleBack = () => {
         if (state.currentQuestion > 0) {
             const newAnswers = { ...state.answers };
@@ -135,10 +186,9 @@ export default function WashokuQuiz() {
             });
         }
     };
- 
+
     const currentQuestion = getCurrentQuestion();
- 
- 
+
     const getOffsetClass = (index, optionsLength) => {
         if (optionsLength === 5) {
             return index === 1 || index === 3 ? "translate-y-1/2" : "";
@@ -151,7 +201,7 @@ export default function WashokuQuiz() {
         }
         return "";
     };
- 
+
     // 選択肢の数に応じてコンテナのスタイルを決定する関数
     const getContainerStyle = (optionsLength) => {
         const baseStyle = "grid gap-6 lg:gap-0 xl:gap-4 w-full";
@@ -168,7 +218,7 @@ export default function WashokuQuiz() {
                 return `${baseStyle} grid-cols-1 max-w-5xl`;
         }
     };
- 
+
     const customRings = [
         {
             color: "#fff",
@@ -203,6 +253,15 @@ export default function WashokuQuiz() {
             animation: "animate-spin-custom4",
         },
     ];
+
+    // 現在の質問に応じて適切な画像URLを取得する関数
+    const getImageUrl = (optionValue) => {
+        if (state.currentQuestion === 0) {
+            return categoryImages[optionValue];
+        } else {
+            return subCategoryImages[optionValue];
+        }
+    };
 
     return (
         <div className="min-h-screen text-white flex flex-col">
@@ -239,7 +298,7 @@ export default function WashokuQuiz() {
                         {currentQuestion.options.map((option, index) => (
                             <div
                                 key={option.value}
-                                className={`aspect-square w-full h-full transition-all duration-300 md:hover: ${getOffsetClass(
+                                className={`aspect-square w-full h-full transition-all duration-300 md:hover:scale-105 ${getOffsetClass(
                                     index,
                                     currentQuestion.options.length
                                 )}`}
@@ -247,19 +306,49 @@ export default function WashokuQuiz() {
                                 <button
                                     onClick={() => handleAnswer(option.value)}
                                     className={`
-                                        relative
-                                        w-full
-                                        h-full
-                                        aspect-square
-                                        rounded-full
-                                        flex flex-col items-center justify-center
-                                        p-4 space-y-2
-                                        text-lg font-light tracking-wide
-                                        ${buttonAnimations[index] || ""}
-                                    `}
+                                            relative
+                                            w-full
+                                            h-full
+                                            aspect-square
+                                            rounded-full
+                                            flex flex-col items-center justify-center
+                                            p-4 
+                                            text-lg font-light tracking-wide
+                                            group
+                                            ${buttonAnimations[index] || ""}
+                                        `}
                                 >
                                     <SpinningRings rings={customRings} />
-                                    <span className="text-center z-10">
+                                    {/* Image container with hover effect */}
+                                    <div className="absolute  w-full h-full">
+                                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%] h-[85%]">
+                                            <Image
+                                                src={getImageUrl(option.value)}
+                                                alt={option.label}
+                                                width={800}
+                                                height={800}
+                                                className="w-full h-full transition-all duration-300"
+                                            />
+                                            {/* Black overlay that appears on hover */}
+                                            <div className="absolute inset-0 bg-black rounded-full opacity-30 lg:opacity-0 transition-opacity duration-300 lg:group-hover:opacity-50" />
+                                        </div>
+                                    </div>
+
+                                    {/* Label with hover effect */}
+                                    <span
+                                        className="
+                                            relative z-10 
+                                            text-center 
+                                            transition-all 
+                                            duration-300
+                                            lg:opacity-0
+                                            lg:group-hover:opacity-100
+                                            lg: group-hover:text-white
+                                            lg:group-hover:font-medium
+                                            lg:group-hover:scale-105
+                                            lg:group-hover:text-shadow
+                                        "
+                                    >
                                         {option.label}
                                     </span>
                                 </button>
@@ -269,21 +358,15 @@ export default function WashokuQuiz() {
 
                     {/* BackButton */}
                     <div className="w-full flex justify-center translate-y-3/4 lg:mt-20">
-                        {state.currentQuestion > 0 ? (
-                            <button
-                                onClick={handleBack}
-                                className="border border-white px-8 py-2 rounded-full md:hover:bg-opacity-20 transition-all duration-300"
-                            >
-                                前のページへ
-                            </button>
-                        ) : (
-                            <button
-                                onClick={() => router.push("/quiz/")}
-                                className="border border-white px-8 py-2 rounded-full md:hover:bg-opacity-20 transition-all duration-300"
-                            >
-                                前のページへ
-                            </button>
-                        )}
+                        <BackButton
+                            onClick={
+                                state.currentQuestion > 0
+                                    ? handleBack
+                                    : () => router.push("/quiz/")
+                            }
+                        >
+                            前のページへ
+                        </BackButton>
                     </div>
                 </div>
             </main>
