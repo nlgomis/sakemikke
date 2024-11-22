@@ -27,7 +27,7 @@ const translations = {
     home: {
       title: 'SAKEMIKKE',
       subtitle: 'Discover Your Perfect Sake Journey',
-      startButton: 'SAKEMIKKE',
+      startButton: 'START',
       exploreButton: 'Explore Sake',
       copyright: '© 2025 SAKEMIKKE. All rights reserved.'
     },
@@ -44,8 +44,8 @@ const translations = {
       }
     },
     quiz: {
-      title: 'Choose Your Path',
-      subtitle: 'Select a quiz type to find your perfect sake',
+      title: 'Sake tailored to your tastes',
+      subtitle: 'Choose what suits your mood',
       back: 'Back',
       startQuiz: 'Start',
       options: {
@@ -181,13 +181,13 @@ const translations = {
     navigation:{
       quiz: '診断',
       types: '日本酒の種類',
-      about: 'About',
+      about: '酒見っけとは',
       contact: 'お問い合わせ'
     },
     home: {
       title: '酒みっけ',
       subtitle: 'あなたにピッタリの、日本酒との出会い',
-      startButton: '酒見っけ',
+      startButton: 'START',
       exploreButton: '日本酒を探る',
       copyright: '© 2025 SAKEMIKKE. All rights reserved.'
     },
@@ -204,8 +204,8 @@ const translations = {
       }
     },
     quiz: {
-      title: 'あなただけの日本酒が見つかる',
-      subtitle: 'あなたの今の気分はこの3つのうちのどれ?',
+      title: 'あなた好みに合わせた日本酒を。',
+      subtitle: '今の気持ちにぴったりなものを選択',
       back: '戻る',
       startQuiz: 'スタート',
       options: {
