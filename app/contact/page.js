@@ -30,7 +30,7 @@ export default function ContactPage() {
         </div>
 
         {/* メインコンテンツ  */}
-        <div className="flex flex-col lg:flex-row justify-between items-start gap-8 lg:gap-16 px-4 sm:px-8 md:px-16 pb-12">
+        <div className="flex flex-col lg:flex-row justify-between items-start gap-12 lg:gap-16 px-4 sm:px-8 md:px-16 pb-12">
           {/* 左側のフォーム */}
           <div className="flex-1 w-full">
             <form className="flex flex-col gap-8 lg:gap-12">
