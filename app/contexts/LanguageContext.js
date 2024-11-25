@@ -17,42 +17,12 @@ const getGreeting = (language) => {
 };
 
 const translations = {
-
-  en: {
-    navigation:{
-      quiz: 'Quiz',
-      types: 'Types of Sake',
-      about: 'About',
-      contact: 'Contact'
-    },
-    home: {
-      title: 'SAKEMIKKE',
-      subtitle: 'Discover Your Perfect Sake Journey',
-      startButton: 'START',
-      exploreButton: 'Explore Sake',
-      copyright: '© 2025 SAKEMIKKE. All rights reserved.'
-    },
-    auth: {
-      greeting: '\'s Page',
-      login: {
-        name: 'Login'
-      },
-      logout: {
-        name: 'Logout'
-      },
-      register: {
-        name: 'Sign up'
-      }
-    },
-    quiz: {
-      title: 'Sake tailored to your tastes',
-      subtitle: 'Choose what suits your mood',
-      back: 'Back',
-      startQuiz: 'Start',
-      options: {
-        beginner: {
-          name: 'Beginner',
-          description: 'Recommended for those new to sake'
+    en: {
+        navigation: {
+            quiz: "Quiz",
+            types: "Types of Sake",
+            about: "About",
+            contact: "Contact",
         },
         home: {
             title: "SAKEMIKKE",
@@ -94,110 +64,6 @@ const translations = {
                 },
             },
         },
-
-        moods: {
-          refreshing: 'Refreshing',
-          smooth: 'Smooth',
-          heavy: 'Rich',
-          elegant: 'Elegant'
-        },
-        pairings: {
-          western: 'Western Food',
-          japanese: 'Japanese Food',
-          dessert: 'Dessert',
-          alone: 'By Itself'
-        }
-      },
-      result: {
-        title: 'Your Perfect Sake Match',
-        subtitle: 'Based on your taste preferences',
-        tryAgain: 'Try Another Match',
-        backToQuiz: 'Back to Quiz Selection'
-      }
-    },
-    washoku: {
-      questions: {
-        category: 'What kind of food do you like?',
-        '刺身': 'Which sashimi do you prefer?',
-        '椀盛': 'Which type of soup do you prefer?',
-        '焼き魚': 'Which grilled fish do you prefer?',
-        '揚げ物': 'Which fried dish do you prefer?',
-        '鍋': 'Which hot pot dish do you prefer?'
-      },
-      options: {
-        categories: {
-          sashimi: 'Sashimi',
-          soup: 'Soup',
-          grilled: 'Grilled Fish',
-          fried: 'Fried Dishes',
-          nabe: 'Hot Pot'
-        },
-        sashimi: {
-          buri: 'Yellowtail',
-          salmon: 'Salmon',
-          hirame: 'Flounder'
-        },
-        soup: {
-          shio: 'Clear Soup',
-          white: 'White Miso Soup',
-          hatcho: 'Hatcho Miso Soup'
-        },
-        grilled: {
-          saba: 'Grilled Mackerel with Salt',
-          buri: 'Yellowtail Teriyaki',
-          sawara: 'Grilled Spanish Mackerel with Miso'
-        },
-        fried: {
-          chicken: 'Fried Chicken Karaage',
-          pork: 'Pork Cutlet',
-          anago: 'Conger Eel Tempura'
-        },
-        nabe: {
-          yose: 'Yose Nabe',
-          sukiyaki: 'Sukiyaki',
-          buri: 'Yellowtail Shabu-shabu'
-        }
-      },
-      result: {
-        title: 'Perfect Sake Pairing',
-        subtitle: 'This sake complements your dish perfectly',
-        tryAgain: 'Try Another Pairing',
-        backToQuiz: 'Back to Quiz Selection'
-      }
-    }
-  },
-  ja: {
-    navigation:{
-      quiz: '診断',
-      types: '日本酒の種類',
-      about: '酒見っけとは',
-      contact: 'お問い合わせ'
-    },
-    home: {
-      title: '酒みっけ',
-      subtitle: 'あなたにピッタリの、日本酒との出会い',
-      startButton: 'START',
-      exploreButton: '日本酒を探る',
-      copyright: '© 2025 SAKEMIKKE. All rights reserved.'
-    },
-    auth: {
-      greeting: 'の個人ページ',
-      login: {
-        name: 'ログイン'
-      },
-      logout: {
-        name: 'ログアウト'
-      },
-      register: {
-        name: 'サインアップ'
-      }
-    },
-    quiz: {
-      title: 'あなた好みに合わせた日本酒を。',
-      subtitle: '今の気持ちにぴったりなものを選択',
-      back: '戻る',
-      startQuiz: 'スタート',
-      options: {
         beginner: {
             questions: {
                 drink: "What do you usually drink?",
