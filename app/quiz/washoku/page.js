@@ -1,5 +1,5 @@
 "use client";
-
+ 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useLanguage } from "../../contexts/LanguageContext";
@@ -15,7 +15,7 @@ export default function WashokuQuiz() {
         answers: {},
         subQuestions: null,
     });
-
+ 
     const [buttonAnimations, setButtonAnimations] = useState([]);
 
     const categoryImages = {
@@ -288,7 +288,7 @@ export default function WashokuQuiz() {
                             />
                         </div>
                     </div>
-
+ 
                     {/* Options Section */}
                     <div
                         className={`${getContainerStyle(
