@@ -39,11 +39,11 @@ export default function QuizSelector() {
                 <GradientBackground />
             </div>
             <main className="container h-full w-full mx-auto flex flex-col items-center sm:justify-center px-4 pt-28 sm:pt-0 relative">
-                <div className="text-center mb-8 sm:mb-12">
-                    <h1 className="text-xl sm:text-4xl lg:text-5xl font-light text-white mb-3 md:mb-4 tracking-wider">
+                <div className="text-center mb-8 sm:mb-14">
+                    <h1 className="text-xl xs:text-2xl sm:text-4xl lg:text-5xl font-light text-white mb-3 sm:mb-6 tracking-wider">
                         {t.quiz.title}
                     </h1>
-                    <p className="text-base sm:text-xl lg:text-2xl text-blue-100/90 font-light tracking-wide">
+                    <p className="text-sm xs:text-base sm:text-xl lg:text-2xl text-blue-100/90 font-light tracking-wide">
                         {t.quiz.subtitle}
                     </p>
                 </div>

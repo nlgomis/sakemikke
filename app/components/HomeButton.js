@@ -8,7 +8,7 @@ const HomeButton = ({ children }) => {
                 <div className="cyan-glow glow"></div>
                 <div className="purple-glow glow"></div>
                 <div className="white-glow glow"></div>
-                <span className="text-base sm:text-lg">{children}</span>
+                <span className="text-base sm:text-lg lg:text-xl">{children}</span>
             </div>
         </button>
     );

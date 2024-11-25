@@ -20,7 +20,7 @@ export default function TasteQuiz() {
     const questions = [
         {
             question: t.taste.questions.taste,
-            gradient: "from-purple-500 to-blue-500",
+            gradient: "from-violet-500 via-blue-500 to-cyan-500",
             border: "border-white",
             options: [
                 { value: "キレ", label: t.taste.options.tastes.kire },
@@ -31,7 +31,7 @@ export default function TasteQuiz() {
         },
         {
             question: t.taste.questions.mood,
-            gradient: "from-blue-500 to-teal-500",
+            gradient: "from-violet-500 via-blue-500 to-cyan-500",
             border: "border-white",
             options: [
                 { value: "さわやか", label: t.taste.options.moods.refreshing },
@@ -42,7 +42,7 @@ export default function TasteQuiz() {
         },
         {
             question: t.taste.questions.pairing,
-            gradient: "from-teal-500 to-emerald-500",
+            gradient: "from-violet-500 via-blue-500 to-cyan-500",
             border: "border-white",
             options: [
                 { value: "洋食", label: t.taste.options.pairings.western },
@@ -198,7 +198,7 @@ export default function TasteQuiz() {
                     {/* Question Section */}
                     <div className="text-center mx-auto w-full max-w-3xl">
                         <div className="p-8 rounded-2xl">
-                            <h2 className="text-xl md:text-2xl lg:text-3xl font-light min-h-[calc(2em+1rem)] tracking-wider ">
+                            <h2 className="text-2xl lg:text-3xl font-light min-h-[calc(2em+1rem)] sm:min-h-full tracking-wider ">
                                 {currentQuestion.question}
                             </h2>
                         </div>
@@ -247,7 +247,8 @@ export default function TasteQuiz() {
                                     `}
                                 >
                                     <SpinningRings rings={customRings} />
-                                    <span className="text-center z-10">
+                                    <span className="text-center z-10 text-sm
+                                            sm:text-lg">
                                         {option.label}
                                     </span>
                                 </button>
@@ -264,7 +265,7 @@ export default function TasteQuiz() {
                                     : () => router.push("/quiz/")
                             }
                         >
-                            前のページへ
+                            {t.quiz.back}
                         </BackButton>
                     </div>
                 </div>
