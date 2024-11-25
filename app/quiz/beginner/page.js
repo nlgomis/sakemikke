@@ -20,7 +20,7 @@ export default function BeginnerQuiz() {
     const questions = [
         {
             question: t.beginner.questions.drink,
-            gradient: "from-purple-500 to-blue-500",
+            gradient: "from-violet-500 via-blue-500 to-teal-500",
             border: "border-white",
             options: [
                 {
@@ -43,7 +43,7 @@ export default function BeginnerQuiz() {
         },
         {
             question: t.beginner.questions.concern,
-            gradient: "from-blue-500 to-teal-500",
+            gradient: "from-violet-500 via-blue-500 to-teal-500",
             border: "border-white",
             options: [
                 {
@@ -62,7 +62,7 @@ export default function BeginnerQuiz() {
         },
         {
             question: t.beginner.questions.occasion,
-            gradient: "from-teal-500 to-emerald-500",
+            gradient: "from-violet-500 via-blue-500 to-teal-500",
             border: "border-white",
             options: [
                 {
@@ -222,7 +222,7 @@ export default function BeginnerQuiz() {
                     {/* Question Section */}
                     <div className="text-center mx-auto w-full max-w-3xl">
                         <div className="p-8 rounded-2xl">
-                            <h2 className="text-xl md:text-2xl lg:text-3xl font-light min-h-[calc(2em+1rem)] tracking-wider">
+                            <h2 className="text-2xl lg:text-3xl font-light min-h-[calc(2em+1rem)] sm:min-h-full tracking-wider">
                                 {currentQuestion.question}
                             </h2>
                         </div>
@@ -271,7 +271,8 @@ export default function BeginnerQuiz() {
                                     `}
                                 >
                                     <SpinningRings rings={customRings} />
-                                    <span className="text-center z-10">
+                                    <span className="text-center z-10 text-sm
+                                            sm:text-lg">
                                         {option.label}
                                     </span>
                                 </button>
@@ -288,7 +289,7 @@ export default function BeginnerQuiz() {
                                     : () => router.push("/quiz/")
                             }
                         >
-                            前のページへ
+                            {t.quiz.back}
                         </BackButton>
                     </div>
                 </div>

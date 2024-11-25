@@ -57,7 +57,6 @@
     }
 }
 
-
 .gradient-border2 {
     position: relative;
     border-radius: 100px;
@@ -115,6 +114,8 @@
     inset: calc(var(--border-width) * -1);
     z-index: -1;
     border: calc(var(--border-width) * 2) solid transparent;
+    /* safariで枠が見える問題 box-shadow: 0 0 50px rgba(255, 235, 255, 1);を追加したら治った */
+    box-shadow: 0 0 50px rgba(255, 235, 255, 1);
     border-radius: inherit;
     background-image: conic-gradient(
         from var(--angle) at 50% 50%,
@@ -158,8 +159,7 @@
     border: calc(var(--border-width) * 1) solid transparent;
 }
 
-.gradient-border .red-glow::after
-.gradient-border2 .red-glow::after {
+.gradient-border .red-glow::after .gradient-border2 .red-glow::after {
     background-image: conic-gradient(
         from var(--angle) at 50% 50%,
         transparent 180deg,
@@ -192,7 +192,7 @@
 }
 
 .gradient-border:hover span,
-.gradient-border2:hover span  {
+.gradient-border2:hover span {
     transform: scale(1.05);
 }
 

@@ -29,9 +29,9 @@ export default function WashokuQuiz() {
     // サブカテゴリーと画像のマッピング
     const subCategoryImages = {
         // 刺身のサブカテゴリー
-        ぶり: "/images/sashimi-buri.png",
+        ブリ: "/images/sashimi-buri.png",
         サーモン: "/images/sashimi-salmon.png",
-        ヒラメ: "/images/sashimi-seabream.png",
+        タイ: "/images/sashimi-seabream.png",
         // 椀盛のサブカテゴリー
         潮仕立て: "/images/clear-soup.png",
         白味噌仕立て: "/images/white-miso.png",
@@ -92,9 +92,9 @@ export default function WashokuQuiz() {
     const getSubQuestions = (category) => {
         const subQuestionsMap = {
             刺身: [
-                { value: "ぶり", label: t.washoku.options.sashimi.buri },
+                { value: "ブリ", label: t.washoku.options.sashimi.buri },
                 { value: "サーモン", label: t.washoku.options.sashimi.salmon },
-                { value: "ヒラメ", label: t.washoku.options.sashimi.hirame },
+                { value: "タイ", label: t.washoku.options.sashimi.seabream },
             ],
             椀盛: [
                 { value: "潮仕立て", label: t.washoku.options.soup.shio },
@@ -162,14 +162,14 @@ export default function WashokuQuiz() {
             return {
                 question: t.washoku.questions.category,
                 options: categories,
-                gradient: "from-purple-500 to-blue-500",
+                gradient: "from-violet-500 via-blue-500 to-teal-500",
                 border: "border-white",
             };
         } else {
             return {
                 question: t.washoku.questions[state.answers.category],
                 options: state.subQuestions,
-                gradient: "from-blue-500 to-teal-500",
+                gradient: "from-violet-500 via-blue-500 to-teal-500",
                 border: "border-white",
             };
         }
@@ -271,7 +271,7 @@ export default function WashokuQuiz() {
                     {/* Question Section */}
                     <div className="text-center mx-auto w-full max-w-3xl">
                         <div className="p-8 rounded-2xl">
-                            <h2 className="text-xl md:text-2xl lg:text-3xl font-light min-h-[calc(2em+1rem)] tracking-wider">
+                            <h2 className="text-2xl lg:text-3xl font-light min-h-[calc(2em+1rem)] sm:min-h-full tracking-wider">
                                 {currentQuestion.question}
                             </h2>
                         </div>
@@ -337,7 +337,9 @@ export default function WashokuQuiz() {
                                     {/* Label with hover effect */}
                                     <span
                                         className="
-                                            relative z-10 
+                                            relative 
+                                            text-sm
+                                            sm:text-lg
                                             text-center 
                                             transition-all 
                                             duration-300
@@ -365,7 +367,7 @@ export default function WashokuQuiz() {
                                     : () => router.push("/quiz/")
                             }
                         >
-                            前のページへ
+                            {t.quiz.back}
                         </BackButton>
                     </div>
                 </div>
