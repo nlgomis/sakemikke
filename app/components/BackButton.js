@@ -14,7 +14,7 @@ const BackButton = ({ children, onClick }) => {
                 <div className="white-glow glow"></div>
                 <div className="flex items-center">
                 <ArrowLeft 
-                        className="h-4 w-4 transition-transform duration-300 ease-in-out group-hover:-translate-x-2" 
+                        className="h-4 w-4 transition-transform duration-300 ease-in-out group-hover:-translate-x-1" 
                     />
                     <span className="text-base sm:text-lg ml-2">{children}</span>
                 </div>

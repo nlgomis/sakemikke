@@ -220,7 +220,7 @@ const translations = {
                 },
                 food: {
                     name: "和食",
-                    description: "日本酒に合わせたい",
+                    description: "日本食に合わせたい",
                 },
             },
         },
