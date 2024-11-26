@@ -267,12 +267,34 @@ export default function BeginnerQuiz() {
                                         flex flex-col items-center justify-center
                                         p-4 
                                         text-lg font-light tracking-wide
+                                        group
                                         ${buttonAnimations[index] || ""}
                                     `}
                                 >
                                     <SpinningRings rings={customRings} />
-                                    <span className="text-center z-10 text-sm
-                                            sm:text-lg">
+                                    <div className="absolute  w-full h-full">
+                                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[90%]">
+                                            {/* Black overlay that appears on hover */}
+                                            <div className="absolute inset-0 bg-black/50 rounded-full opacity-30 lg:opacity-0 transition-opacity duration-300 lg:group-hover:opacity-50" />
+                                        </div>
+                                    </div>
+
+                                    {/* Label with hover effect */}
+                                    <span
+                                        className="
+                                            relative 
+                                            text-sm
+                                            sm:text-lg
+                                            text-center 
+                                            transition-all 
+                                            duration-300
+                                            lg:group-hover:opacity-100
+                                            lg: group-hover:text-white
+                                            lg:group-hover:font-medium
+                                            lg:group-hover:scale-105
+                                            lg:group-hover:text-shadow
+                                        "
+                                    >
                                         {option.label}
                                     </span>
                                 </button>

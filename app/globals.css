@@ -60,7 +60,7 @@
 .gradient-border2 {
     position: relative;
     border-radius: 100px;
-    width: 170px;
+    width: 175px;
     height: 42px;
     --border-width: 2px;
     --radius: 100px;
@@ -193,7 +193,7 @@
 
 .gradient-border:hover span,
 .gradient-border2:hover span {
-    transform: scale(1.05);
+    transform: scale(1.00);
 }
 
 .animation-delay-1000 {
