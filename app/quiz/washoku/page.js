@@ -1,9 +1,9 @@
 "use client";
- 
-import { useState, useEffect } from "react";
+
+import { useState, useEffect, useLayoutEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useLanguage } from "../../contexts/LanguageContext";
-import SpinningRings from "@/app/components/SpinniongRings";
+import SpinningRings from "@/app/components/SpinningRings";
 import GradientBackground from "@/app/components/GradientbBackground";
 import BackButton from "@/app/components/BackButton";
 import Image from "next/image";
@@ -15,8 +15,9 @@ export default function WashokuQuiz() {
         answers: {},
         subQuestions: null,
     });
- 
+
     const [buttonAnimations, setButtonAnimations] = useState([]);
+    const [visibleOptions, setVisibleOptions] = useState([]);
 
     const categoryImages = {
         刺身: "/images/sashimi.png",
@@ -49,6 +50,23 @@ export default function WashokuQuiz() {
         すき焼き: "/images/sukiyaki.png",
         ブリしゃぶ: "/images/buri-shabu.png",
     };
+
+    // アニメーション用のEffectフック
+    useLayoutEffect(() => {
+        // Reset visible options when question changes
+        setVisibleOptions([]);
+
+        // Gradually show options
+        const currentQ = getCurrentQuestion();
+        const timer = currentQ.options.map((_, index) => {
+            return setTimeout(() => {
+                setVisibleOptions((prev) => [...prev, index]);
+            }, 300 * (index + 1));
+        });
+
+        // Clean up timers
+        return () => timer.forEach(clearTimeout);
+    }, [state.currentQuestion]);
 
     // Update animations when current question changes
     useEffect(() => {
@@ -288,7 +306,7 @@ export default function WashokuQuiz() {
                             />
                         </div>
                     </div>
- 
+
                     {/* Options Section */}
                     <div
                         className={`${getContainerStyle(
@@ -298,10 +316,23 @@ export default function WashokuQuiz() {
                         {currentQuestion.options.map((option, index) => (
                             <div
                                 key={option.value}
-                                className={`aspect-square w-full h-full transition-all duration-300 md:hover:scale-105 ${getOffsetClass(
-                                    index,
-                                    currentQuestion.options.length
-                                )}`}
+                                className={`
+                                    aspect-square
+                                    w-full
+                                    h-full
+                                    ransition-all
+                                    duration-500
+                                    md:hover:scale-105 
+                                    ${getOffsetClass(
+                                        index,
+                                        currentQuestion.options.length
+                                    )}
+                                    ${
+                                        visibleOptions.includes(index)
+                                            ? "opacity-100 translate-y-0"
+                                            : "opacity-0 translate-y-10"
+                                    }
+                                    `}
                             >
                                 <button
                                     onClick={() => handleAnswer(option.value)}

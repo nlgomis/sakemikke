@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { useLanguage } from "../contexts/LanguageContext";
 import LanguageSwitcher from "../components/LanguageSwitcher";
 import GradientBackground from "../components/GradientbBackground";
-import SpinningRings from "../components/SpinniongRings";
+import SpinningRings from "../components/SpinningRings";
 
 export default function QuizSelector() {
     const router = useRouter();
