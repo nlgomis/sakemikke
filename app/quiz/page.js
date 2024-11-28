@@ -5,7 +5,6 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useLanguage } from "../contexts/LanguageContext";
 import LanguageSwitcher from "../components/LanguageSwitcher";
-import GradientBackground from "../components/GradientbBackground";
 import SpinningRings from "../components/SpinningRings";
 
 export default function QuizSelector() {
@@ -36,7 +35,7 @@ export default function QuizSelector() {
     return (
         <div className="min-h-screen h-screen relative">
             <div className="absolute">
-                <GradientBackground />
+               
             </div>
             <main className="container h-full w-full mx-auto flex flex-col items-center sm:justify-center px-4 pt-28 sm:pt-0 relative">
                 <div className="text-center mb-8 sm:mb-14">

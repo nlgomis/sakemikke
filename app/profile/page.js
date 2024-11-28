@@ -3,7 +3,6 @@
 
 import { useLanguage } from '../contexts/LanguageContext';
 import { useAuth } from '../contexts/AuthContext';
-import GradientBackground from '../components/GradientbBackground';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -83,7 +82,6 @@ export default function Profile() {
 
   return (
     <div className="relative min-h-screen">
-      <GradientBackground className="fixed inset-0 z-0" />
       
       <div className="relative z-10 min-h-screen flex flex-col px-4 sm:px-6 lg:px-8 pt-24">
         <div className="flex flex-col items-center">

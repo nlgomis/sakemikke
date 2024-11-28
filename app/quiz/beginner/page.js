@@ -4,7 +4,6 @@ import { useState, useEffect, useLayoutEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useLanguage } from "../../contexts/LanguageContext";
 import SpinningRings from "@/app/components/SpinningRings";
-import GradientBackground from "@/app/components/GradientbBackground";
 import BackButton from "@/app/components/BackButton";
 
 export default function BeginnerQuiz() {
@@ -233,7 +232,7 @@ export default function BeginnerQuiz() {
 
     return (
         <div className="min-h-screen text-white flex flex-col">
-            <GradientBackground />
+            
             <main className="flex-1 flex flex-col items-center justify-center pt-16 3xs:pt-8 2xs:pt-0 xs:pt-16 px-4 lg:pt-0">
                 <div className="w-full mx-auto flex flex-col justify-between lg:gap-12 h-[518px] sm:h-[870px] md:h-[880px] lg:h-[546px] xl:h-[584px] 2xl:h-[610px]">
                     {/* Question Section */}
