@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useLanguage } from "../../contexts/LanguageContext";
-import SpinningRings from "@/app/components/SpinniongRings";
+import SpinningRings from "@/app/components/SpinningRings";
 import GradientBackground from "@/app/components/GradientbBackground";
 import BackButton from "@/app/components/BackButton";
 
@@ -16,6 +16,23 @@ export default function BeginnerQuiz() {
     });
 
     const [buttonAnimations, setButtonAnimations] = useState([]);
+    const [visibleOptions, setVisibleOptions] = useState([]);
+
+    useLayoutEffect(() => {
+        // Reset visible options when question changes
+        setVisibleOptions([]);
+        // Gradually show options
+        const timer = questions[state.currentQuestion].options.map(
+            (_, index) => {
+                return setTimeout(() => {
+                    setVisibleOptions((prev) => [...prev, index]);
+                }, 300 * (index + 1));
+            }
+        );
+
+        // Clean up timers
+        return () => timer.forEach(clearTimeout);
+    }, [state.currentQuestion]);
 
     const questions = [
         {
@@ -251,10 +268,22 @@ export default function BeginnerQuiz() {
                         {currentQuestion.options.map((option, index) => (
                             <div
                                 key={option.value}
-                                className={`aspect-square w-full h-full transition-all duration-300 md:hover:scale-105 ${getOffsetClass(
+                                className={`aspect-square
+                                w-full
+                                h-full
+                                transition-all
+                                duration-500
+                                md:hover:scale-105
+                                ${getOffsetClass(
                                     index,
                                     currentQuestion.options.length
-                                )}`}
+                                )}
+                            ${
+                                visibleOptions.includes(index)
+                                    ? "opacity-100 translate-y-0"
+                                    : "opacity-0 translate-y-10"
+                            }
+                            `}
                             >
                                 <button
                                     onClick={() => handleAnswer(option.value)}
