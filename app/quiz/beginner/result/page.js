@@ -35,7 +35,7 @@ export default function QuizResult() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white flex flex-col pb-16">
+    <div className="min-h-screen text-white flex flex-col pb-16">
       
      
 

@@ -4,15 +4,12 @@
 import Link from "next/link";
 import { useLanguage } from "./contexts/LanguageContext";
 import LanguageSwitcher from "./components/LanguageSwitcher";
-import GradientBackground from "./components/GradientbBackground";
 import Image from "next/image";
 import HomeButton from "./components/HomeButton";
 export default function Home() {
     const { t } = useLanguage();
     return (
         <div className="relative min-h-screen">
-            <GradientBackground className="fixed inset-0 z-0" />
-
             <div className="relative z-10 min-h-screen flex flex-col">
                 {/* Main Content */}
                 <main className="flex-1 flex flex-col justify-center pt-32 2xl:pt-40 items-center px-4 sm:px-6 lg:px-8">

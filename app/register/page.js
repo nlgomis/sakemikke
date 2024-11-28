@@ -4,7 +4,6 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import GradientBackground from '../components/GradientbBackground';
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -52,7 +51,6 @@ export default function RegisterPage() {
   };
   return (
     <div className="relative min-h-screen">
-      <GradientBackground className="fixed inset-0 z-0" />
 
       {/* Main container */}
       <div className="relative z-10 min-h-screen flex flex-col">

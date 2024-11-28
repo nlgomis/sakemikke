@@ -3,7 +3,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
-import GradientBackground from "../components/GradientbBackground";
 
 const LocationTimeHeader = () => {
   const [time, setTime] = useState("");
@@ -165,7 +164,6 @@ export default function Component() {
 
   return (
     <main className="min-h-screen  text-white relative overflow-hidden">
-      <GradientBackground className="fixed inset-0" />
 
       {/* Content wrapper with higher z-index */}
       <div className="relative z-10">

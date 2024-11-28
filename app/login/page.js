@@ -4,7 +4,6 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-import GradientBackground from '../components/GradientbBackground';
 
 export default function LoginPage() {
   const { login } = useAuth();
@@ -58,8 +57,6 @@ export default function LoginPage() {
 
   return (
     <div className="relative min-h-screen">
-      <GradientBackground className="fixed inset-0 z-0" />
-
       {/* Main container */}
       <div className="relative z-10 min-h-screen flex flex-col">
         {/* Increased mt-20 to move content down */}

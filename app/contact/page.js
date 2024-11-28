@@ -3,7 +3,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
-import GradientBackground from "../components/GradientbBackground";
 
 const directors = [
   { name: "田 雨シン (ディレクター)", email: "ths31111@ths.hal.ac.jp" },
@@ -19,7 +18,6 @@ const directors = [
 export default function ContactPage() {
   return (
     <div className="w-full">
-      <GradientBackground className="fixed inset-0 " />
       <div className="pt-16 min-h-screen flex flex-col justify-between text-white z-10 relative">
         {/* タイトル  */}
         <div className="flex items-center px-4 sm:px-8 md:pl-14 md:pr-16 pt-16 pb-12">
