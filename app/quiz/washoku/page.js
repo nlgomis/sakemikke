@@ -17,6 +17,7 @@ export default function WashokuQuiz() {
 
     const [buttonAnimations, setButtonAnimations] = useState([]);
     const [visibleOptions, setVisibleOptions] = useState([]);
+    const [allOptionsVisible, setAllOptionsVisible] = useState(false);
 
     const categoryImages = {
         刺身: "/images/sashimi.png",
@@ -54,6 +55,30 @@ export default function WashokuQuiz() {
     useLayoutEffect(() => {
         // Reset visible options when question changes
         setVisibleOptions([]);
+        setAllOptionsVisible(false);
+
+        // Gradually show options
+        const currentQ = getCurrentQuestion();
+        const timer = currentQ.options.map(
+            (_, index) => {
+                return setTimeout(() => {
+                    setVisibleOptions((prev) => [...prev, index]);
+                    
+                    // If this is the last option, set allOptionsVisible to true
+                    if (index === currentQ.options.length - 1) {
+                        setTimeout(() => setAllOptionsVisible(true), 300);
+                    }
+                }, 300 * (index + 1));
+            }
+        );
+
+        // Clean up timers
+        return () => timer.forEach(clearTimeout);
+    }, [state.currentQuestion]);
+
+    useLayoutEffect(() => {
+        // Reset visible options when question changes
+        setVisibleOptions([]);
 
         // Gradually show options
         const currentQ = getCurrentQuestion();
@@ -66,6 +91,8 @@ export default function WashokuQuiz() {
         // Clean up timers
         return () => timer.forEach(clearTimeout);
     }, [state.currentQuestion]);
+
+
 
     // Update animations when current question changes
     useEffect(() => {
@@ -346,6 +373,7 @@ export default function WashokuQuiz() {
                                             text-lg font-light tracking-wide
                                             group
                                             ${buttonAnimations[index] || ""}
+                                            ${!allOptionsVisible ? "cursor-not-allowed " : ""}
                                         `}
                                 >
                                     <SpinningRings rings={customRings} />
