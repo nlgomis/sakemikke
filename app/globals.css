@@ -74,8 +74,26 @@
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
+.gradient-border3 {
+    position: relative;
+    border-radius: 100px;
+    width: 220px;
+    height: 45px;
+    --border-width: 2px;
+    --radius: 100px;
+    border: var(--border-width) solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
 .gradient-border::before,
-.gradient-border2::before {
+.gradient-border2::before,
+.gradient-border3::before {
     content: " ";
     position: absolute;
     inset: calc(var(--border-width) * -1);
@@ -101,14 +119,16 @@
 }
 
 .gradient-border .glow,
-.gradient-border2 .glow {
+.gradient-border2 .glow,
+.gradient-border3 .glow {
     position: absolute;
     inset: calc(var(--border-width) * -1);
     border-radius: inherit;
 }
 
 .gradient-border .glow::after,
-.gradient-border2 .glow::after {
+.gradient-border2 .glow::after,
+.gradient-border3 .glow::after {
     content: "";
     position: absolute;
     inset: calc(var(--border-width) * -1);
@@ -149,7 +169,8 @@
 }
 
 .gradient-border .purple-glow::after,
-.gradient-border2 .purple-glow::after {
+.gradient-border2 .purple-glow::after,
+.gradient-border3 .purple-glow::after  {
     background-image: conic-gradient(
         from var(--angle) at 50% 50%,
         transparent 0deg,
@@ -159,7 +180,9 @@
     border: calc(var(--border-width) * 1) solid transparent;
 }
 
-.gradient-border .red-glow::after .gradient-border2 .red-glow::after {
+.gradient-border .red-glow::after,
+ .gradient-border2 .red-glow::after
+ .gradient-border3 .red-glow::after {
     background-image: conic-gradient(
         from var(--angle) at 50% 50%,
         transparent 180deg,
@@ -170,7 +193,8 @@
 }
 
 .gradient-border .cyan-glow::after,
-.gradient-border2 .cyan-glow::after {
+.gradient-border2 .cyan-glow::after,
+.gradient-border3 .cyan-glow::after  {
     background-image: conic-gradient(
         from var(--angle) at 50% 50%,
         transparent 90deg,
@@ -181,19 +205,21 @@
 }
 
 .gradient-border:hover,
-.gradient-border2:hover {
+.gradient-border2:hover,
+.gradient-border3:hover  {
     background-color: transparent;
     cursor: pointer;
 }
 
 .gradient-border span,
-.gradient-border2 span {
+.gradient-border2 span,
+.gradient-border3 span {
     transition: transform 0.3s ease;
 }
 
 .gradient-border:hover span,
-.gradient-border2:hover span {
-    transform: scale(1.00);
+.gradient-border3:hover span {
+    transform: scale(1.05);
 }
 
 .animation-delay-1000 {

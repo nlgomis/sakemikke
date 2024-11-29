@@ -35,10 +35,7 @@ export default function QuizResult() {
   };
 
   return (
-    <div className="min-h-screen text-white flex flex-col pb-16">
-      
-     
-
+    <div className="min-h-screen text-white flex flex-col">
       <main className="flex-1 flex flex-col items-center justify-center p-4">
         <div className="max-w-2xl w-full text-center space-y-8">
           {/* Decorative element */}
