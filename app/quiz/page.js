@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useLanguage } from "../contexts/LanguageContext";
 import LanguageSwitcher from "../components/LanguageSwitcher";
-import SpinningRings from "../components/SpinningRings";
+import SpinningRings from "@/app/components/SpinningRings";
 
 export default function QuizSelector() {
     const router = useRouter();
@@ -32,11 +32,44 @@ export default function QuizSelector() {
         },
     ];
 
+    const customRings = [
+        {
+            color: "#ffffff",
+            bgOpacity: 0.05,
+            bgColor: "#ffffff",
+            width: "100%",
+            height: "90%",
+            animation: "animate-spin-custom1",
+        },
+        {
+            color: "#ffffff",
+            bgOpacity: 0.05,
+            bgColor: "#ffffff",
+            width: "90%",
+            height: "100%",
+            animation: "animate-spin-custom2",
+        },
+        {
+            color: "#ffffff",
+            bgOpacity: 0.05,
+            bgColor: "#ffffff",
+            width: "105%",
+            height: "95%",
+            animation: "animate-spin-custom3",
+        },
+        {
+            color: "#ffffff",
+            bgOpacity: 0.05,
+            bgColor: "#ffffff",
+            width: "95%",
+            height: "105%",
+            animation: "animate-spin-custom4",
+        },
+    ];
+
     return (
         <div className="min-h-screen h-screen relative">
-            <div className="absolute">
-               
-            </div>
+            
             <main className="container h-full w-full mx-auto flex flex-col items-center sm:justify-center px-4 pt-28 sm:pt-0 relative">
                 <div className="text-center mb-8 sm:mb-14">
                     <h1 className="text-xl xs:text-2xl sm:text-4xl lg:text-5xl font-light text-white mb-3 sm:mb-6 tracking-wider">
@@ -71,7 +104,7 @@ export default function QuizSelector() {
                                 
                             `}
                         >
-                            <SpinningRings />
+                            <SpinningRings  rings={customRings}/>
                             <div className=" flex flex-col items-center justify-center gap-12">
                                 <div>
                                     {/* <h2 className="text-3xl font-light text-white mb-4 tracking-wider">

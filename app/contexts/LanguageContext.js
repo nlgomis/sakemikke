@@ -66,9 +66,9 @@ const translations = {
         },
         beginner: {
             questions: {
-                drink: "What do you usually drink?",
-                concern: "What aspects of sake make you hesitant?",
-                occasion: "When would you like to drink sake?",
+                drink: "What is your favorite drink?",
+                concern: "What alcohol characteristics don't suit you?",
+                occasion: "What occasion do you enjoy drinking?",
             },
             options: {
                 drinks: {
@@ -80,7 +80,7 @@ const translations = {
                 concerns: {
                     sweet: "Sweet taste",
                     dry: "Dry taste",
-                    alcohol: "Alcohol presence",
+                    alcohol: "Alcohol content",
                 },
                 occasions: {
                     relax: "When relaxing",
@@ -96,9 +96,9 @@ const translations = {
         },
         taste: {
             questions: {
-                taste: "What kind of taste do you prefer?",
-                mood: "What kind of atmosphere do you like?",
-                pairing: "What would you like to pair it with?",
+                taste: "What flavor of sake are you looking for?",
+                mood: "What kind of mood do you want to be in?",
+                pairing: "What would you like to pair sake with?",
             },
             options: {
                 tastes: {
@@ -226,9 +226,9 @@ const translations = {
         },
         beginner: {
             questions: {
-                drink: "普段はお酒飲みますか",
-                concern: "日本酒のどんな所に苦手意識持っていますか",
-                occasion: "どんな場面で飲みたいですか",
+                drink: "あなたのよく飲むお酒は？",
+                concern: "自分に合わないと感じるお酒の特徴は？",
+                occasion: "どんな時にお酒を楽しみますか？",
             },
             options: {
                 drinks: {
@@ -240,10 +240,10 @@ const translations = {
                 concerns: {
                     sweet: "甘い感じ",
                     dry: "辛口",
-                    alcohol: "お酒感",
+                    alcohol: "アルコール度",
                 },
                 occasions: {
-                    relax: "リラックス時",
+                    relax: "リラックス時に",
                     food: "食事と一緒に",
                 },
             },
@@ -256,9 +256,9 @@ const translations = {
         },
         taste: {
             questions: {
-                taste: "どんな味わいが好きですか？",
-                mood: "どんな雰囲気が好きですか？",
-                pairing: "何と合わせたいですか？",
+                taste: "どんな味わいの日本酒を探していますか？",
+                mood: "どんな雰囲気の日本酒を探していますか？",
+                pairing: "日本酒を何と合わせたいですか？",
             },
             options: {
                 tastes: {

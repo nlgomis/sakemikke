@@ -16,15 +16,23 @@ export default function TasteQuiz() {
 
     const [buttonAnimations, setButtonAnimations] = useState([]);
     const [visibleOptions, setVisibleOptions] = useState([]);
+    const [allOptionsVisible, setAllOptionsVisible] = useState(false);
 
     useLayoutEffect(() => {
         // Reset visible options when question changes
         setVisibleOptions([]);
+        setAllOptionsVisible(false);
+
         // Gradually show options
         const timer = questions[state.currentQuestion].options.map(
             (_, index) => {
                 return setTimeout(() => {
                     setVisibleOptions((prev) => [...prev, index]);
+                    
+                    // If this is the last option, set allOptionsVisible to true
+                    if (index === questions[state.currentQuestion].options.length - 1) {
+                        setTimeout(() => setAllOptionsVisible(true), 300);
+                    }
                 }, 300 * (index + 1));
             }
         );
@@ -261,6 +269,7 @@ export default function TasteQuiz() {
                             >
                                 <button
                                     onClick={() => handleAnswer(option.value)}
+                                    disabled={!allOptionsVisible}
                                     className={`
                                         relative
                                         w-full
@@ -272,6 +281,7 @@ export default function TasteQuiz() {
                                         text-lg font-light tracking-wide
                                         group
                                         ${buttonAnimations[index] || ""}
+                                        ${!allOptionsVisible ? "cursor-not-allowed " : ""}
                                     `}
                                 >
                                     <SpinningRings rings={customRings} />
