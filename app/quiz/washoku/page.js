@@ -67,7 +67,7 @@ export default function WashokuQuiz() {
                 if (index === currentQ.options.length - 1) {
                     setTimeout(() => setAllOptionsVisible(true), 400);
                 }
-            }, 400 * (index + 1));
+            }, 300 * (index + 1));
         });
 
         // Clean up timers
