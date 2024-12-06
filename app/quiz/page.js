@@ -206,7 +206,7 @@ export default function QuizSelector() {
                     </p>
                 </div>
 
-                <div className="grid  sm:grid-cols-3 gap-10 lg:gap-20 max-w-[250px] sm:max-w-[575px] md:max-w-[700px] lg:max-w-[880px] xl:max-w-[950px] mx-auto">
+                <div className="grid  sm:grid-cols-3 gap-10 lg:gap-20 max-w-[250px] sm:max-w-[575px] md:max-w-[700px] lg:max-w-[950px] xl:max-w-[1000px] mx-auto">
                     {quizOptions.map((option) => (
                         <Link
                             key={option.id}
@@ -221,7 +221,7 @@ export default function QuizSelector() {
                                         alt={option.name}
                                         width={400}
                                         height={400}
-                                        className="mx-auto mb-6 object-cover rounded-lg w-[150px] h-[150px] md:w-[200px] md:h-[200px] lg:w-[300px] lg:h-[300px]"
+                                        className="mx-auto mb-6 object-contain rounded-lg w-[150px] h-[150px] md:w-[200px] md:h-[200px] lg:w-[250px] lg:h-[250px]  xl:w-[300px] xl:h-[300px] "
                                     />
                                     <BlobAnimation />
                                 </div>
