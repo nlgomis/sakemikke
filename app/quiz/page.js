@@ -196,7 +196,7 @@ export default function QuizSelector() {
 
     return (
         <div className="min-h-screen h-screen relative">
-            <main className="container w-full mx-auto flex flex-col items-center sm:justify-center px-4 pt-28 sm:pt-0 relative">
+            <main className="container sm:h-full w-full mx-auto flex flex-col items-center sm:justify-center px-4 pt-28 sm:pt-0 relative">
                 <div className="text-center mb-8 sm:mb-14">
                     <h1 className="text-xl xs:text-2xl sm:text-4xl lg:text-5xl font-light text-white mb-3 sm:mb-6 tracking-wider">
                         {t.quiz.title}
@@ -206,7 +206,7 @@ export default function QuizSelector() {
                     </p>
                 </div>
 
-                <div className="grid  sm:grid-cols-3 gap-10 lg:gap-20 max-w-[250px] sm:max-w-[575px] md:max-w-[745.5px] lg:max-w-[880px] xl:max-w-[950px] mx-auto">
+                <div className="grid  sm:grid-cols-3 gap-10 lg:gap-20 max-w-[250px] sm:max-w-[575px] md:max-w-[700px] lg:max-w-[880px] xl:max-w-[950px] mx-auto">
                     {quizOptions.map((option) => (
                         <Link
                             key={option.id}
@@ -221,7 +221,7 @@ export default function QuizSelector() {
                                         alt={option.name}
                                         width={400}
                                         height={400}
-                                        className="mx-auto mb-6 object-cover rounded-lg w-[150px] h-[150px] md:w-[240px] md:h-[240px] lg:w-[300px] lg:h-[300px]"
+                                        className="mx-auto mb-6 object-cover rounded-lg w-[150px] h-[150px] md:w-[200px] md:h-[200px] lg:w-[300px] lg:h-[300px]"
                                     />
                                     <BlobAnimation />
                                 </div>
