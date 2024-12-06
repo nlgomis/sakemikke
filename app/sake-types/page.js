@@ -1,90 +1,414 @@
-// app/sake-types/page.tsx
 "use client";
-
-import React from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import HomeButton from "../components/HomeButton";
 
 export default function SakeTypesPage() {
+  const [sortedSakeList, setSortedSakeList] = useState({
+    淡麗甘口: [],
+    濃醇甘口: [],
+    淡麗辛口: [],
+    濃醇辛口: [],
+  });
+  const [activeTab, setActiveTab] = useState("淡麗辛口");
+  const [isLoading, setIsLoading] = useState(true);
+
+  const classificationStyles = {
+    濃醇甘口: {
+      text: "text-white",
+      active: "bg-blue-500/40",
+      gradient: "from-red-500 to-red-300",
+      textShadow: `
+        -1px -1px 0 #ff6b8b,
+        1px -1px 0 #ff6b8b,
+        -1px 1px 0 #ff6b8b,
+        1px 1px 0 #ff6b8b,
+        0 0 10px rgba(255, 107, 139, 0.8),
+        0 0 20px rgba(255, 107, 139, 0.6),
+        0 0 30px rgba(255, 107, 139, 0.4)
+      `,
+    },
+    淡麗甘口: {
+      text: "text-white",
+      active: "bg-blue-500/40",
+      gradient: "from-sky-600 to-sky-400",
+      textShadow: `
+        -1px -1px 0 #4a90e2,
+        1px -1px 0 #4a90e2,
+        -1px 1px 0 #4a90e2,
+        1px 1px 0 #4a90e2,
+        0 0 10px rgba(74, 144, 226, 0.8),
+        0 0 20px rgba(74, 144, 226, 0.6),
+        0 0 30px rgba(74, 144, 226, 0.4)
+      `,
+    },
+    濃醇辛口: {
+      text: "text-white",
+      active: "bg-blue-500/40",
+      gradient: "from-[#9A210ECC] to-[#B8392680]",
+      textShadow: `
+        -1px -1px 0 #9A210ECC,
+        1px -1px 0 #9A210ECC,
+        -1px 1px 0 #9A210ECC,
+        1px 1px 0 #9A210ECC,
+        0 0 10px rgba(165, 42, 42, 0.8),
+        0 0 20px rgba(165, 42, 42, 0.6),
+        0 0 30px rgba(165, 42, 42, 0.4)
+      `,
+    },
+    淡麗辛口: {
+      text: "text-white",
+      active: "bg-blue-500/40",
+      gradient: "from-blue-600 to-blue-400",
+      textShadow: `
+        -1px -1px 0 #1052A7,
+        1px -1px 0 #1052A7,
+        -1px 1px 0 #1052A7,
+        1px 1px 0 #1052A7,
+        0 0 10px rgba(16, 82, 167, 0.8),
+        0 0 20px rgba(16, 82, 167, 0.6),
+        0 0 30px rgba(16, 82, 167, 0.4)
+      `,
+    },
+  };
+  useEffect(() => {
+    async function fetchSakeData() {
+      try {
+        const response = await fetch(
+          "https://sakemikke-server-d7f7dhdgabfaawa5.japaneast-01.azurewebsites.net/api/sake/"
+        );
+        const result = await response.json();
+
+        const sortedData = {
+          淡麗甘口: [],
+          濃醇甘口: [],
+          淡麗辛口: [],
+          濃醇辛口: [],
+        };
+
+        result.data.forEach((sake) => {
+          if (sortedData[sake.classification]) {
+            sortedData[sake.classification].push(sake);
+          }
+        });
+
+        setSortedSakeList(sortedData);
+        setIsLoading(false);
+      } catch (error) {
+        console.error("データの取得に失敗しました:", error);
+        setIsLoading(false);
+      }
+    }
+    fetchSakeData();
+  }, []);
+
+  const calculateKeywordPosition = (index, total) => {
+    const horizontalRadius = 140;
+    const verticalRadius = 80;
+    const angle = (index * 2 * Math.PI) / total;
+    const x = horizontalRadius * Math.cos(angle);
+    const y = verticalRadius * Math.sin(angle);
+    return { x, y };
+  };
+
+  const getKeywordColor = (index) => {
+    const colors = ["bg-red-500/50", "bg-blue-500/50", "bg-purple-500/50"];
+    return colors[index % colors.length];
+  };
+
+  const getGlowColor = (index) => {
+    const colors = [
+      "shadow-[0_0_15px_rgba(239,68,68,0.4)]",
+      "shadow-[0_0_15px_rgba(59,130,246,0.4)]",
+      "shadow-[0_0_15px_rgba(168,85,247,0.4)]",
+    ];
+    return colors[index % colors.length];
+  };
+
   return (
-    <main className="relative min-h-screen flex items-center">
-      {/* Background Image */}
-      <Image
-        src="/images/background.png"
-        alt="Background"
-        fill
-        priority
-        className="object-cover object-center"
-        quality={100}
-      />
+    <div className="container mx-auto px-6 py-10 bg-transparent">
+      <div className="pt-36 pb-24 max-w-[1200px] mx-auto">
+        <div className="flex flex-col gap-12">
+          <div className="max-w-[90vw] lg:max-w-[1400px] mx-auto">
+            <div className="flex flex-col gap-16">
+              <div className="flex flex-col md:flex-row items-center gap-12 md:gap-20 lg:gap-32">
+                <div className="flex-shrink-0 flex items-center justify-center md:min-w-[400px]">
+                  <Image
+                    src="/images/logo.png"
+                    alt="Sake Mikke Logo"
+                    width={300}
+                    height={150}
+                    className="w-[250px] md:w-[300px]"
+                  />
+                </div>
 
-      {/* Content Wrapper */}
-      <div className="relative w-full max-w-7xl mx-auto px-6 pt-20 pb-20">
-        {/* Main Content Container - Centered */}
-        <div className="flex flex-col items-center">
-          {/* Header Section - Logo and Title side by side */}
-          <div className="flex items-start gap-12 mb-32"> {/* Added flex for horizontal layout */}
-            {/* Logo */}
-            <div className="w-48 h-48 flex-shrink-0"> {/* Added flex-shrink-0 to prevent logo from shrinking */}
-              <Image
-                src="/images/logo.png"
-                alt="Logo"
-                width={192}
-                height={192}
-                priority
-                className="object-contain"
-              />
-            </div>
-
-            {/* Title Section */}
-            <div className="pt-8"> {/* Added padding top to align with logo */}
-              <h1 className="text-5xl font-medium text-white mb-4 tracking-wider">
-                ピックアップ日本酒一覧
-              </h1>
-              <h2 className="text-2xl text-white/90 mb-4 tracking-wider">Our Choices</h2>
-              <p className="text-white/80 text-lg leading-relaxed tracking-wider">
-                世界的に名高い日本酒をピックアップ。
-                <br />
-                あなたにぴったりの日本酒が、ここにあるはず。
-              </p>
+                <div className="text-center md:text-left flex-1">
+                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">
+                    ピックアップ日本酒一覧
+                    <span className="block text-lg md:text-2xl font-normal mt-6 text-white/80">
+                      Our Choices
+                    </span>
+                  </h1>
+                  <p className="text-white/80 mt-8 text-lg md:text-2xl max-w-2xl">
+                    世界的に名高い日本酒をピックアップ。あなたにぴったりの日本酒が、ここにあるはず。
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* Sake Types */}
-          <div className="flex justify-center space-x-8">
-            {[
-              { href: "/sake-list/tanrei-karakuchi", label: "淡麗辛口" },
-              { href: "/sake-list/noujun-karakuchi", label: "濃醇辛口" },
-              { href: "/sake-list/tanrei-amakuchi", label: "淡麗甘口" },
-              { href: "/sake-list/noujun-amakuchi", label: "濃醇甘口" },
-            ].map((type, index) => (
-              <Link 
-                key={index}
-                href={type.href}
-                className="group"
+          {/* タブナビゲーション */}
+          <div className="flex flex-wrap justify-center gap-2">
+            {Object.keys(sortedSakeList).map((classification) => (
+              <button
+                key={classification}
+                onClick={() => setActiveTab(classification)}
+                className={`
+        group
+        w-[calc(50%-0.5rem)] sm:w-[200px] px-4 sm:px-8 py-3 rounded-full 
+        transition-all duration-300
+        border border-white/20
+        hover:scale-105
+        flex items-center justify-center
+        ${
+          activeTab === classification
+            ? `${classificationStyles[classification].active} `
+            : "bg-white/10 backdrop-blur-sm"
+        }
+      `}
               >
-                <div className="relative px-12 py-3 rounded-full border border-white/30 bg-white/5">
-                  {/* Blur overlay */}
-                  <div className="absolute inset-0 rounded-full backdrop-blur-sm" />
-                  
-                  {/* Text */}
-                  <span className="relative text-xl text-white/90 font-light tracking-widest">
-                    {type.label}
-                  </span>
-
-                  {/* Border glow effect */}
-                  <div 
-                    className="absolute inset-0 rounded-full border border-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" 
-                    style={{
-                      boxShadow: '0 0 10px rgba(255,255,255,0.2), inset 0 0 10px rgba(255,255,255,0.2)'
-                    }} 
-                  />
-                </div>
-              </Link>
+                <span
+                  className={`
+          text-sm whitespace-nowrap 
+          transition-all duration-300
+          ${classificationStyles[classification].text}
+        `}
+                >
+                  {classification}
+                </span>
+              </button>
             ))}
           </div>
         </div>
       </div>
-    </main>
+
+      {/* 各セクションの表示 */}
+      <div key={activeTab} className="mb-28">
+        <div className="relative mb-12 flex items-center">
+          <div className="flex-grow border-t border-white/30 mr-4"></div>
+          <h1
+            className="text-5xl text-center text-white z-10 bg-transparent px-8"
+            style={classificationStyles[activeTab]}
+          >
+            {activeTab}
+          </h1>
+          <div className="flex-grow border-t border-white/30 ml-4"></div>
+        </div>
+
+        <div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 
+             bg-white/10 backdrop-blur-lg border border-white/20 
+             rounded-xl p-1 sm:p-2 shadow-sm"
+        >
+          {sortedSakeList[activeTab].map((sake) => (
+            <div
+              key={sake.id}
+              className="bg-transparent overflow-hidden transition-all duration-300"
+            >
+              <div className="p-4">
+                <div className="mb-3">
+                  <div className="text-sm text-white/90">{sake.type}</div>
+                  <div className="text-xl font-bold text-white">
+                    {sake.name}
+                  </div>
+                </div>
+
+                <div className="relative h-80 mb-4 group">
+                  <Image
+                    src={`https://spheriart.s3.ap-northeast-1.amazonaws.com/${sake.id}.png`}
+                    alt={`${sake.name}の画像`}
+                    fill
+                    style={{ objectFit: "contain" }}
+                    className="transition-opacity duration-300 group-hover:opacity-80"
+                    priority={false}
+                  />
+
+                  {sake.keywords && sake.keywords.length > 0 && (
+                    <div className="absolute inset-0 pointer-events-none">
+                      {sake.keywords.map((keyword, index) => {
+                        const position = calculateKeywordPosition(
+                          index,
+                          sake.keywords.length
+                        );
+                        const bgColor = getKeywordColor(index);
+                        const glowColor = getGlowColor(index);
+
+                        return (
+                          <div
+                            key={keyword}
+                            className={`absolute left-1/2 top-1/2 opacity-0 transform -translate-x-1/2 -translate-y-1/2 
+                                      group-hover:opacity-100 transition-all duration-500`}
+                            style={{
+                              transform: `translate(calc(-50% + ${position.x}px), calc(-50% + ${position.y}px))`,
+                              transitionDelay: `${index * 100}ms`,
+                            }}
+                          >
+                            <span
+                              className={`${bgColor} ${glowColor} backdrop-blur-sm text-white 
+                                         text-sm px-3 py-1.5 rounded-full whitespace-nowrap
+                                         shadow-lg hover:shadow-xl transition-shadow duration-300`}
+                            >
+                              {keyword}
+                            </span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+
+                <div className="grid grid-cols-3 gap-1 sm:gap-2 mb-4 sm:mb-4 text-center text-xs sm:text-sm">
+                  <div
+                    className={`rounded-md bg-gradient-to-r p-1 ${classificationStyles[activeTab].gradient}`}
+                  >
+                    <div className="text-white truncate">{sake.region}産</div>
+                  </div>
+                  <div
+                    className={`rounded-md bg-gradient-to-r p-1 ${classificationStyles[activeTab].gradient}`}
+                  >
+                    <div className="text-white truncate">
+                      精米{sake.polishingRate}%
+                    </div>
+                  </div>
+                  <div
+                    className={`rounded-md bg-gradient-to-r p-1 ${classificationStyles[activeTab].gradient}`}
+                  >
+                    <div className="text-white truncate">
+                      alc. {sake.alcoholContent}%
+                    </div>
+                  </div>
+                </div>
+                <p className="text-sm text-white/100 mb-4">
+                  {sake.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="mx-auto text-center mb-16">
+        <Link href="/quiz" className=" text-white">
+          <HomeButton>今すぐ酒みっけ！</HomeButton>
+        </Link>
+      </div>
+
+      <footer className="w-full p-4 md:p-6 lg:p-8 text-white">
+        <div className="container mx-auto">
+          <div className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-12 lg:gap-20">
+            {/* Left and Center Wrapper */}
+            <div className="flex flex-row md:flex-none gap-6 md:gap-8">
+              {/* Left Column */}
+              <div className="flex flex-col items-start gap-6 md:gap-8">
+                {/* Logo */}
+                <Link href="/" className="block">
+                  <Image
+                    src="/images/logo.png"
+                    alt="Logo"
+                    width={200}
+                    height={60}
+                    className="w-40 md:w-48 lg:w-56"
+                  />
+                </Link>
+
+                {/* Social Links */}
+                <div className="flex items-center gap-4 md:gap-6 w-40 md:w-48 lg:w-56 justify-center">
+                  <Link
+                    href="https://line.me"
+                    className="transition-opacity hover:opacity-80"
+                  >
+                    <Image
+                      src="/images/line.png"
+                      alt="LINE"
+                      width={32}
+                      height={32}
+                      className="w-6 md:w-7 lg:w-8 h-6 md:h-7 lg:h-8"
+                    />
+                  </Link>
+                  <Link
+                    href="https://instagram.com"
+                    className="transition-opacity hover:opacity-80"
+                  >
+                    <Image
+                      src="/images/instagram.png"
+                      alt="Instagram"
+                      width={32}
+                      height={32}
+                      className="w-6 md:w-7 lg:w-8 h-6 md:h-7 lg:h-8"
+                    />
+                  </Link>
+                  <Link
+                    href="https://youtube.com"
+                    className="transition-opacity hover:opacity-80"
+                  >
+                    <Image
+                      src="/images/youtube.png"
+                      alt="YouTube"
+                      width={32}
+                      height={32}
+                      className="w-6 md:w-7 lg:w-8 h-6 md:h-7 lg:h-8"
+                    />
+                  </Link>
+                </div>
+              </div>
+
+              {/* Center Column - Decorative Image */}
+              <div className="flex items-center md:mx-8 lg:mx-16">
+                <Image
+                  src="/images/design.png"
+                  alt="Decorative Element"
+                  width={60}
+                  height={200}
+                  className="w-10 md:w-12 lg:w-16"
+                />
+              </div>
+            </div>
+
+            {/* Right Column - Contact Button */}
+            <div className="w-full md:w-auto flex justify-center items-center mt-8 md:mt-0">
+              <div>
+                <Link
+                  href="/contact"
+                  className="group relative inline-flex items-center border-2 border-white text-white hover:bg-white/10 transition-colors duration-300"
+                >
+                  <span className="relative z-10 px-8 md:px-12 lg:px-16 py-6 md:py-10 lg:py-14 text-base md:text-lg lg:text-2xl tracking-wider">
+                    CONTACT US
+                  </span>
+                  <div className="relative z-10 w-44 md:w-64 lg:w-80 h-[4rem] md:h-[5rem] lg:h-[6rem] flex items-center justify-end">
+                    <div className="absolute top-1/2 -translate-y-1/2 w-32 md:w-44 lg:w-52 h-32 md:h-44 lg:h-52 border border-white rounded-full transition-transform duration-300 ease-out group-hover:translate-x-3"></div>
+                    <svg
+                      className="w-16 md:w-20 lg:w-28 h-5 md:h-6 mr-4 md:mr-6 lg:mr-10 transition-transform duration-300 ease-in group-hover:translate-x-3 delay-150"
+                      viewBox="0 0 96 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <line x1="0" y1="12" x2="92" y2="12"></line>
+                      <polyline points="84 6 92 12 84 18"></polyline>
+                    </svg>
+                  </div>
+                </Link>
+              </div>
+            </div>
+          </div>
+          {/* Copyright Section */}
+          <div className="mb-6 mt-12 md:mt-10 lg:mt-12 text-center text-xs md:text-sm">
+            © 2025 SAKEMIKKE. All rights reserved.
+          </div>
+        </div>
+      </footer>
+    </div>
   );
 }
