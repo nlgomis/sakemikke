@@ -31,9 +31,9 @@ export default function BeginnerQuiz() {
                     
                     // If this is the last option, set allOptionsVisible to true
                     if (index === questions[state.currentQuestion].options.length - 1) {
-                        setTimeout(() => setAllOptionsVisible(true), 400);
+                        setTimeout(() => setAllOptionsVisible(true), 300);
                     }
-                }, 400 * (index + 1));
+                }, 300 * (index + 1));
             }
         );
 
