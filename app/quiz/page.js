@@ -206,7 +206,7 @@ export default function QuizSelector() {
                     </p>
                 </div>
 
-                <div className="grid  sm:grid-cols-3 gap-10 lg:gap-20 max-w-[250px] sm:max-w-[575px] md:max-w-[700px] lg:max-w-[950px] xl:max-w-[1000px] mx-auto">
+                <div className="grid sm:grid-cols-3 gap-10 lg:gap-20 max-w-[250px] sm:max-w-[575px] md:max-w-[700px] lg:max-w-[950px] xl:max-w-[1000px] mx-auto">
                     {quizOptions.map((option) => (
                         <Link
                             key={option.id}
