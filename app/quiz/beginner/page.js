@@ -31,9 +31,9 @@ export default function BeginnerQuiz() {
                     
                     // If this is the last option, set allOptionsVisible to true
                     if (index === questions[state.currentQuestion].options.length - 1) {
-                        setTimeout(() => setAllOptionsVisible(true), 300);
+                        setTimeout(() => setAllOptionsVisible(true), 400);
                     }
-                }, 300 * (index + 1));
+                }, 400 * (index + 1));
             }
         );
 
@@ -279,7 +279,7 @@ export default function BeginnerQuiz() {
                                 w-full
                                 h-full
                                 transition-all
-                                duration-500
+                                duration-1000
                                 md:hover:scale-105
                                 ${getOffsetClass(
                                     index,

@@ -59,18 +59,16 @@ export default function WashokuQuiz() {
 
         // Gradually show options
         const currentQ = getCurrentQuestion();
-        const timer = currentQ.options.map(
-            (_, index) => {
-                return setTimeout(() => {
-                    setVisibleOptions((prev) => [...prev, index]);
-                    
-                    // If this is the last option, set allOptionsVisible to true
-                    if (index === currentQ.options.length - 1) {
-                        setTimeout(() => setAllOptionsVisible(true), 300);
-                    }
-                }, 300 * (index + 1));
-            }
-        );
+        const timer = currentQ.options.map((_, index) => {
+            return setTimeout(() => {
+                setVisibleOptions((prev) => [...prev, index]);
+
+                // If this is the last option, set allOptionsVisible to true
+                if (index === currentQ.options.length - 1) {
+                    setTimeout(() => setAllOptionsVisible(true), 400);
+                }
+            }, 400 * (index + 1));
+        });
 
         // Clean up timers
         return () => timer.forEach(clearTimeout);
@@ -91,8 +89,6 @@ export default function WashokuQuiz() {
         // Clean up timers
         return () => timer.forEach(clearTimeout);
     }, [state.currentQuestion]);
-
-
 
     // Update animations when current question changes
     useEffect(() => {
@@ -309,7 +305,6 @@ export default function WashokuQuiz() {
 
     return (
         <div className="min-h-screen text-white flex flex-col">
-            
             <main className="flex-1 flex flex-col items-center justify-center pt-16 3xs:pt-8 2xs:pt-0 xs:pt-16 px-4 lg:pt-0">
                 <div className="w-full mx-auto flex flex-col justify-between lg:gap-12 h-[518px] sm:h-[870px] md:h-[880px] lg:h-[546px] xl:h-[584px] 2xl:h-[610px] ">
                     {/* Question Section */}
@@ -347,7 +342,7 @@ export default function WashokuQuiz() {
                                     w-full
                                     h-full
                                     ransition-all
-                                    duration-500
+                                    duration-1000
                                     md:hover:scale-105 
                                     ${getOffsetClass(
                                         index,
@@ -373,7 +368,11 @@ export default function WashokuQuiz() {
                                             text-lg font-light tracking-wide
                                             group
                                             ${buttonAnimations[index] || ""}
-                                            ${!allOptionsVisible ? "cursor-not-allowed " : ""}
+                                            ${
+                                                !allOptionsVisible
+                                                    ? "cursor-not-allowed "
+                                                    : ""
+                                            }
                                         `}
                                 >
                                     <SpinningRings rings={customRings} />

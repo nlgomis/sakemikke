@@ -54,7 +54,7 @@ export default function Navigation() {
       transition-all duration-300 ease-in-out
       ${
           isOpen
-              ? "bg-black/30 h-screen backdrop-blur-sm"
+              ? "bg-white/30 h-screen backdrop-blur-sm"
               : "bg-transparent h-28"
       }
     `}
