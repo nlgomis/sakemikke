@@ -177,7 +177,7 @@ export default function QuizResult() {
                         <div
                             className={`inline-block bg-gradient-to-r ${getGradient(
                                 result
-                            )} backdrop-blur-sm rounded-xl px-6 py-3 lg:ml-44`}
+                            )} backdrop-blur-sm rounded-xl lg:px-6 py-3 lg:ml-44`}
                         >
                             <h2 className="text-2xl md:text-4xl font-medium">
                                 「{result}」
