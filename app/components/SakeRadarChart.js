@@ -52,7 +52,7 @@ const SakeRadarChart = ({ sakeData }) => {
   };
 
   return (
-    <div className="relative aspect-square max-w-[300px] mx-auto mb-10 sm:mb-0">
+    <div className="relative aspect-square max-w-[300px] w-[180px]  h-[180px] lg:h-[210px] 2xl:w-full 2xl:h-full mx-auto mb-6 sm:mb-0">
       {/* Main SVG Chart */}
       <svg viewBox="0 0 200 200" className="w-full h-full">
         {/* Background lines */}
@@ -74,22 +74,22 @@ const SakeRadarChart = ({ sakeData }) => {
       {/* Labels */}
       <div className="absolute inset-0 flex items-center justify-center">
         {/* Top Label */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-6 text-sm">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1 text-sm ">
           華やかさ ({sakeData.sakeGrade.fragrance})
         </div>
         
         {/* Bottom Label */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-6 text-sm">
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1 text-sm">
           コク ({sakeData.sakeGrade.body})
         </div>
         
         {/* Left Label */}
-        <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6 text-sm">
+        <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-8 text-sm">
           酸味 ({sakeData.sakeGrade.acidity})
         </div>
         
         {/* Right Label */}
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-6 text-sm">
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-8 text-sm">
           キレ ({sakeData.sakeGrade.clarity})
         </div>
       </div>

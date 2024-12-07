@@ -8,6 +8,7 @@ import AgainButton from "@/app/components/AgainButton";
 import SakeMetrics from "@/app/components/SakeMetrics";
 import SakeRadarChart from "@/app/components/SakeRadarChart";
 import LoadingAnimation from "@/app/components/LoadingAnimation";
+import Tooltip from "@/app/components/Tooltip";
 import { useEffect, useState } from "react";
 
 export default function QuizResult() {
@@ -27,9 +28,11 @@ export default function QuizResult() {
     useEffect(() => {
         const fetchSakeData = async () => {
             try {
-                const response = await fetch(`https://sakemikke-server-d7f7dhdgabfaawa5.japaneast-01.azurewebsites.net/api/sake/${result}`);
+                const response = await fetch(
+                    `https://sakemikke-server-d7f7dhdgabfaawa5.japaneast-01.azurewebsites.net/api/sake/${result}`
+                );
                 if (!response.ok) {
-                    throw new Error('Failed to fetch sake data');
+                    throw new Error("Failed to fetch sake data");
                 }
                 const data = await response.json();
 
@@ -44,20 +47,20 @@ export default function QuizResult() {
                     alcohol: `${data.alcoholContent}%`,
                     sakeValue: data.sakeLevel || 50,
                     tastePosition: calculateTastePosition(data.classification),
-                    sakeGrade: data.sakeGrade
+                    sakeGrade: data.sakeGrade,
                 };
 
                 setSakeData(transformedData);
                 setIsLoading(false);
-                
+
                 // Add 1 second delay before showing content
                 setTimeout(() => {
                     setShowContent(true);
                 }, 2000);
             } catch (error) {
-                console.error('Error fetching sake data:', error);
+                console.error("Error fetching sake data:", error);
                 // Set fallback data in case of error
-                console.error('Error fetching sake data:', error);
+                console.error("Error fetching sake data:", error);
                 setSakeData(getFallbackData());
                 setIsLoading(false);
                 setTimeout(() => {
@@ -72,10 +75,10 @@ export default function QuizResult() {
     // Helper function to calculate taste position based on classification
     const calculateTastePosition = (classification) => {
         const positions = {
-            '淡麗辛口': { x: 80, y: 20 }, // Light and dry
-            '淡麗甘口': { x: 20, y: 20 }, // Light and sweet
-            '濃醇辛口': { x: 80, y: 80 }, // Rich and dry
-            '濃醇甘口': { x: 20, y: 80 }, // Rich and sweet
+            淡麗辛口: { x: 80, y: 20 }, // Light and dry
+            淡麗甘口: { x: 20, y: 20 }, // Light and sweet
+            濃醇辛口: { x: 80, y: 80 }, // Rich and dry
+            濃醇甘口: { x: 20, y: 80 }, // Rich and sweet
         };
         return positions[classification] || { x: 50, y: 50 }; // Default to center if unknown
     };
@@ -94,60 +97,60 @@ export default function QuizResult() {
             body: 50,
             fragrance: 50,
             acidity: 50,
-            clarity: 50
-        }
+            clarity: 50,
+        },
     });
 
     // Keep existing gradient function
 
     const getGradient = (sake) => {
         // Dassai variants
-        if (sake.includes('獺祭')) {
+        if (sake.includes("獺祭")) {
             return "from-emerald-500/80 to-transparent";
         }
 
         // Kubota variants
-        if (sake.includes('久保田')) {
+        if (sake.includes("久保田")) {
             return "from-blue-500/80 to-transparent";
         }
 
         // Kokuryu variants
-        if (sake.includes('黒龍')) {
-            return "from-violet-500/80 to-transparent";
+        if (sake.includes("黒龍")) {
+            return "from-blue-600 to-transparent";
         }
 
         // Hakkaisan variants
-        if (sake.includes('八海山')) {
-            return "from-pink-400/80 to-transparent";
+        if (sake.includes("八海山")) {
+            return "from-blue-600 to-transparent";
         }
 
         // Hakutsuru variants
-        if (sake.includes('白鶴')) {
+        if (sake.includes("白鶴")) {
             return "from-sky-400/80 to-transparent";
         }
 
         // Koshi no Kanbai variants
-        if (sake.includes('越乃寒梅')) {
+        if (sake.includes("越乃寒梅")) {
             return "from-amber-500/80 to-transparent";
         }
 
         // Suigei variants
-        if (sake.includes('酔鯨')) {
+        if (sake.includes("酔鯨")) {
             return "from-cyan-500/80 to-transparent";
         }
 
         // Born variants
-        if (sake.includes('梵')) {
+        if (sake.includes("梵")) {
             return "from-red-500/80 to-transparent";
         }
 
         // Juyondai variants
-        if (sake.includes('十四代')) {
+        if (sake.includes("十四代")) {
             return "from-purple-500/80 to-transparent";
         }
 
         // Kubota variants
-        if (sake.includes('久保田')) {
+        if (sake.includes("久保田")) {
             return "from-indigo-500/80 to-transparent";
         }
 
@@ -157,7 +160,7 @@ export default function QuizResult() {
 
     if (isLoading || !showContent) {
         return (
-            <div >
+            <div>
                 <LoadingAnimation />
             </div>
         );
@@ -165,13 +168,17 @@ export default function QuizResult() {
 
     return (
         <div className="min-h-screen text-white flex flex-col">
-            <main className="w-full max-w-4xl 2xl:max-w-7xl mx-auto flex-1 flex flex-col items-center justify-center pt-28 px-4">
+            <main className="w-full max-w-4xl lg:max-w-5xl 2xl:max-w-[1300px] mx-auto flex-1 flex flex-col items-center justify-center pt-28 px-4">
                 <div className="flex flex-col items-center">
                     <div className="text-center lg:text-start">
-                        <h2 className="text-xl md:text-2xl mb-0">
+                        <h2 className="text-xl md:text-2xl mb-4">
                             {t.taste.result.title}
                         </h2>
-                        <div className={`inline-block bg-gradient-to-r ${getGradient(result)} backdrop-blur-sm rounded-xl px-6 py-0 lg:ml-44`}>
+                        <div
+                            className={`inline-block bg-gradient-to-r ${getGradient(
+                                result
+                            )} backdrop-blur-sm rounded-xl px-6 py-3 lg:ml-44`}
+                        >
                             <h2 className="text-2xl md:text-4xl font-medium">
                                 「{result}」
                                 <span className="text-lg md:text-2xl">
@@ -182,10 +189,10 @@ export default function QuizResult() {
                     </div>
 
                     {/* Content Grid */}
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-[1fr_2fr_1fr] sm:grid-rows-[auto_auto] lg:grid-rows-[auto] items-center gap-0">
+                    <div className="grid sm:grid-cols-2 lg:grid-cols-[1fr_1.5fr_1fr] 2xl:grid-cols-[1fr_2fr_1fr] sm:grid-rows-[auto_auto] lg:grid-rows-[auto] items-center gap-0">
                         {/* Left Column - Details */}
-                        <div className="space-y-5 order-2 lg:order-1 mx-auto sm:mx-0 lg:sm:mx-auto mb-10 sm:mb-0">
-                            <div className="space-y-5 flex flex-col justify-around items-start h-[250px] sm:h-[340px] 2xl:h-[424px]">
+                        <div className="space-y-5 order-2 lg:order-1 mx-auto sm:mx-0 lg:sm:mx-auto mb-16 sm:mb-0">
+                            <div className="space-y-5 flex flex-col justify-between items-start w-[250px] h-[250px] sm:h-[300px] lg:h-[340px] 2xl:h-[370px]">
                                 {Object.entries({
                                     種類: sakeData.type,
                                     産地: sakeData.origin,
@@ -195,13 +202,34 @@ export default function QuizResult() {
                                 }).map(([key, value]) => (
                                     <div key={key}>
                                         <span className="text-base lg:text-lg border-b border-white/80 pb-2">
-                                            {key} : {value}
+                                            {key === "精米歩合" ? (
+                                                <>
+                                                    <span className="text-xs sm:text-sm">
+                                                        {key}
+                                                    </span>
+                                                    <Tooltip
+                                                        text={`玄米を外側から削り残った割合を％で示したもの。\n高ければ高いほど白米の甘みが感じられる。`}
+                                                        position="top"
+                                                    >
+                                                        <sup className="cursor-help px-[3px] py-[1px] border-2 rounded-full text-[10px]">
+                                                            ?
+                                                        </sup>
+                                                    </Tooltip>
+                                                    &nbsp;:&nbsp;{value}
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <span className="text-xs sm:text-sm">
+                                                        {key}
+                                                    </span>
+                                                    &nbsp;:&nbsp;{value}
+                                                </>
+                                            )}
                                         </span>
                                     </div>
                                 ))}
                             </div>
                         </div>
-
                         {/* Center Column - Sake Bottles */}
                         <div className="relative order-1 lg:order-2 sm:col-span-2 lg:col-span-1">
                             <div className="max-w-md lg:max-w-2xl mx-auto">
@@ -210,18 +238,16 @@ export default function QuizResult() {
                                     alt="Sake Bottles"
                                     width={600}
                                     height={900}
-                                    className="object-contain"
+                                    className="object-contain max-h-[460px] md:max-h-[380px]  lg:max-h-[520px] 2xl:max-h-[700px]"
                                     priority
                                 />
                             </div>
                         </div>
 
                         {/* Right Column - Charts */}
-                        <div className="space-y-5 order-3 lg:order-3">
+                        <div className="space-y-5 order-3 lg:order-3 flex flex-col justify-between mx-auto w-[250px]">
                             {/* Taste Chart */}
                             <SakeRadarChart sakeData={sakeData} />
-
-
 
                             {/* Meters */}
                             <SakeMetrics sakeData={sakeData} />
@@ -229,7 +255,7 @@ export default function QuizResult() {
                     </div>
 
                     {/* Try Again Button */}
-                    <div className="text-center mt-10 sm:mt-16 lg:mt-[-80px] z-30 mb-4 sm:mb-0">
+                    <div className="text-center mt-10 sm:mt-16 lg:mt-[-80px] z-30 mb-6  sm:mb-0">
                         <AgainButton onClick={() => router.push("/quiz")}>
                             {t.taste.result.tryAgain}
                         </AgainButton>
