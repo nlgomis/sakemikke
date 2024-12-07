@@ -42,6 +42,7 @@ export default function QuizResult() {
                     type: data.type,
                     origin: data.region,
                     rice: data.riceType,
+                    classification: data.classification,
                     polishingRatio: `${data.polishingRate}%`,
                     price: `¥${data.price.toLocaleString()} (${data.volume}ml)`,
                     alcohol: `${data.alcoholContent}%`,
@@ -102,60 +103,18 @@ export default function QuizResult() {
     });
 
     // Keep existing gradient function
+    const getGradient = (classification) => {
+        const classificationGradients = {
+            濃醇甘口: "from-red-500 to-red-300",
+            淡麗甘口: "from-sky-600 to-sky-400",
+            濃醇辛口: "from-[#9A210ECC] to-[#B8392680]",
+            淡麗辛口: "from-blue-600 to-blue-400",
+        };
 
-    const getGradient = (sake) => {
-        // Dassai variants
-        if (sake.includes("獺祭")) {
-            return "from-emerald-500/80 to-transparent";
-        }
-
-        // Kubota variants
-        if (sake.includes("久保田")) {
-            return "from-blue-500/80 to-transparent";
-        }
-
-        // Kokuryu variants
-        if (sake.includes("黒龍")) {
-            return "from-blue-600 to-transparent";
-        }
-
-        // Hakkaisan variants
-        if (sake.includes("八海山")) {
-            return "from-blue-600 to-transparent";
-        }
-
-        // Hakutsuru variants
-        if (sake.includes("白鶴")) {
-            return "from-sky-400/80 to-transparent";
-        }
-
-        // Koshi no Kanbai variants
-        if (sake.includes("越乃寒梅")) {
-            return "from-amber-500/80 to-transparent";
-        }
-
-        // Suigei variants
-        if (sake.includes("酔鯨")) {
-            return "from-cyan-500/80 to-transparent";
-        }
-
-        // Born variants
-        if (sake.includes("梵")) {
-            return "from-red-500/80 to-transparent";
-        }
-
-        // Juyondai variants
-        if (sake.includes("十四代")) {
-            return "from-purple-500/80 to-transparent";
-        }
-
-        // Kubota variants
-        if (sake.includes("久保田")) {
-            return "from-indigo-500/80 to-transparent";
-        }
-
-        // Default gradient
-        return "from-teal-800/80 to-transparent";
+        return (
+            classificationGradients[classification] ||
+            "from-teal-800/80 to-transparent"
+        );
     };
 
     if (isLoading || !showContent) {
@@ -175,9 +134,7 @@ export default function QuizResult() {
                             {t.taste.result.title}
                         </h2>
                         <div
-                            className={`inline-block bg-gradient-to-r ${getGradient(
-                                result
-                            )} backdrop-blur-sm rounded-xl lg:px-6 py-3 lg:ml-44`}
+                            className={`inline-block bg-gradient-to-r ${getGradient(sakeData.classification)} backdrop-blur-sm rounded-xl lg:px-6 py-3 lg:ml-44`}
                         >
                             <h2 className="text-2xl md:text-4xl font-medium">
                                 「{result}」
