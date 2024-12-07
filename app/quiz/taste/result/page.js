@@ -201,7 +201,7 @@ export default function QuizResult() {
                                     値段: sakeData.price,
                                 }).map(([key, value]) => (
                                     <div key={key}>
-                                        <span className="text-base lg:text-lg border-b border-white/80 pb-2">
+                                        <span className="text-base lg:text-lg border-b border-white/80 pb-2 leading-9 lg:leading-10">
                                             {key === "精米歩合" ? (
                                                 <>
                                                     <span className="text-xs sm:text-sm">
@@ -211,7 +211,7 @@ export default function QuizResult() {
                                                         text={`玄米を外側から削り残った割合を％で示したもの。\n高ければ高いほど白米の甘みが感じられる。`}
                                                         position="top"
                                                     >
-                                                        <sup className="cursor-help px-[5px] py-[1px] border-2 rounded-full text-[9px]">
+                                                        <sup className="cursor-help px-[5.5px] py-[1px] border-2 rounded-full text-[9px]">
                                                             ?
                                                         </sup>
                                                     </Tooltip>
