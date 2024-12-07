@@ -70,7 +70,7 @@ const SakeMetrics = ({ sakeData }) => {
                             text={`水に対する日本酒の比重を数値化したもの。\nマイナスの数字が大きいと甘口に、プラスの数字が大きいと辛口に感じる。`}
                             position="top"
                         >
-                            <sup className="cursor-help px-[3px] py-[1px] border-2 rounded-full text-[10px]">
+                            <sup className="cursor-help px-[5px] py-[1px] border-2 rounded-full text-[9px]">
                                 ?
                             </sup>
                         </Tooltip>

@@ -211,7 +211,7 @@ export default function QuizResult() {
                                                         text={`玄米を外側から削り残った割合を％で示したもの。\n高ければ高いほど白米の甘みが感じられる。`}
                                                         position="top"
                                                     >
-                                                        <sup className="cursor-help px-[3px] py-[1px] border-2 rounded-full text-[10px]">
+                                                        <sup className="cursor-help px-[5px] py-[1px] border-2 rounded-full text-[9px]">
                                                             ?
                                                         </sup>
                                                     </Tooltip>
@@ -248,7 +248,6 @@ export default function QuizResult() {
                         <div className="space-y-5 order-3 lg:order-3 flex flex-col justify-between mx-auto w-[250px]">
                             {/* Taste Chart */}
                             <SakeRadarChart sakeData={sakeData} />
-
                             {/* Meters */}
                             <SakeMetrics sakeData={sakeData} />
                         </div>
