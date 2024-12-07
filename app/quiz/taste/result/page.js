@@ -248,7 +248,6 @@ export default function QuizResult() {
                         <div className="space-y-5 order-3 lg:order-3 flex flex-col justify-between mx-auto w-[250px]">
                             {/* Taste Chart */}
                             <SakeRadarChart sakeData={sakeData} />
-
                             {/* Meters */}
                             <SakeMetrics sakeData={sakeData} />
                         </div>
