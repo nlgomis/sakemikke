@@ -134,7 +134,9 @@ export default function QuizResult() {
                             {t.taste.result.title}
                         </h2>
                         <div
-                            className={`inline-block bg-gradient-to-r ${getGradient(sakeData.classification)} backdrop-blur-sm rounded-xl lg:px-6 py-3 lg:ml-44`}
+                            className={`inline-block bg-gradient-to-r ${getGradient(
+                                sakeData.classification
+                            )} backdrop-blur-sm rounded-xl lg:px-6 py-3 lg:ml-44`}
                         >
                             <h2 className="text-2xl md:text-4xl font-medium">
                                 「{result}」
@@ -149,7 +151,10 @@ export default function QuizResult() {
                     <div className="grid sm:grid-cols-2 lg:grid-cols-[1fr_1.5fr_1fr] 2xl:grid-cols-[1fr_2fr_1fr] sm:grid-rows-[auto_auto] lg:grid-rows-[auto] items-center gap-0">
                         {/* Left Column - Details */}
                         <div className="space-y-5 order-2 lg:order-1 mx-auto sm:mx-0 lg:sm:mx-auto mb-16 sm:mb-0">
-                            <div className="space-y-5 flex flex-col justify-between items-start w-[250px] h-[250px] sm:h-[300px] lg:h-[340px] 2xl:h-[370px]">
+                            <div
+                                className="space-y-5 flex flex-col justify-between items-start w-sake-details sm:h-sake-details-sm
+                                md:h-sake-details-md lg:h-sake-details-lg 2xl:sake-details-2xl"
+                            >
                                 {Object.entries({
                                     種類: sakeData.type,
                                     産地: sakeData.origin,
