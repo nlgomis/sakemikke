@@ -26,7 +26,6 @@ export default function ContactPage() {
           </h1>
           <div className="h-10 flex-1 bg-white ml-4 sm:ml-6 md:ml-10"></div>
         </div>
-
         {/* メインコンテンツ  */}
         <div className="flex flex-col lg:flex-row justify-between items-start gap-12 lg:gap-16 px-4 sm:px-8 md:px-16 pb-12">
           {/* 左側のフォーム */}
@@ -80,14 +79,12 @@ export default function ContactPage() {
             ))}
           </div>
         </div>
-
         <div className="text-center py-2">
           <button className="px-6 py-2 bg-transparent text-white border border-white rounded transition-all duration-300 hover:bg-white hover:text-black">
             Send
           </button>
         </div>
-
-        {/* フッター */}
+        {/* フッター */}np
         <footer className="py-6 text-center text-white-500 text-sm">
           © 2024 SAKEMIKKE. All rights reserved.
         </footer>
