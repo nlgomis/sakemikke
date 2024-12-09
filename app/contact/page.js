@@ -84,7 +84,7 @@ export default function ContactPage() {
             Send
           </button>
         </div>
-        {/* フッター */}np
+        {/* フッター */}
         <footer className="py-6 text-center text-white-500 text-sm">
           © 2024 SAKEMIKKE. All rights reserved.
         </footer>
