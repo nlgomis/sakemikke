@@ -14,10 +14,10 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                'shippori': ['Shippori Mincho', 'serif'],
+                shippori: ["Shippori Mincho", "serif"],
             },
             screens: {
-              "3xs": "360px",
+                "3xs": "360px",
                 "2xs": "390px",
                 xs: "480px",
                 sm: "640px",
@@ -27,8 +27,16 @@ module.exports = {
                 "2xl": "1536px",
                 "3xl": "1920px",
             },
+            width: {
+                'sake-details': '250px',
+            },
             height: {
-                screen: ["100vh", "100dvh"],
+                screen: ["100vh", "100dvh"], 
+                'sake-details-sm': '250px',
+                'sake-details-md': '300px',
+                'sake-details-lg': '340px',
+                'sake-details-2xl': '370px',
+        
             },
             minHeight: {
                 screen: ["100vh", "100dvh"],
@@ -195,9 +203,9 @@ module.exports = {
                     "linear-gradient2(to left right, var(--tw-gradient-stops))",
             },
             backgroundSiz: {
-                "auto" : "auto",
-                "cover" : "cover",
-                "contain" : "contain",
+                auto: "auto",
+                cover: "cover",
+                contain: "contain",
                 "90%": "90%",
                 "80%": "80%",
             },
