@@ -13,6 +13,22 @@ export default function SakeTypesPage() {
   });
   const [activeTab, setActiveTab] = useState("淡麗辛口");
   const [isLoading, setIsLoading] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobileSize = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+
+    // 初回チェック
+    checkMobileSize();
+
+    // リサイズ時にチェック
+    window.addEventListener("resize", checkMobileSize);
+
+    // クリーンアップ
+    return () => window.removeEventListener("resize", checkMobileSize);
+  }, []);
 
   const classificationStyles = {
     濃醇甘口: {
@@ -103,9 +119,9 @@ export default function SakeTypesPage() {
     fetchSakeData();
   }, []);
 
-  const calculateKeywordPosition = (index, total) => {
-    const horizontalRadius = 140;
-    const verticalRadius = 80;
+  const calculateKeywordPosition = (index, total, isMobile) => {
+    const horizontalRadius = isMobile ? 90 : 140;
+    const verticalRadius = isMobile ? 60 : 100;
     const angle = (index * 2 * Math.PI) / total;
     const x = horizontalRadius * Math.cos(angle);
     const y = verticalRadius * Math.sin(angle);
@@ -214,7 +230,7 @@ export default function SakeTypesPage() {
           {sortedSakeList[activeTab].map((sake) => (
             <div
               key={sake.id}
-              className="bg-transparent overflow-hidden transition-all duration-300"
+              className="bg-transparent overflow-hidden transition-all duration-300 group/sake"
             >
               <div className="p-4">
                 <div className="mb-3">
@@ -230,16 +246,19 @@ export default function SakeTypesPage() {
                     alt={`${sake.name}の画像`}
                     fill
                     style={{ objectFit: "contain" }}
-                    className="transition-opacity duration-300 group-hover:opacity-80"
+                    className="transition-opacity duration-300 group-hover/sake:opacity-80"
                     priority={false}
                   />
 
                   {sake.keywords && sake.keywords.length > 0 && (
-                    <div className="absolute inset-0 pointer-events-none">
+                    <div className="absolute inset-0 pointer-events-none overflow-hidden">
                       {sake.keywords.map((keyword, index) => {
                         const position = calculateKeywordPosition(
                           index,
-                          sake.keywords.length
+                          sake.keywords.length,
+                          // Check screen size using window.innerWidth
+                          typeof window !== "undefined" &&
+                            window.innerWidth < 640
                         );
                         const bgColor = getKeywordColor(index);
                         const glowColor = getGlowColor(index);
@@ -248,7 +267,8 @@ export default function SakeTypesPage() {
                           <div
                             key={keyword}
                             className={`absolute left-1/2 top-1/2 opacity-0 transform -translate-x-1/2 -translate-y-1/2 
-                                      group-hover:opacity-100 transition-all duration-500`}
+                                      group-hover/sake:opacity-100 transition-all duration-500
+                                      sm:max-w-full max-w-[calc(100%-2rem)] w-auto`}
                             style={{
                               transform: `translate(calc(-50% + ${position.x}px), calc(-50% + ${position.y}px))`,
                               transitionDelay: `${index * 100}ms`,
@@ -256,8 +276,11 @@ export default function SakeTypesPage() {
                           >
                             <span
                               className={`${bgColor} ${glowColor} backdrop-blur-sm text-white 
-                                         text-sm px-3 py-1.5 rounded-full whitespace-nowrap
-                                         shadow-lg hover:shadow-xl transition-shadow duration-300`}
+                                         ${
+                                           isMobile ? "text-xs" : "text-sm"
+                                         } px-3 py-1.5 rounded-full whitespace-nowrap
+                                         shadow-lg hover:shadow-xl transition-shadow duration-300
+                                         inline-block max-w-full truncate`}
                             >
                               {keyword}
                             </span>
