@@ -140,7 +140,7 @@ export default function QuizResult() {
                             )} backdrop-blur-sm rounded-xl px-2 lg:px-6 py-3 lg:ml-44`}
                         >
                             <h2 className="text-2xl md:text-4xl font-medium">
-                                「{result}」
+                                {result}
                                 <span className="text-lg md:text-2xl">
                                     {t.taste.result.subtitle}
                                 </span>
