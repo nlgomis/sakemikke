@@ -79,7 +79,7 @@ export default function BeginnerQuiz() {
                     label: t.beginner.options.concerns.dry,
                 },
                 {
-                    value: "お酒感",
+                    value: "アルコール度",
                     label: t.beginner.options.concerns.alcohol,
                 },
             ],
