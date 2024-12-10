@@ -164,7 +164,6 @@ export default function Component() {
 
   return (
     <main className="min-h-screen  text-white relative overflow-hidden">
-
       {/* Content wrapper with higher z-index */}
       <div className="relative z-10">
         {/* Hero Section */}
@@ -374,7 +373,7 @@ export default function Component() {
                     <img
                       src={testimonial.imageSrc}
                       alt={testimonial.imageAlt}
-                      className="h-40 w-20  object-cover"
+                      className="h-28 w-auto  object-cover"
                     />
                   </div>
                   <div
