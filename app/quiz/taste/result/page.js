@@ -44,7 +44,8 @@ export default function QuizResult() {
                     rice: data.riceType,
                     classification: data.classification,
                     polishingRatio: `${data.polishingRate}%`,
-                    price: `¥${data.price.toLocaleString()} (${data.volume}ml)`,
+                    price: data.price === null || data.price === undefined 
+                    ? '価格未定' : `¥${data.price.toLocaleString()} (${data.volume || 'ml未定'}ml)`,
                     alcohol: `${data.alcoholContent}%`,
                     sakeValue: data.sakeLevel || 50,
                     tastePosition: calculateTastePosition(data.classification),
@@ -105,10 +106,10 @@ export default function QuizResult() {
     // Keep existing gradient function
     const getGradient = (classification) => {
         const classificationGradients = {
-            濃醇甘口: "from-red-500 to-red-300",
-            淡麗甘口: "from-sky-600 to-sky-400",
-            濃醇辛口: "from-[#9A210ECC] to-[#B8392680]",
-            淡麗辛口: "from-blue-600 to-blue-400",
+            濃醇甘口: "from-red-500 via-red-300 to-transparent",
+            淡麗甘口: "from-sky-600 via-sky-400 to-transparent",
+            濃醇辛口: "from-[#9A210ECC] via-[#B8392680] to-transparent",
+            淡麗辛口: "from-blue-600 via-blue-400 to-transparent",
         };
 
         return (
@@ -163,10 +164,10 @@ export default function QuizResult() {
                                     値段: sakeData.price,
                                 }).map(([key, value]) => (
                                     <div key={key}>
-                                        <span className="text-base lg:text-lg border-b border-white/80 pb-2 leading-9 lg:leading-10">
+                                        <span className="text-lg border-b border-white/80 pb-2 leading-9 lg:leading-10">
                                             {key === "精米歩合" ? (
                                                 <>
-                                                    <span className="text-xs sm:text-sm">
+                                                    <span className="text-sm">
                                                         {key}
                                                     </span>
                                                     <Tooltip
@@ -181,7 +182,7 @@ export default function QuizResult() {
                                                 </>
                                             ) : (
                                                 <>
-                                                    <span className="text-xs sm:text-sm">
+                                                    <span className="text-sm">
                                                         {key}
                                                     </span>
                                                     &nbsp;:&nbsp;{value}
