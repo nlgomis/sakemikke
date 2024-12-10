@@ -201,7 +201,7 @@ export default function QuizResult() {
                                     alt="Sake Bottles"
                                     width={600}
                                     height={900}
-                                    className="object-contain max-h-[460px] md:max-h-[380px]  lg:max-h-[520px] 2xl:max-h-[700px]"
+                                    className="object-contain max-h-[460px] md:max-h-[380px]  lg:max-h-[520px] 2xl:max-h-[700px] w-auto mx-auto"
                                     priority
                                 />
                             </div>
