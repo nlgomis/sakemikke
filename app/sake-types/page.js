@@ -120,8 +120,8 @@ export default function SakeTypesPage() {
   }, []);
 
   const calculateKeywordPosition = (index, total, isMobile) => {
-    const horizontalRadius = isMobile ? 90 : 140;
-    const verticalRadius = isMobile ? 60 : 100;
+    const horizontalRadius = isMobile ? 90 : 110;
+    const verticalRadius = isMobile ? 60 : 90;
     const angle = (index * 2 * Math.PI) / total;
     const x = horizontalRadius * Math.cos(angle);
     const y = verticalRadius * Math.sin(angle);
@@ -143,30 +143,32 @@ export default function SakeTypesPage() {
   };
 
   return (
-    <div className="container mx-auto px-6 py-10 bg-transparent">
-      <div className="pt-36 pb-24 max-w-[1200px] mx-auto">
-        <div className="flex flex-col gap-12">
+    <div className="container mx-auto px-4 sm:px-6 py-10 bg-transparent">
+      <div className="pt-24 md:pt-36 pb-16 md:pb-24 max-w-[1200px] mx-auto">
+        <div className="flex flex-col gap-8 md:gap-12">
           <div className="max-w-[90vw] lg:max-w-[1400px] mx-auto">
-            <div className="flex flex-col gap-16">
-              <div className="flex flex-col md:flex-row items-center gap-12 md:gap-20 lg:gap-32">
-                <div className="flex-shrink-0 flex items-center justify-center md:min-w-[400px]">
+            <div className="flex flex-col gap-12 md:gap-16">
+              <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 lg:gap-32">
+                {/* Logo Container */}
+                <div className="flex-shrink-0 flex items-center justify-center md:min-w-[300px] lg:min-w-[400px]">
                   <Image
                     src="/images/logo.png"
                     alt="Sake Mikke Logo"
                     width={300}
                     height={150}
-                    className="w-[250px] md:w-[300px]"
+                    className="w-[200px] md:w-[250px] lg:w-[300px]"
                   />
                 </div>
 
+                {/* Text Content */}
                 <div className="text-center md:text-left flex-1">
-                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">
+                  <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
                     ピックアップ日本酒一覧
-                    <span className="block text-lg md:text-2xl font-normal mt-6 text-white/80">
+                    <span className="block text-base md:text-xl font-normal mt-3 text-white/80">
                       Our Choices
                     </span>
                   </h1>
-                  <p className="text-white/80 mt-8 text-lg md:text-2xl max-w-2xl">
+                  <p className="text-white/80 mt-6 text-base md:text-lg max-w-2xl leading-relaxed">
                     世界的に名高い日本酒をピックアップ。あなたにぴったりの日本酒が、ここにあるはず。
                   </p>
                 </div>
@@ -174,32 +176,33 @@ export default function SakeTypesPage() {
             </div>
           </div>
 
-          {/* タブナビゲーション */}
-          <div className="flex flex-wrap justify-center gap-2">
+          {/* Tab Navigation */}
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-4">
             {Object.keys(sortedSakeList).map((classification) => (
               <button
                 key={classification}
                 onClick={() => setActiveTab(classification)}
                 className={`
-        group
-        w-[calc(50%-0.5rem)] sm:w-[200px] px-4 sm:px-8 py-3 rounded-full 
-        transition-all duration-300
-        border border-white/20
-        hover:scale-105
-        flex items-center justify-center
-        ${
-          activeTab === classification
-            ? `${classificationStyles[classification].active} `
-            : "bg-white/10 backdrop-blur-sm"
-        }
-      `}
+                  group
+                  w-[calc(50%-0.5rem)] sm:w-[200px] px-4 sm:px-8 py-3 
+                  rounded-full 
+                  transition-all duration-300
+                  border border-white/20
+                  hover:scale-105
+                  flex items-center justify-center
+                  ${
+                    activeTab === classification
+                      ? `${classificationStyles[classification].active} `
+                      : "bg-white/10 backdrop-blur-sm"
+                  }
+                `}
               >
                 <span
                   className={`
-          text-sm whitespace-nowrap 
-          transition-all duration-300
-          ${classificationStyles[classification].text}
-        `}
+                    text-sm whitespace-nowrap 
+                    transition-all duration-300
+                    ${classificationStyles[classification].text}
+                  `}
                 >
                   {classification}
                 </span>
@@ -223,7 +226,7 @@ export default function SakeTypesPage() {
         </div>
 
         <div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 
+          className="grid grid-cols-1  md:grid-cols-2  xl:grid-cols-3    gap-4 
              bg-white/10 backdrop-blur-lg border border-white/20 
              rounded-xl p-1 sm:p-2 shadow-sm"
         >
