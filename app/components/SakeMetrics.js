@@ -49,7 +49,7 @@ const SakeMetrics = ({ sakeData }) => {
     return (
         <div className="space-y-4 mt-8">
             <div className="mb-6">
-                <div className="flex justify-between text-base lg:text-lg mb-2">
+                <div className="flex justify-between text-lg mb-2">
                     <span>アルコール</span>
                     <span>{sakeData.alcohol}</span>
                 </div>
@@ -63,7 +63,7 @@ const SakeMetrics = ({ sakeData }) => {
             </div>
 
             <div>
-                <div className="flex justify-between text-base lg:text-lg mb-2">
+                <div className="flex justify-between text-lg mb-2">
                     <span>
                         日本酒度数
                         <Tooltip
