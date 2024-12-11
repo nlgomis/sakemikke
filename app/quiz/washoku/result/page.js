@@ -268,7 +268,7 @@ export default function QuizResult() {
                         <div className="space-y-5 order-2 lg:order-1 mx-auto sm:mx-0 lg:sm:mx-auto mb-16 sm:mb-0">
                             <div
                                 className="space-y-5 flex flex-col justify-between items-start w-sake-details sm:h-sake-details-sm
-                                md:h-sake-details-md lg:h-sake-details-lg 2xl:sake-details-2xl"
+                                lg:h-sake-details-lg 2xl:sake-details-2xl"
                             >
                                 {Object.entries({
                                     種類: sakeData.type,
@@ -288,7 +288,7 @@ export default function QuizResult() {
                                                         text={`玄米を外側から削り残った割合を％で示したもの。\n高ければ高いほど白米の甘みが感じられる。`}
                                                         position="top"
                                                     >
-                                                        <sup className="cursor-help px-[5.5px] py-[1px] border-2 rounded-full text-[9px]">
+                                                        <sup className="cursor-help px-[5.5px] py-px border-2 rounded-full text-[9px]">
                                                             ?
                                                         </sup>
                                                     </Tooltip>
@@ -315,7 +315,7 @@ export default function QuizResult() {
                                     alt="Sake Bottles"
                                     width={600}
                                     height={900}
-                                    className="object-contain max-h-[460px] md:max-h-[380px]  lg:max-h-[520px] 2xl:max-h-[700px] w-auto mx-auto"
+                                    className="object-contain max-h-[460px] sm:max-h-[380px]  lg:max-h-[520px] 2xl:max-h-[700px] w-auto mx-auto"
                                     priority
                                 />
                             </div>

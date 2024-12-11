@@ -70,7 +70,7 @@ const SakeMetrics = ({ sakeData }) => {
                             text={`水に対する日本酒の比重を数値化したもの。\nマイナスの数字が大きいと甘口に、プラスの数字が大きいと辛口に感じる。`}
                             position="top"
                         >
-                            <sup className="cursor-help px-[5.5px] py-[1px] border-2 rounded-full text-[9px]">
+                            <sup className="cursor-help px-[4.5px] py-1px border-2 rounded-full text-[9px]">
                                 ?
                             </sup>
                         </Tooltip>
@@ -81,7 +81,7 @@ const SakeMetrics = ({ sakeData }) => {
                     {/* Outer container with padding for dot overflow */}
                     <div className="absolute inset-0">
                         {/* Center line indicator */}
-                        <div className="absolute left-1/2 top-1/2 w-0.5 h-4 -translate-y-1/2 bg-white/30" />
+                        <div className="absolute left-1/2 top-1/2 w-0.5 h-4 -translate-y-1/2 bg-white" />
 
                         {/* Fill effect */}
                         <div

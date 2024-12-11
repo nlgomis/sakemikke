@@ -32,8 +32,7 @@ module.exports = {
             },
             height: {
                 screen: ["100vh", "100dvh"], 
-                'sake-details-sm': '250px',
-                'sake-details-md': '300px',
+                'sake-details-sm': '300px',
                 'sake-details-lg': '340px',
                 'sake-details-2xl': '370px',
         

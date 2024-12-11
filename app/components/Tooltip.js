@@ -23,12 +23,13 @@ const Tooltip = ({
             z-[11] 
             p-3 
             w-40
-            3xs:w-44
-            2xs:w-48
+            3xs:w-48
+            2xs:w-52
+            xs:w-60
             sm:w-52
             md:w-60
-            lg:w-[168px]
-            xl:w-[295px] 
+            lg:w-48
+            xl:w-80 
             2xl:w-80
             mx-auto
             bg-gradient-to-br
