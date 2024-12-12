@@ -29,7 +29,7 @@ function ClientWrapper({ children }) {
 export default function RootLayout({ children }) {
     return (
         <html lang="en" className={shipporiMincho.variable}>
-            <body className="bg-black overflow-x-hidden font-shippori">
+            <body className="overflow-x-hidden font-shippori">
             <GradientBackground className="fixed inset-0 z-0" />
                 <ClientWrapper>
                     <Navigation />

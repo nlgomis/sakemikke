@@ -181,7 +181,7 @@ const translations = {
     ja: {
         navigation: {
             quiz: "診断",
-            types: "日本酒の種類",
+            types: "日本酒一覧",
             about: "酒見っけとは",
             contact: "お問い合わせ",
         },
