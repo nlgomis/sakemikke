@@ -168,7 +168,7 @@ export default function Navigation() {
                         ? "bg-black/10 text-white"
                         : "text-white/70 hover:bg-white/5 hover:text-white"
                 }
-                text-base font-light tracking-wider
+                text-lg lg:text-base font-semibold lg:font-light tracking-wider
               `}
                             style={{
                                 transitionDelay: `${index * 50}ms`,
