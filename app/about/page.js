@@ -22,7 +22,7 @@ const LocationTimeHeader = () => {
   }, []);
 
   return (
-    <div className="w-full px-4">
+    <div className="w-full py-8 px-4">
       <div className="container mx-auto pb-10">
         <div className="flex items-center justify-between gap-20 sm:gap-8 md:gap-16 lg:gap-56 text-sm md:text-base text-white">
           {/* Location with Icon */}
@@ -30,7 +30,7 @@ const LocationTimeHeader = () => {
             <img
               src="/images/marker.png"
               alt="Location Icon"
-              className="w-6 h-6 mr-2"
+              className="w-6 h-6 mr-1"
             />
             <span>TOKYO JAPAN</span>
           </div>
@@ -313,14 +313,14 @@ export default function Component() {
             <h2 className="text-2xl md:text-3xl text-center mb-20">
               酒見っけの独自性
             </h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6 ">
               {[
-                { num: "1", text: "豊富な選択肢​​" },
-                { num: "2", text: "初心者でも​​わかりやすい説明" },
-                { num: "3", text: "銘酒の詳細​​" },
-                { num: "4", text: "ユーザー履歴の​​閲覧" },
-                { num: "5", text: "多言語 海外の人にも​​" },
-                { num: "6", text: "PC・スマホ どこでも、いつでも​​" },
+                { num: "1", text: "豊富な選択肢​\n　　　　　　　　　​​" },
+                { num: "2", text: "初心者でも​\n​わかりやすい説明　　" },
+                { num: "3", text: "銘酒の詳細​\n　　　　　　　　　　​" },
+                { num: "4", text: "ユーザー履歴の​​閲覧​\n　　　　　　" },
+                { num: "5", text: "多言語 海外の人にも​\n　　　　​​　" },
+                { num: "6", text: "PC・スマホ\n どこでも、いつでも​​" },
               ].map((feature) => (
                 <div
                   key={feature.num}
@@ -337,7 +337,9 @@ export default function Component() {
                       {feature.num}
                     </span>
                   </div>
-                  <p className="text-lg mt-6 leading-tight">{feature.text}</p>
+                  <p className="text-base md:text-lg mt-6 leading-tight whitespace-pre-line">
+                    {feature.text}
+                  </p>
                 </div>
               ))}
             </div>
@@ -347,7 +349,7 @@ export default function Component() {
           <div className="relative w-full">
             <div className="absolute inset-x-0 top-0 h-px bg-white" />
             <div className="container mx-auto">
-              <h2 className="py-6 text-center text-2xl font-medium tracking-wider text-white sm:text-3xl md:text-4xl">
+              <h2 className="py-6 text-center text-xl font-medium tracking-wider text-white sm:text-3xl md:text-4xl">
                 ここに見っけ！ あなたの一杯、
               </h2>
             </div>
@@ -355,7 +357,7 @@ export default function Component() {
           </div>
         </section>
         {/* Testimonials */}
-        <section className="relative w-full overflow-hidden py-16 md:py-24">
+        <section className="relative w-full overflow-hidden pt-16 pb-24  md:py-28">
           <div className="absolute inset-0 bg-gradient-to-br" />
           <div className="container relative mx-auto px-4">
             <h2 className="mb-16 text-center text-3xl  text-white md:text-3xl">
