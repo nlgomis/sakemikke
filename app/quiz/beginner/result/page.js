@@ -141,7 +141,7 @@ export default function QuizResult() {
                         >
                             <h2 className="text-2xl md:text-4xl font-medium">
                                 {result}
-                                <span className="text-lg md:text-2xl">
+                                <span className="ml-2 text-lg md:text-2xl">
                                     {t.taste.result.subtitle}
                                 </span>
                             </h2>
