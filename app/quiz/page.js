@@ -37,7 +37,7 @@ export default function QuizSelector() {
 
     return (
         <div className="min-h-screen h-screen relative">
-            <main className="container sm:h-full w-full mx-auto flex flex-col items-center sm:justify-center px-4 pt-28 sm:pt-0 relative">
+            <main className="container sm:h-full w-full mx-auto flex flex-col items-center sm:justify-center px-4 pt-28 sm:pt-0 pb-16 lg:pb-0 relative">
                 <div className="text-center mb-8 sm:mb-14">
                     <h1 className="text-xl xs:text-2xl sm:text-4xl lg:text-5xl font-light text-white mb-3 sm:mb-6 tracking-wider">
                         {t.quiz.title}
