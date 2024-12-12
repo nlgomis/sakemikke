@@ -11,31 +11,31 @@ import GradientBackground from "./components/GradientBackground";
 
 // Shippori Mincho フォントの設定
 const shipporiMincho = Shippori_Mincho({
-    subsets: ["latin"],
-    weight: ["400", "500", "600", "700"],
-    display: "swap",
-    variable: "--font-shippori",
-    preload: true,
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-shippori",
+  preload: true,
 });
 
 function ClientWrapper({ children }) {
-    return (
-        <LanguageProvider>
-            <AuthProvider>{children}</AuthProvider>
-        </LanguageProvider>
-    );
+  return (
+    <LanguageProvider>
+      <AuthProvider>{children}</AuthProvider>
+    </LanguageProvider>
+  );
 }
 
 export default function RootLayout({ children }) {
-    return (
-        <html lang="en" className={shipporiMincho.variable}>
-            <body className="overflow-x-hidden font-shippori">
-            <GradientBackground className="fixed inset-0 z-0" />
-                <ClientWrapper>
-                    <Navigation />
-                    <div>{children}</div>
-                </ClientWrapper>
-            </body>
-        </html>
-    );
+  return (
+    <html lang="en" className={shipporiMincho.variable}>
+      <body className="bg-cyan-500 overflow-x-hidden font-shippori">
+        <GradientBackground className="fixed inset-0 z-0" />
+        <ClientWrapper>
+          <Navigation />
+          <div>{children}</div>
+        </ClientWrapper>
+      </body>
+    </html>
+  );
 }
