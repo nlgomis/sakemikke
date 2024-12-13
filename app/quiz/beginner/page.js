@@ -252,7 +252,7 @@ export default function BeginnerQuiz() {
                         </div>
 
                         {/* Progress Bar */}
-                        <div className="h-2  bg-white w-[90%] mx-auto rounded-full">
+                        <div className="h-2  bg-white w-[80%] sm:w-[90%] mx-auto rounded-full">
                             <div
                                 className={`h-2 rounded-full transition-all duration-500 bg-gradient-to-r ${currentQuestion.gradient}`}
                                 style={{

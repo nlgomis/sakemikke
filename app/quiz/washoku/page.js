@@ -65,7 +65,7 @@ export default function WashokuQuiz() {
 
                 // If this is the last option, set allOptionsVisible to true
                 if (index === currentQ.options.length - 1) {
-                    setTimeout(() => setAllOptionsVisible(true), 400);
+                    setTimeout(() => setAllOptionsVisible(true), 300);
                 }
             }, 300 * (index + 1));
         });
@@ -74,21 +74,6 @@ export default function WashokuQuiz() {
         return () => timer.forEach(clearTimeout);
     }, [state.currentQuestion]);
 
-    useLayoutEffect(() => {
-        // Reset visible options when question changes
-        setVisibleOptions([]);
-
-        // Gradually show options
-        const currentQ = getCurrentQuestion();
-        const timer = currentQ.options.map((_, index) => {
-            return setTimeout(() => {
-                setVisibleOptions((prev) => [...prev, index]);
-            }, 300 * (index + 1));
-        });
-
-        // Clean up timers
-        return () => timer.forEach(clearTimeout);
-    }, [state.currentQuestion]);
 
     // Update animations when current question changes
     useEffect(() => {
@@ -316,7 +301,7 @@ export default function WashokuQuiz() {
                         </div>
 
                         {/* Progress Bar */}
-                        <div className="h-2  bg-white w-[90%] mx-auto rounded-full">
+                        <div className="h-2  bg-white w-[80%] sm:w-[90%] mx-auto rounded-full">
                             <div
                                 className={`h-2 rounded-full transition-all duration-500 bg-gradient-to-r ${currentQuestion.gradient}`}
                                 style={{
