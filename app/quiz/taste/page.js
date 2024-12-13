@@ -28,9 +28,12 @@ export default function TasteQuiz() {
             (_, index) => {
                 return setTimeout(() => {
                     setVisibleOptions((prev) => [...prev, index]);
-                    
+
                     // If this is the last option, set allOptionsVisible to true
-                    if (index === questions[state.currentQuestion].options.length - 1) {
+                    if (
+                        index ===
+                        questions[state.currentQuestion].options.length - 1
+                    ) {
                         setTimeout(() => setAllOptionsVisible(true), 300);
                     }
                 }, 300 * (index + 1));
@@ -227,7 +230,7 @@ export default function TasteQuiz() {
                         </div>
 
                         {/* Progress Bar */}
-                        <div className="h-2  bg-white w-[90%] mx-auto rounded-full">
+                        <div className="h-2  bg-white w-[80%] sm:w-[90%] mx-auto rounded-full">
                             <div
                                 className={`h-2 rounded-full transition-all duration-500 bg-gradient-to-r ${currentQuestion.gradient}`}
                                 style={{
@@ -281,7 +284,11 @@ export default function TasteQuiz() {
                                         text-lg font-light tracking-wide
                                         group
                                         ${buttonAnimations[index] || ""}
-                                        ${!allOptionsVisible ? "cursor-not-allowed " : ""}
+                                        ${
+                                            !allOptionsVisible
+                                                ? "cursor-not-allowed "
+                                                : ""
+                                        }
                                     `}
                                 >
                                     <SpinningRings rings={customRings} />
