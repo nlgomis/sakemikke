@@ -102,7 +102,7 @@ export default function TasteQuiz() {
     const saveQuizResult = async (result) => {
         try {
             const API_URL = process.env.NODE_ENV === 'production'
-                ? 'https://sakemikke-server-d7f7dhdgabfaawa5.japaneast-01.azurewebsites.net/api/users/quiz-history'
+                ? 'https://sakemikke-server-d7f7dhdgabfaawa5.japaneast-01.azurewebsites.net/api/users/update-quizzes'
                 : 'https://sakemikke-server-d7f7dhdgabfaawa5.japaneast-01.azurewebsites.net/api/users/update-quizzes';
     
             const response = await fetch(API_URL, {
