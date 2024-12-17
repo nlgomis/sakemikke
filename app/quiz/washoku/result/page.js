@@ -165,7 +165,7 @@ export default function QuizResult() {
                                   data.volume || "ml未定"
                               }ml)`,
                     alcohol: `${data.alcoholContent}%`,
-                    sakeValue: data.sakeLevel || 50,
+                    sakeValue: data.sakeLevel,
                     tastePosition: calculateTastePosition(data.classification),
                     sakeGrade: data.sakeGrade,
                 };

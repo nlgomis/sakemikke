@@ -1,15 +1,16 @@
-// app/register/page.js
 'use client';
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { useAuth } from '../contexts/AuthContext'; // Make sure to import useAuth
 
 export default function RegisterPage() {
   const router = useRouter();
+  const { login } = useAuth();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  console.log(process.env.NODE_ENV)
+
   const handleRegister = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -22,36 +23,57 @@ export default function RegisterPage() {
     };
   
     try {
-      const API_URL = 'https://sakemikke-server-d7f7dhdgabfaawa5.japaneast-01.azurewebsites.net/api/users/register';
-
-  const response = await fetch(API_URL, {
-    method: 'POST',
-    credentials: 'include',
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-    },
-    body: JSON.stringify(formData)
-  });
+      // 1. Register the user
+      const registerResponse = await fetch('https://sakemikke-server-d7f7dhdgabfaawa5.japaneast-01.azurewebsites.net/api/users/register', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
   
-      const data = await response.json();
+      const registerData = await registerResponse.json();
       
-      if (response.ok) {
-        alert('登録が完了しました。ログインしてください。');
-        router.push('/login');
+      if (registerResponse.ok) {
+        // 2. If registration successful, immediately login
+        const loginResponse = await fetch('https://sakemikke-server-d7f7dhdgabfaawa5.japaneast-01.azurewebsites.net/api/users/login', {
+          method: 'POST',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+          },
+          body: JSON.stringify({
+            email: formData.email,
+            password: formData.password
+          })
+        });
+
+        const loginData = await loginResponse.json();
+
+        if (loginResponse.ok) {
+          // Store token and update auth context
+          localStorage.setItem('token', loginData.token);
+          await login(loginData.token);
+          router.push('/'); // Redirect to main page
+        } else {
+          throw new Error(loginData.message || 'ログインに失敗しました');
+        }
       } else {
-        setError(data.message || '登録に失敗しました');
+        throw new Error(registerData.message || '登録に失敗しました');
       }
     } catch (error) {
-      console.error('Registration error:', error);
-      setError('サーバーとの通信に失敗しました');
+      console.error('Registration/Login error:', error);
+      setError(error.message || 'サーバーとの通信に失敗しました');
     } finally {
       setLoading(false);
     }
   };
+
   return (
     <div className="relative min-h-screen">
-
       {/* Main container */}
       <div className="relative z-10 min-h-screen flex flex-col">
         {/* Content area */}
