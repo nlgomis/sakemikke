@@ -107,3 +107,4 @@ export const getResult = (taste, mood, pairing) => {
             };
             return results[taste][mood][pairing];
           };
+          

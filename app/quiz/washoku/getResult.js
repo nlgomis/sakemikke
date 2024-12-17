@@ -26,6 +26,5 @@ export const getResult = (category, specific) => {
             ブリしゃぶ: "久保田 千寿",
         },
     };
-
     return results[category][specific];
 };
