@@ -57,5 +57,5 @@ export const getResult = (drink, concern, occasion) => {
       }
     }
   };
-
+  
   return results[drink][concern][occasion];}
