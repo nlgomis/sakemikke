@@ -8,6 +8,7 @@ const SakeMetrics = ({ sakeData }) => {
     const sakeValueFillRef = useRef(null);
 
     const getSakeValuePosition = (value) => {
+        if (value === null) return 50; // Center position for null values
         return ((parseFloat(value) + 100) / 200) * 100;
     };
 
@@ -29,7 +30,14 @@ const SakeMetrics = ({ sakeData }) => {
         });
 
         // Animate the fill effect
-        if (sakePosition >= 50) {
+        if (sakeData.sakeValue === null) {
+            // For null values, no fill
+            gsap.to(sakeValueFillRef.current, {
+                width: "0%",
+                duration: 1.2,
+                ease: "power2.out",
+            });
+        } else if (sakePosition >= 50) {
             gsap.to(sakeValueFillRef.current, {
                 left: "50%",
                 width: `${sakePosition - 50}%`,
@@ -75,15 +83,12 @@ const SakeMetrics = ({ sakeData }) => {
                             </sup>
                         </Tooltip>
                     </span>
-                    <span>{sakeData.sakeValue}</span>
+                    <span>{sakeData.sakeValue === null ? "/" : sakeData.sakeValue}</span>
                 </div>
                 <div className="relative h-2 bg-white rounded-full">
-                    {/* Outer container with padding for dot overflow */}
                     <div className="absolute inset-0">
-                        {/* Center line indicator */}
                         <div className="absolute left-1/2 top-1/2 w-0.5 h-4 -translate-y-1/2 bg-white" />
 
-                        {/* Fill effect */}
                         <div
                             ref={sakeValueFillRef}
                             className="absolute top-0 h-full bg-blue-500"
@@ -91,7 +96,6 @@ const SakeMetrics = ({ sakeData }) => {
                         />
                     </div>
 
-                    {/* Dot indicator with extended hitbox */}
                     <div className="absolute inset-0 -mx-1.5">
                         <div
                             ref={sakeValueRef}

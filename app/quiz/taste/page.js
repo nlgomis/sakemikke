@@ -3,12 +3,15 @@
 import { useState, useEffect, useLayoutEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useLanguage } from "../../contexts/LanguageContext";
+import { useAuth } from "../../contexts/AuthContext";
 import SpinningRings from "@/app/components/SpinningRings";
 import BackButton from "@/app/components/BackButton";
+import { getResult } from "./getResult";
 
 export default function TasteQuiz() {
     const router = useRouter();
     const { t } = useLanguage();
+    const { user } = useAuth();
     const [state, setState] = useState({
         currentQuestion: 0,
         answers: {},
@@ -17,19 +20,17 @@ export default function TasteQuiz() {
     const [buttonAnimations, setButtonAnimations] = useState([]);
     const [visibleOptions, setVisibleOptions] = useState([]);
     const [allOptionsVisible, setAllOptionsVisible] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     useLayoutEffect(() => {
-        // Reset visible options when question changes
         setVisibleOptions([]);
         setAllOptionsVisible(false);
 
-        // Gradually show options
         const timer = questions[state.currentQuestion].options.map(
             (_, index) => {
                 return setTimeout(() => {
                     setVisibleOptions((prev) => [...prev, index]);
                     
-                    // If this is the last option, set allOptionsVisible to true
                     if (index === questions[state.currentQuestion].options.length - 1) {
                         setTimeout(() => setAllOptionsVisible(true), 300);
                     }
@@ -37,7 +38,6 @@ export default function TasteQuiz() {
             }
         );
 
-        // Clean up timers
         return () => timer.forEach(clearTimeout);
     }, [state.currentQuestion]);
 
@@ -96,7 +96,36 @@ export default function TasteQuiz() {
         setButtonAnimations(shuffledAnimations);
     }, [state.currentQuestion]);
 
-    const handleAnswer = (answer) => {
+    const saveQuizResult = async (result) => {
+        try {
+            const API_URL = process.env.NODE_ENV === 'production'
+                ? `${process.env.BACK_URL}/users/update-quizzes`
+                : 'https://sakemikke-server-d7f7dhdgabfaawa5.japaneast-01.azurewebsites.net/api/users/update-quizzes';
+    
+            const response = await fetch(API_URL, {
+                method: 'PUT',  // Changed from POST to PUT
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                },
+                body: JSON.stringify({
+                    quizResult: result
+                })
+            });
+    
+            if (!response.ok) {
+                throw new Error('Failed to save quiz result');
+            }
+    
+            return await response.json();
+        } catch (error) {
+            console.error('Error saving quiz result:', error);
+            throw error;
+        }
+    };
+
+    const handleAnswer = async (answer) => {
         const newAnswers = { ...state.answers };
 
         switch (state.currentQuestion) {
@@ -111,24 +140,33 @@ export default function TasteQuiz() {
                 break;
         }
 
-        const newState = {
-            currentQuestion: state.currentQuestion + 1,
-            answers: newAnswers,
-        };
-
         if (state.currentQuestion === 2) {
+            if (user) {
+                setIsSubmitting(true);
+                try {
+                    const result = getResult(newAnswers.taste, newAnswers.mood, newAnswers.pairing);
+                    await saveQuizResult(result);
+                } catch (error) {
+                    console.error('Failed to save quiz result:', error);
+                } finally {
+                    setIsSubmitting(false);
+                }
+            }
+            
             router.push(
                 `/quiz/taste/result?t=${newAnswers.taste}&m=${newAnswers.mood}&p=${newAnswers.pairing}`
             );
         } else {
-            setState(newState);
+            setState({
+                currentQuestion: state.currentQuestion + 1,
+                answers: newAnswers,
+            });
         }
     };
 
     const handleBack = () => {
         if (state.currentQuestion > 0) {
             const newAnswers = { ...state.answers };
-            // 現在の質問に対応する回答を削除
             switch (state.currentQuestion - 1) {
                 case 0:
                     delete newAnswers.taste;
@@ -162,7 +200,6 @@ export default function TasteQuiz() {
         return "";
     };
 
-    // 選択肢の数に応じてコンテナのスタイルを決定する関数
     const getContainerStyle = (optionsLength) => {
         const baseStyle = "grid gap-6 lg:gap-0 xl:gap-4 w-full";
         switch (optionsLength) {
@@ -218,16 +255,14 @@ export default function TasteQuiz() {
         <div className="min-h-screen text-white flex flex-col">
             <main className="flex-1 flex flex-col items-center justify-center pt-16 3xs:pt-8 2xs:pt-0 xs:pt-16 px-4 lg:pt-0">
                 <div className="w-full mx-auto flex flex-col justify-between lg:gap-12 h-[518px] sm:h-[870px] md:h-[880px] lg:h-[546px] xl:h-[584px] 2xl:h-[610px]">
-                    {/* Question Section */}
                     <div className="text-center mx-auto w-full max-w-3xl">
                         <div className="p-8 rounded-2xl">
-                            <h2 className="text-2xl lg:text-3xl font-light min-h-[calc(2em+1rem)] sm:min-h-full tracking-wider ">
+                            <h2 className="text-2xl lg:text-3xl font-light min-h-[calc(2em+1rem)] sm:min-h-full tracking-wider">
                                 {currentQuestion.question}
                             </h2>
                         </div>
 
-                        {/* Progress Bar */}
-                        <div className="h-2  bg-white w-[90%] mx-auto rounded-full">
+                        <div className="h-2 bg-white w-[90%] mx-auto rounded-full">
                             <div
                                 className={`h-2 rounded-full transition-all duration-500 bg-gradient-to-r ${currentQuestion.gradient}`}
                                 style={{
@@ -241,12 +276,7 @@ export default function TasteQuiz() {
                         </div>
                     </div>
 
-                    {/* Options Section */}
-                    <div
-                        className={`${getContainerStyle(
-                            currentQuestion.options.length
-                        )} mx-auto`}
-                    >
+                    <div className={`${getContainerStyle(currentQuestion.options.length)} mx-auto`}>
                         {currentQuestion.options.map((option, index) => (
                             <div
                                 key={option.value}
@@ -256,20 +286,13 @@ export default function TasteQuiz() {
                                     transition-all
                                     duration-1000
                                     md:hover:scale-105
-                                    ${getOffsetClass(
-                                        index,
-                                        currentQuestion.options.length
-                                    )}
-                                ${
-                                    visibleOptions.includes(index)
-                                        ? "opacity-100 translate-y-0"
-                                        : "opacity-0 translate-y-10"
-                                }
+                                    ${getOffsetClass(index, currentQuestion.options.length)}
+                                    ${visibleOptions.includes(index) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}
                                 `}
                             >
                                 <button
                                     onClick={() => handleAnswer(option.value)}
-                                    disabled={!allOptionsVisible}
+                                    disabled={!allOptionsVisible || isSubmitting}
                                     className={`
                                         relative
                                         w-full
@@ -281,33 +304,29 @@ export default function TasteQuiz() {
                                         text-lg font-light tracking-wide
                                         group
                                         ${buttonAnimations[index] || ""}
-                                        ${!allOptionsVisible ? "cursor-not-allowed " : ""}
+                                        ${!allOptionsVisible || isSubmitting ? "cursor-not-allowed" : ""}
                                     `}
                                 >
                                     <SpinningRings rings={customRings} />
-                                    <div className="absolute  w-full h-full">
+                                    <div className="absolute w-full h-full">
                                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[90%]">
-                                            {/* Black overlay that appears on hover */}
                                             <div className="absolute inset-0 bg-black/50 rounded-full opacity-30 lg:opacity-0 transition-opacity duration-300 lg:group-hover:opacity-50" />
                                         </div>
                                     </div>
 
-                                    {/* Label with hover effect */}
-                                    <span
-                                        className="
-                                            relative 
-                                            text-sm
-                                            sm:text-lg
-                                            text-center 
-                                            transition-all 
-                                            duration-300
-                                            lg:group-hover:opacity-100
-                                            lg: group-hover:text-white
-                                            lg:group-hover:font-medium
-                                            lg:group-hover:scale-105
-                                            lg:group-hover:text-shadow
-                                        "
-                                    >
+                                    <span className="
+                                        relative 
+                                        text-sm
+                                        sm:text-lg
+                                        text-center 
+                                        transition-all 
+                                        duration-300
+                                        lg:group-hover:opacity-100
+                                        lg:group-hover:text-white
+                                        lg:group-hover:font-medium
+                                        lg:group-hover:scale-105
+                                        lg:group-hover:text-shadow
+                                    ">
                                         {option.label}
                                     </span>
                                 </button>
@@ -315,7 +334,6 @@ export default function TasteQuiz() {
                         ))}
                     </div>
 
-                    {/* BackButton */}
                     <div className="w-full flex justify-center translate-y-3/4 lg:mt-20">
                         <BackButton
                             onClick={

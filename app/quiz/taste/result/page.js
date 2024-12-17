@@ -38,16 +38,18 @@ export default function QuizResult() {
 
                 // Transform API data to match component needs
                 const transformedData = {
+                    name: t.sake.names[result],
                     id: data.id,
-                    type: data.type,
-                    origin: data.region,
+                    type: t.sake.types[data.type] || data.type,
+                    origin: t.sake.regions[data.region] || data.region,
                     rice: data.riceType,
-                    classification: data.classification,
+                    classification: t.sake.classification[data.classification] || data.classification,
                     polishingRatio: `${data.polishingRate}%`,
                     price: data.price === null || data.price === undefined 
-                    ? '価格未定' : `¥${data.price.toLocaleString()} (${data.volume || 'ml未定'}ml)`,
+                        ? t.sake.labels.priceTbd
+                        : `¥${data.price.toLocaleString()} (${data.volume || t.sake.labels.mlTbd})`,
                     alcohol: `${data.alcoholContent}%`,
-                    sakeValue: data.sakeLevel || 50,
+                    sakeValue: data.sakeLevel,
                     tastePosition: calculateTastePosition(data.classification),
                     sakeGrade: data.sakeGrade,
                 };
@@ -87,11 +89,11 @@ export default function QuizResult() {
 
     // Fallback data in case of API failure
     const getFallbackData = () => ({
-        type: "日本酒",
-        origin: "日本",
+        type: t.sake.types["日本酒"] || "日本酒",
+        origin: t.sake.regions["日本"] || "日本",
         rice: "国産米",
         polishingRatio: "60%",
-        price: "価格未定",
+        price: t.sake.labels.priceTbd,
         alcohol: "15%",
         sakeValue: 50,
         tastePosition: { x: 50, y: 50 },
@@ -155,41 +157,37 @@ export default function QuizResult() {
                             <div
                                 className="space-y-5 flex flex-col justify-between items-start w-sake-details sm:h-sake-details-sm lg:h-sake-details-lg 2xl:sake-details-2xl"
                             >
-                                {Object.entries({
-                                    種類: sakeData.type,
-                                    産地: sakeData.origin,
-                                    原料米: sakeData.rice,
-                                    精米歩合: sakeData.polishingRatio,
-                                    値段: sakeData.price,
-                                }).map(([key, value]) => (
-                                    <div key={key}>
-                                        <span className="text-lg border-b border-white/80 pb-2 leading-9 lg:leading-10">
-                                            {key === "精米歩合" ? (
-                                                <>
-                                                    <span className="text-sm">
-                                                        {key}
-                                                    </span>
-                                                    <Tooltip
-                                                        text={`玄米を外側から削り残った割合を％で示したもの。\n高ければ高いほど白米の甘みが感じられる。`}
-                                                        position="top"
-                                                    >
-                                                        <sup className="cursor-help px-[5.5px] py-px border-2 rounded-full text-[9px]">
-                                                            ?
-                                                        </sup>
-                                                    </Tooltip>
-                                                    &nbsp;:&nbsp;{value}
-                                                </>
-                                            ) : (
-                                                <>
-                                                    <span className="text-sm">
-                                                        {key}
-                                                    </span>
-                                                    &nbsp;:&nbsp;{value}
-                                                </>
-                                            )}
-                                        </span>
-                                    </div>
-                                ))}
+ {Object.entries({
+    [t.sake.labels.type]: sakeData.type,
+    [t.sake.labels.origin]: sakeData.origin,
+    [t.sake.labels.rice]: sakeData.rice,
+    [t.sake.labels.polishingRatio]: sakeData.polishingRatio,
+    [t.sake.labels.price]: sakeData.price,
+}).map(([key, value]) => (
+    <div key={key}>
+        <span className="text-lg border-b border-white/80 pb-2 leading-9 lg:leading-10">
+            {key === t.sake.labels.polishingRatio ? (
+                <>
+                    <span className="text-sm">{key}</span>
+                    <Tooltip
+                        text={t.sake.labels.tooltipPolishingRatio}
+                        position="top"
+                    >
+                        <sup className="cursor-help px-[5.5px] py-px border-2 rounded-full text-[9px]">
+                            ?
+                        </sup>
+                    </Tooltip>
+                    &nbsp;:&nbsp;{value}
+                </>
+            ) : (
+                <>
+                    <span className="text-sm">{key}</span>
+                    &nbsp;:&nbsp;{value}
+                </>
+            )}
+        </span>
+    </div>
+))}
                             </div>
                         </div>
                         {/* Center Column - Sake Bottles */}

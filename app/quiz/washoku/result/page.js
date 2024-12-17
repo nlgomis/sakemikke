@@ -161,7 +161,7 @@ export default function QuizResult() {
                     price: data.price === null || data.price === undefined 
                     ? '価格未定' : `¥${data.price.toLocaleString()} (${data.volume || 'ml未定'}ml)`,
                     alcohol: `${data.alcoholContent}%`,
-                    sakeValue: data.sakeLevel || 50,
+                    sakeValue: data.sakeLevel,
                     tastePosition: calculateTastePosition(data.classification),
                     sakeGrade: data.sakeGrade,
                 };

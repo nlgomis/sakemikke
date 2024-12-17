@@ -46,7 +46,14 @@ export default function Navigation() {
         { name: t.navigation.about, path: "/about" },
         { name: t.navigation.contact, path: "/contact" },
     ];
-
+    const handleControlClick = (callback) => {
+        return (...args) => {
+            setIsOpen(false);
+            if (callback) {
+                callback(...args);
+            }
+        };
+    };
     return (
         <nav
             className={`
@@ -109,8 +116,12 @@ export default function Navigation() {
 
                 {/* Right side controls */}
                 <div className="flex items-center justify-end space-x-4">
-                    <AuthButton />
-                    <LanguageSwitcher />
+                <div onClick={handleControlClick()}>
+    <AuthButton />
+</div>
+<div onClick={handleControlClick()}>
+    <LanguageSwitcher />
+</div>
                     <button
                         onClick={() => setIsOpen(!isOpen)}
                         className={`

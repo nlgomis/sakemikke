@@ -1,5 +1,3 @@
-// app/layout.js
-
 "use client";
 
 import { Shippori_Mincho } from "next/font/google";
@@ -9,7 +7,6 @@ import { LanguageProvider } from "./contexts/LanguageContext";
 import { AuthProvider } from "./contexts/AuthContext";
 import GradientBackground from "./components/GradientBackground";
 
-// Shippori Mincho フォントの設定
 const shipporiMincho = Shippori_Mincho({
     subsets: ["latin"],
     weight: ["400", "500", "600", "700"],
@@ -29,8 +26,11 @@ function ClientWrapper({ children }) {
 export default function RootLayout({ children }) {
     return (
         <html lang="en" className={shipporiMincho.variable}>
-            <body className="bg-black overflow-x-hidden font-shippori">
-            <GradientBackground className="fixed inset-0 z-0" />
+            <head>
+                <link rel="icon" href="/images/logoico.png" sizes="any"/>
+            </head>
+            <body className="overflow-x-hidden font-shippori">
+                <GradientBackground className="fixed inset-0 z-0" />
                 <ClientWrapper>
                     <Navigation />
                     <div>{children}</div>

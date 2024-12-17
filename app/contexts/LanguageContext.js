@@ -94,6 +94,86 @@ const translations = {
                 backToQuiz: "Back to Quiz Selection",
             },
         },
+        sake: {
+            labels: {
+                type: "Type",
+                origin: "Origin",
+                rice: "Rice Type",
+                polishingRatio: "Polishing Ratio",
+                price: "Price",
+                tbd: "TBD",
+                mlTbd: "ml TBD",
+                priceTbd: "Price TBD",
+                tooltipPolishingRatio: "The percentage of rice remaining after polishing. Higher polishing ratio results in a sweeter taste."
+            },
+            types: {
+                "純米大吟醸": "Junmai Daiginjo",
+                "純米吟醸": "Junmai Ginjo",
+                "大吟醸": "Daiginjo",
+                "吟醸酒": "Ginjo",
+                "純米酒": "Junmai",
+                "本醸造": "Honjozo",
+                "特別本醸造": "Tokubetsu Honjozo",
+                "普通酒": "Futsushu",
+                "日本酒（発泡性）": "Sparkling Sake"
+            },
+            taste_profile: {
+                "やや甘め": "Slightly Sweet",
+                "甘口": "Sweet",
+                "辛口": "Dry",
+                "やや辛め": "Slightly Dry"
+            },
+            classification: {
+                "淡麗甘口": "Light and Sweet",
+                "濃醇甘口": "Rich and Sweet",
+                "淡麗辛口": "Light and Dry",
+                "濃醇辛口": "Rich and Dry"
+            },
+            regions: {
+                "山口県": "Yamaguchi Prefecture",
+                "京都府": "Kyoto Prefecture",
+                "宮城県": "Miyagi Prefecture",
+                "新潟県": "Niigata Prefecture",
+                "福井県": "Fukui Prefecture",
+                "山形県": "Yamagata Prefecture",
+                "福岡県": "Fukuoka Prefecture",
+                "愛知県": "Aichi Prefecture",
+                "栃木県": "Tochigi Prefecture",
+                "兵庫県": "Hyogo Prefecture",
+                "奈良県": "Nara Prefecture",
+                "岐阜県高山市": "Takayama City, Gifu Prefecture",
+                "石川県": "Ishikawa Prefecture"
+            },
+            keywords: {
+                "フルーティー": "Fruity",
+                "華やか": "Elegant",
+                "すっきり": "Clean",
+                "上品": "Refined",
+                "クリア": "Clear",
+                "繊細": "Delicate",
+                "軽快": "Light",
+                "やさしい甘み": "Gentle Sweetness",
+                "甘い": "Sweet",
+                "スパークリング": "Sparkling",
+                "芳醇": "Rich",
+                "最高級": "Premium",
+                "濃醇": "Full-bodied",
+                "スッキリ": "Crisp",
+                "キレ": "Sharp",
+                "シャープ": "Sharp",
+                "やわらか": "Smooth",
+                "滑らか": "Silky",
+                "爽やか": "Refreshing",
+                "まろやか": "Mellow",
+                "エレガント": "Elegant",
+                "深みのある": "Deep",
+                "穏やか": "Mild",
+                "酸味": "Acidic",
+                "コク": "Rich Body",
+                "ふくよかな香り": "Full-bodied Aroma",
+                "サラリとした": "Light and Smooth"
+            }
+        },
         taste: {
             questions: {
                 taste: "What flavor of sake are you looking for?",
@@ -223,6 +303,86 @@ const translations = {
                     description: "日本食に合わせたい",
                 },
             },
+        },
+        sake: {
+            labels: {
+                type: "種類",
+                origin: "産地",
+                rice: "原料米",
+                polishingRatio: "精米歩合",
+                price: "値段",
+                tbd: "未定",
+                mlTbd: "ml未定",
+                priceTbd: "価格未定",
+                tooltipPolishingRatio: "玄米を外側から削り残った割合を％で示したもの。\n高ければ高いほど白米の甘みが感じられる。"
+            },
+            types: {
+                "純米大吟醸": "純米大吟醸",
+                "純米吟醸": "純米吟醸",
+                "大吟醸": "大吟醸",
+                "吟醸酒": "吟醸酒",
+                "純米酒": "純米酒",
+                "本醸造": "本醸造",
+                "特別本醸造": "特別本醸造",
+                "普通酒": "普通酒",
+                "日本酒（発泡性）": "日本酒（発泡性）"
+            },
+            taste_profile: {
+                "やや甘め": "やや甘め",
+                "甘口": "甘口",
+                "辛口": "辛口",
+                "やや辛め": "やや辛め"
+            },
+            classification: {
+                "淡麗甘口": "淡麗甘口",
+                "濃醇甘口": "濃醇甘口",
+                "淡麗辛口": "淡麗辛口",
+                "濃醇辛口": "濃醇辛口"
+            },
+            regions: {
+                "山口県": "山口県",
+                "京都府": "京都府",
+                "宮城県": "宮城県",
+                "新潟県": "新潟県",
+                "福井県": "福井県",
+                "山形県": "山形県",
+                "福岡県": "福岡県",
+                "愛知県": "愛知県",
+                "栃木県": "栃木県",
+                "兵庫県": "兵庫県",
+                "奈良県": "奈良県",
+                "岐阜県高山市": "岐阜県高山市",
+                "石川県": "石川県"
+            },
+            keywords: {
+                "フルーティー": "フルーティー",
+                "華やか": "華やか",
+                "すっきり": "すっきり",
+                "上品": "上品",
+                "クリア": "クリア",
+                "繊細": "繊細",
+                "軽快": "軽快",
+                "やさしい甘み": "やさしい甘み",
+                "甘い": "甘い",
+                "スパークリング": "スパークリング",
+                "芳醇": "芳醇",
+                "最高級": "最高級",
+                "濃醇": "濃醇",
+                "スッキリ": "スッキリ",
+                "キレ": "キレ",
+                "シャープ": "シャープ",
+                "やわらか": "やわらか",
+                "滑らか": "滑らか",
+                "爽やか": "爽やか",
+                "まろやか": "まろやか",
+                "エレガント": "エレガント",
+                "深みのある": "深みのある",
+                "穏やか": "穏やか",
+                "酸味": "酸味",
+                "コク": "コク",
+                "ふくよかな香り": "ふくよかな香り",
+                "サラリとした": "サラリとした"
+            }
         },
         beginner: {
             questions: {
