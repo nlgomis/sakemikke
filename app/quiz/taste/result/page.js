@@ -38,7 +38,7 @@ export default function QuizResult() {
 
                 // Transform API data to match component needs
                 const transformedData = {
-                    name: t.sake.names[result],
+                    
                     id: data.id,
                     type: t.sake.types[data.type] || data.type,
                     origin: t.sake.regions[data.region] || data.region,
