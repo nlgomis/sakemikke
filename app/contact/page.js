@@ -86,7 +86,7 @@ export default function ContactPage() {
         </div>
         {/* フッター */}
         <footer className="py-6 text-center text-white-500 text-sm">
-          © 2024 SAKEMIKKE. All rights reserved.
+          © 2025 SAKEMIKKE. All rights reserved.
         </footer>
       </div>
     </div>

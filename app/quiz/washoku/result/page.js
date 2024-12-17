@@ -85,7 +85,7 @@
 //           <div className="flex flex-col sm:flex-row justify-center gap-4 mt-8">
 //             <button
 //               onClick={() => router.push('/quiz/washoku')}
-//               className="px-8 py-4 rounded-lg bg-white/10 hover:bg-white/20 
+//               className="px-8 py-4 rounded-lg bg-white/10 hover:bg-white/20
 //                       border border-white/30 hover:border-white/50
 //                       transition-all duration-300 text-lg font-light tracking-wider"
 //             >
@@ -104,7 +104,7 @@
 //       </main>
 
 //       {/* Bottom decorative pattern */}
-//       <div className="fixed bottom-0 left-0 w-full h-32 pointer-events-none 
+//       <div className="fixed bottom-0 left-0 w-full h-32 pointer-events-none
 //                     bg-gradient-to-t from-black to-transparent opacity-80">
 //         <div className="absolute bottom-0 left-0 w-full h-px bg-white/5"></div>
 //         <div className="absolute bottom-2 left-0 w-full h-px bg-white/5"></div>
@@ -134,8 +134,8 @@ export default function QuizResult() {
     const [isLoading, setIsLoading] = useState(true);
     const [showContent, setShowContent] = useState(false);
 
-    const category = searchParams.get('c');
-    const specific = searchParams.get('s');
+    const category = searchParams.get("c");
+    const specific = searchParams.get("s");
 
     const result = getResult(category, specific);
 
@@ -158,8 +158,12 @@ export default function QuizResult() {
                     rice: data.riceType,
                     classification: data.classification,
                     polishingRatio: `${data.polishingRate}%`,
-                    price: data.price === null || data.price === undefined 
-                    ? '価格未定' : `¥${data.price.toLocaleString()} (${data.volume || 'ml未定'}ml)`,
+                    price:
+                        data.price === null || data.price === undefined
+                            ? "価格未定"
+                            : `¥${data.price.toLocaleString()} (${
+                                  data.volume || "ml未定"
+                              }ml)`,
                     alcohol: `${data.alcoholContent}%`,
                     sakeValue: data.sakeLevel,
                     tastePosition: calculateTastePosition(data.classification),
@@ -255,7 +259,7 @@ export default function QuizResult() {
                         >
                             <h2 className="text-2xl md:text-4xl font-medium">
                                 {result}
-                                <span className="text-lg md:text-2xl">
+                                <span className="ml-2 text-lg md:text-2xl">
                                     {t.taste.result.subtitle}
                                 </span>
                             </h2>

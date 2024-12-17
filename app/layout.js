@@ -8,22 +8,23 @@ import { AuthProvider } from "./contexts/AuthContext";
 import GradientBackground from "./components/GradientBackground";
 
 const shipporiMincho = Shippori_Mincho({
-    subsets: ["latin"],
-    weight: ["400", "500", "600", "700"],
-    display: "swap",
-    variable: "--font-shippori",
-    preload: true,
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-shippori",
+  preload: true,
 });
 
 function ClientWrapper({ children }) {
-    return (
-        <LanguageProvider>
-            <AuthProvider>{children}</AuthProvider>
-        </LanguageProvider>
-    );
+  return (
+    <LanguageProvider>
+      <AuthProvider>{children}</AuthProvider>
+    </LanguageProvider>
+  );
 }
 
 export default function RootLayout({ children }) {
+
     return (
         <html lang="en" className={shipporiMincho.variable}>
             <head>
@@ -39,3 +40,4 @@ export default function RootLayout({ children }) {
         </html>
     );
 }
+
