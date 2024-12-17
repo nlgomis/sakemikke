@@ -53,7 +53,7 @@ export default function AuthButton() {
             </button>
 
             {isOpen && (
-                <div className="absolute top-12 right-0 w-48 py-2 mt-2 bg-black/95 border border-white/30 rounded-lg shadow-xl">
+                <div className="absolute top-12 right-0 w-48 py-2 mt-2 backdrop-blur-xl bg-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.16)] border border-white/30 rounded-lg ">
                     {options.map((option, index) => (
                         option.path ? (
                             <Link
