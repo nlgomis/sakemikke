@@ -29,6 +29,7 @@ export default function RootLayout({ children }) {
         <html lang="en" className={shipporiMincho.variable}>
             <head>
                 <link rel="icon" href="/images/logoico.png" sizes="any"/>
+                <title>SAKEMIKKE</title>
             </head>
             <body className="overflow-x-hidden font-shippori">
                 <GradientBackground className="fixed inset-0 z-0" />
