@@ -3,8 +3,10 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import HomeButton from "../components/HomeButton";
+import { useLanguage } from "../contexts/LanguageContext";
 
 export default function SakeTypesPage() {
+  const {t} = useLanguage();
   const [sortedSakeList, setSortedSakeList] = useState({
     淡麗甘口: [],
     濃醇甘口: [],
@@ -163,13 +165,14 @@ export default function SakeTypesPage() {
                 {/* Text Content */}
                 <div className="text-center md:text-left flex-1">
                   <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
-                    ピックアップ日本酒一覧
+                    {t.sake.labels.featured}
                     <span className="block text-base md:text-xl font-normal mt-3 text-white/80">
                       Our Choices
                     </span>
                   </h1>
                   <p className="text-white/80 mt-6 text-base md:text-lg max-w-2xl leading-relaxed">
-                    世界的に名高い日本酒をピックアップ。あなたにぴったりの日本酒が、ここにあるはず。
+                  {t.sake.labels.title}
+
                   </p>
                 </div>
               </div>
@@ -204,7 +207,7 @@ export default function SakeTypesPage() {
                     ${classificationStyles[classification].text}
                   `}
                 >
-                  {classification}
+                  {t.sake.classification[classification]}
                 </span>
               </button>
             ))}
@@ -220,7 +223,7 @@ export default function SakeTypesPage() {
             className="text-5xl text-center text-white z-10 bg-transparent px-8"
             style={classificationStyles[activeTab]}
           >
-            {activeTab}
+            {t.sake.classification[activeTab]}
           </h1>
           <div className="flex-grow border-t border-white/30 ml-4"></div>
         </div>
@@ -237,9 +240,9 @@ export default function SakeTypesPage() {
             >
               <div className="p-4">
                 <div className="mb-3">
-                  <div className="text-sm text-white/90">{sake.type}</div>
+                  <div className="text-sm text-white/90">{t.sake.types[sake.type]}</div>
                   <div className="text-xl font-bold text-white">
-                    {sake.name}
+                    {t.sake.names[sake.name]}
                   </div>
                 </div>
 
@@ -285,7 +288,7 @@ export default function SakeTypesPage() {
                                          shadow-lg hover:shadow-xl transition-shadow duration-300
                                          inline-block max-w-full truncate`}
                             >
-                              {keyword}
+                              {t.sake.keywords[keyword]}
                             </span>
                           </div>
                         );
@@ -298,13 +301,13 @@ export default function SakeTypesPage() {
                   <div
                     className={`rounded-md bg-gradient-to-r p-1 ${classificationStyles[activeTab].gradient}`}
                   >
-                    <div className="text-white truncate">{sake.region}産</div>
+                    <div className="text-white truncate">{t.sake.regionsTypes[sake.region]}</div>
                   </div>
                   <div
                     className={`rounded-md bg-gradient-to-r p-1 ${classificationStyles[activeTab].gradient}`}
                   >
                     <div className="text-white truncate">
-                      精米{sake.polishingRate}%
+                      {t.sake.labels.polishing} {sake.polishingRate}%
                     </div>
                   </div>
                   <div
@@ -316,7 +319,7 @@ export default function SakeTypesPage() {
                   </div>
                 </div>
                 <p className="text-sm text-white/100 mb-4">
-                  {sake.description}
+                  {t.sake.description[sake.name]}
                 </p>
               </div>
             </div>
