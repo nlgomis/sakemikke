@@ -66,7 +66,7 @@ export default function QuizSelector() {
                                     />
                                     <BlobAnimation />
                                 </div>
-                                <p className="text-white text-sm md:text-lg">
+                                <p className="text-white text-sm md:text-lg w-[150px] md:w-[200px] lg:w-[250px] xl:w-[300px]">
                                     {option.description}
                                 </p>
                             </div>
