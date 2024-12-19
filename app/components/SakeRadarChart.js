@@ -79,22 +79,22 @@ const SakeRadarChart = ({ sakeData }) => {
       {/* Labels */}
       <div className="absolute inset-0 flex items-center justify-center">
         {/* Top Label */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1 text-sm ">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1 text-sm w-[86px]">
         {t.sake.characteristics.fragrant} ({sakeData.sakeGrade.fragrance})
         </div>
         
         {/* Bottom Label */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1 text-sm">
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1 text-sm w-[58px]">
         {t.sake.characteristics.rich} ({sakeData.sakeGrade.body})
         </div>
         
         {/* Left Label */}
-        <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-8 text-sm">
+        <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-8 text-sm w-[58px]">
         {t.sake.characteristics.acidity} ({sakeData.sakeGrade.acidity})
         </div>
         
         {/* Right Label */}
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-8 text-sm">
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-8 text-sm w-[58px]">
         {t.sake.characteristics.sharpness} ({sakeData.sakeGrade.clarity})
         </div>
       </div>
