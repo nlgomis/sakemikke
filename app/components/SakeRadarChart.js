@@ -70,8 +70,8 @@ const SakeRadarChart = ({ sakeData }) => {
         {/* Chart area */}
         <path
           d={pathData}
-          fill="rgba(34, 197, 94, 0.5)"  // Changed to green-500 with opacity
-          stroke="rgba(34, 197, 94, 0.5)" // Matching stroke color
+          fill="rgba(255,255,255,0.7)"  // Changed to green-500 with opacity
+          stroke="rgba(255,255,255,0.7)" // Matching stroke color
           strokeWidth="1"
         />
       </svg>
