@@ -15,6 +15,7 @@ export default function QuizResult() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const { t } = useLanguage();
+    const [rawSakeData, setRawSakeData] = useState(null);
     const [sakeData, setSakeData] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [showContent, setShowContent] = useState(false);
@@ -25,6 +26,29 @@ export default function QuizResult() {
 
     const result = getResult(drink, concern, occasion);
 
+    // Helper function to transform data with current language
+    const transformData = (data) => {
+        if (!data) return null;
+        return {
+            id: data.id,
+            name: t.sake.names[data.name] || data.name,
+            type: t.sake.types[data.type] || data.type,
+            origin: t.sake.regions[data.region] || data.region,
+            rice: t.sake.rice_types[data.riceType] || data.riceType,
+            classificationGradient: data.classification,
+            classification: t.sake.classification[data.classification] || data.classification,
+            polishingRatio: `${data.polishingRate}%`,
+            price: data.price === null || data.price === undefined 
+                ? t.sake.labels.priceTbd
+                : `¥${data.price.toLocaleString()} (${data.volume || t.sake.labels.mlTbd})ml`,
+            alcohol: `${data.alcoholContent}%`,
+            sakeValue: data.sakeLevel,
+            tastePosition: calculateTastePosition(data.classification),
+            sakeGrade: data.sakeGrade,
+        };
+    };
+
+    // Fetch data only once
     useEffect(() => {
         const fetchSakeData = async () => {
             try {
@@ -35,35 +59,15 @@ export default function QuizResult() {
                     throw new Error("Failed to fetch sake data");
                 }
                 const data = await response.json();
-
-                // Transform API data to match component needs
-                const transformedData = {
-                    id: data.id,
-                    type: data.type,
-                    origin: data.region,
-                    rice: data.riceType,
-                    classification: data.classification,
-                    polishingRatio: `${data.polishingRate}%`,
-                    price: data.price === null || data.price === undefined 
-                    ? '価格未定' : `¥${data.price.toLocaleString()} (${data.volume || 'ml未定'}ml)`,
-                    alcohol: `${data.alcoholContent}%`,
-                    sakeValue: data.sakeLevel,
-                    tastePosition: calculateTastePosition(data.classification),
-                    sakeGrade: data.sakeGrade,
-                };
-
-                setSakeData(transformedData);
+                setRawSakeData(data);
                 setIsLoading(false);
 
-                // Add 1 second delay before showing content
                 setTimeout(() => {
                     setShowContent(true);
                 }, 2000);
             } catch (error) {
                 console.error("Error fetching sake data:", error);
-                // Set fallback data in case of error
-                console.error("Error fetching sake data:", error);
-                setSakeData(getFallbackData());
+                setRawSakeData(getFallbackRawData());
                 setIsLoading(false);
                 setTimeout(() => {
                     setShowContent(true);
@@ -74,7 +78,13 @@ export default function QuizResult() {
         fetchSakeData();
     }, [result]);
 
-    // Helper function to calculate taste position based on classification
+    // Transform data whenever language changes or raw data updates
+    useEffect(() => {
+        if (rawSakeData) {
+            setSakeData(transformData(rawSakeData));
+        }
+    }, [t, rawSakeData]); // Dependencies include both language context and raw data
+
     const calculateTastePosition = (classification) => {
         const positions = {
             淡麗辛口: { x: 80, y: 20 }, // Light and dry
@@ -85,16 +95,18 @@ export default function QuizResult() {
         return positions[classification] || { x: 50, y: 50 }; // Default to center if unknown
     };
 
-    // Fallback data in case of API failure
-    const getFallbackData = () => ({
+    const getFallbackRawData = () => ({
+        id: "default",
+        name: "日本酒",
         type: "日本酒",
-        origin: "日本",
-        rice: "国産米",
-        polishingRatio: "60%",
-        price: "価格未定",
-        alcohol: "15%",
-        sakeValue: 50,
-        tastePosition: { x: 50, y: 50 },
+        region: "日本",
+        riceType: "国産米",
+        classification: "普通酒",
+        polishingRate: "60",
+        price: null,
+        volume: null,
+        alcoholContent: "15",
+        sakeLevel: 50,
         sakeGrade: {
             body: 50,
             fragrance: 50,
@@ -103,7 +115,6 @@ export default function QuizResult() {
         },
     });
 
-    // Keep existing gradient function
     const getGradient = (classification) => {
         const classificationGradients = {
             濃醇甘口: "from-red-500 via-red-300 to-transparent",
@@ -118,7 +129,7 @@ export default function QuizResult() {
         );
     };
 
-    if (isLoading || !showContent) {
+    if (isLoading || !showContent || !sakeData) {
         return (
             <div>
                 <LoadingAnimation />
@@ -136,11 +147,11 @@ export default function QuizResult() {
                         </h2>
                         <div
                             className={`inline-block bg-gradient-to-r ${getGradient(
-                                sakeData.classification
+                                sakeData.classificationGradient
                             )} backdrop-blur-sm rounded-xl px-2 lg:px-6 py-3 lg:ml-44`}
                         >
                             <h2 className="text-2xl md:text-4xl font-medium">
-                                {result}
+                                {sakeData.name}
                                 <span className="ml-2 text-lg md:text-2xl">
                                     {t.taste.result.subtitle}
                                 </span>
@@ -152,26 +163,21 @@ export default function QuizResult() {
                     <div className="grid sm:grid-cols-2 lg:grid-cols-[1fr_1.5fr_1fr] 2xl:grid-cols-[1fr_2fr_1fr] sm:grid-rows-[auto_auto] lg:grid-rows-[auto] items-center gap-0">
                         {/* Left Column - Details */}
                         <div className="space-y-5 order-2 lg:order-1 mx-auto sm:mx-0 lg:sm:mx-auto mb-16 sm:mb-0">
-                            <div
-                                className="space-y-5 flex flex-col justify-between items-start w-sake-details sm:h-sake-details-sm
-                                lg:h-sake-details-lg 2xl:sake-details-2xl"
-                            >
+                            <div className="space-y-5 flex flex-col justify-between items-start w-sake-details sm:h-sake-details-sm lg:h-sake-details-lg 2xl:sake-details-2xl">
                                 {Object.entries({
-                                    種類: sakeData.type,
-                                    産地: sakeData.origin,
-                                    原料米: sakeData.rice,
-                                    精米歩合: sakeData.polishingRatio,
-                                    値段: sakeData.price,
+                                    [t.sake.labels.type]: sakeData.type,
+                                    [t.sake.labels.origin]: sakeData.origin,
+                                    [t.sake.labels.rice]: sakeData.rice,
+                                    [t.sake.labels.polishingRatio]: sakeData.polishingRatio,
+                                    [t.sake.labels.price]: sakeData.price,
                                 }).map(([key, value]) => (
                                     <div key={key}>
                                         <span className="text-lg border-b border-white/80 pb-2 leading-9 lg:leading-10">
-                                            {key === "精米歩合" ? (
+                                            {key === t.sake.labels.polishingRatio ? (
                                                 <>
-                                                    <span className="text-sm">
-                                                        {key}
-                                                    </span>
+                                                    <span className="text-sm">{key}</span>
                                                     <Tooltip
-                                                        text={`玄米を外側から削り残った割合を％で示したもの。\n高ければ高いほど白米の甘みが感じられる。`}
+                                                        text={t.sake.labels.tooltipPolishingRatio}
                                                         position="top"
                                                     >
                                                         <sup className="cursor-help px-[5.5px] py-px border-2 rounded-full text-[9px]">
@@ -182,9 +188,7 @@ export default function QuizResult() {
                                                 </>
                                             ) : (
                                                 <>
-                                                    <span className="text-sm">
-                                                        {key}
-                                                    </span>
+                                                    <span className="text-sm">{key}</span>
                                                     &nbsp;:&nbsp;{value}
                                                 </>
                                             )}
@@ -193,6 +197,7 @@ export default function QuizResult() {
                                 ))}
                             </div>
                         </div>
+
                         {/* Center Column - Sake Bottles */}
                         <div className="relative order-1 lg:order-2 sm:col-span-2 lg:col-span-1">
                             <div className="max-w-md lg:max-w-2xl mx-auto">
@@ -201,7 +206,7 @@ export default function QuizResult() {
                                     alt="Sake Bottles"
                                     width={600}
                                     height={900}
-                                    className="object-contain max-h-[460px] sm:max-h-[380px]  lg:max-h-[520px] 2xl:max-h-[700px] w-auto mx-auto"
+                                    className="object-contain max-h-[460px] sm:max-h-[380px] lg:max-h-[520px] 2xl:max-h-[700px] w-auto mx-auto"
                                     priority
                                 />
                             </div>
@@ -217,7 +222,7 @@ export default function QuizResult() {
                     </div>
 
                     {/* Try Again Button */}
-                    <div className="text-center mt-10 sm:mt-16 lg:mt-[-80px] z-30 mb-6  sm:mb-0">
+                    <div className="text-center mt-10 sm:mt-16 lg:mt-[-80px] z-30 mb-6 sm:mb-0">
                         <AgainButton onClick={() => router.push("/quiz")}>
                             {t.taste.result.tryAgain}
                         </AgainButton>

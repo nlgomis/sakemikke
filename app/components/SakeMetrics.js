@@ -1,12 +1,12 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import Tooltip from "./Tooltip";
-
+import { useLanguage } from "../contexts/LanguageContext";
 const SakeMetrics = ({ sakeData }) => {
     const alcoholRef = useRef(null);
     const sakeValueRef = useRef(null);
     const sakeValueFillRef = useRef(null);
-
+    const { t } = useLanguage();
     const getSakeValuePosition = (value) => {
         if (value === null) return 50; // Center position for null values
         return ((parseFloat(value) + 100) / 200) * 100;
@@ -58,7 +58,7 @@ const SakeMetrics = ({ sakeData }) => {
         <div className="space-y-4 mt-8">
             <div className="mb-6">
                 <div className="flex justify-between text-lg mb-2">
-                    <span>アルコール</span>
+                    <span>{t.sake.alcohol.alcohol}</span>
                     <span>{sakeData.alcohol}</span>
                 </div>
                 <div className="h-2 bg-white rounded-full overflow-hidden">
@@ -73,9 +73,9 @@ const SakeMetrics = ({ sakeData }) => {
             <div>
                 <div className="flex justify-between text-lg mb-2">
                     <span>
-                        日本酒度数
+                    {t.sake.alcohol.smv}
                         <Tooltip
-                            text={`水に対する日本酒の比重を数値化したもの。\nマイナスの数字が大きいと甘口に、プラスの数字が大きいと辛口に感じる。`}
+                            text={t.sake.labels.tooltipSMV}
                             position="top"
                         >
                             <sup className="cursor-help px-[4.5px] py-1px border-2 rounded-full text-[9px]">
