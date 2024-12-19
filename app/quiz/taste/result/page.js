@@ -196,7 +196,7 @@ export default function QuizResult() {
                                     </div>
                                 ))}
                             </div>
-                        </div>
+                        </div> 
 
                         {/* Center Column - Sake Bottles */}
                         <div className="relative order-1 lg:order-2 sm:col-span-2 lg:col-span-1">
@@ -206,7 +206,7 @@ export default function QuizResult() {
                                     alt="Sake Bottles"
                                     width={600}
                                     height={900}
-                                    className="object-contain max-h-[460px] sm:max-h-[380px] lg:max-h-[520px] 2xl:max-h-[700px] w-auto mx-auto"
+                                    className="object-contain max-h-[460px] sm:max-h-[380px] lg:max-h-[470px] 2xl:max-h-[600px] w-auto mx-auto"
                                     priority
                                 />
                             </div>
@@ -222,7 +222,7 @@ export default function QuizResult() {
                     </div>
 
                     {/* Try Again Button */}
-                    <div className="text-center mt-10 sm:mt-16 lg:mt-[-80px] z-30 mb-6 sm:mb-0">
+                    <div className="text-center mt-10 sm:mt-16 lg:mt-0 mb-6 sm:mb-0">
                         <AgainButton onClick={() => router.push("/quiz")}>
                             {t.taste.result.tryAgain}
                         </AgainButton>
