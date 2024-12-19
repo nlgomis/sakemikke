@@ -6,242 +6,267 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho&display=swap'); */
 
 @property --angle {
-    syntax: "<angle>";
-    inherits: true;
-    initial-value: 0turn;
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0turn;
 }
 
 @keyframes spin {
-    to {
-        --angle: 1turn;
-    }
+  to {
+    --angle: 1turn;
+  }
 }
 
 .gradient-border {
-    position: relative;
-    border-radius: 100px;
-    max-width: 368px;
-    max-height: 64px;
-    min-width: 220px;
-    min-height: 56px;
-    --border-width: 2px;
-    --radius: 100px;
-    border: var(--border-width) solid transparent;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    color: #ffffff;
-    background-color: rgba(255, 255, 255, 0.2);
-    transition: background-color 0.3s ease, transform 0.3s ease;
+  position: relative;
+  border-radius: 100px;
+  max-width: 368px;
+  max-height: 64px;
+  min-width: 220px;
+  min-height: 56px;
+  --border-width: 2px;
+  --radius: 100px;
+  border: var(--border-width) solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.2);
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 @media (min-width: 640px) {
-    .gradient-border {
-        width: 306px;
-        height: 64px;
-    }
+  .gradient-border {
+    width: 306px;
+    height: 64px;
+  }
 }
 
 @media (min-width: 768px) {
-    .gradient-border {
-        width: 320px;
-        height: 64px;
-    }
+  .gradient-border {
+    width: 320px;
+    height: 64px;
+  }
 }
 
 @media (min-width: 1024px) {
-    .gradient-border {
-        width: 368px;
-        height: 64px;
-    }
+  .gradient-border {
+    width: 368px;
+    height: 64px;
+  }
 }
 
 .gradient-border2 {
-    position: relative;
-    border-radius: 100px;
-    width: 175px;
-    height: 42px;
-    --border-width: 2px;
-    --radius: 100px;
-    border: var(--border-width) solid transparent;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    color: #ffffff;
-    background-color: rgba(255, 255, 255, 0.2);
-    transition: background-color 0.3s ease, transform 0.3s ease;
+  position: relative;
+  border-radius: 100px;
+  width: 175px;
+  height: 42px;
+  --border-width: 2px;
+  --radius: 100px;
+  border: var(--border-width) solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.2);
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .gradient-border3 {
-    position: relative;
-    border-radius: 100px;
-    width: 220px;
-    height: 45px;
-    --border-width: 2px;
-    --radius: 100px;
-    border: var(--border-width) solid transparent;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    color: #ffffff;
-    background-color: rgba(255, 255, 255, 0.2);
-    transition: background-color 0.3s ease, transform 0.3s ease;
+  position: relative;
+  border-radius: 100px;
+  width: 220px;
+  height: 45px;
+  --border-width: 2px;
+  --radius: 100px;
+  border: var(--border-width) solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.2);
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .gradient-border::before,
 .gradient-border2::before,
 .gradient-border3::before {
-    content: " ";
-    position: absolute;
-    inset: calc(var(--border-width) * -1);
-    z-index: -1;
-    border: inherit;
-    border-radius: inherit;
-    background-image: conic-gradient(
-        from var(--angle) at 50% 50%,
-        #eeebff 0deg,
-        #00bfff 90deg,
-        #3dfcff 180deg,
-        #7dd4ff 270deg,
-        #eeebff 360deg
-    );
-    background-origin: border-box;
-    -webkit-mask: linear-gradient(black, black), linear-gradient(black, black);
-    mask: linear-gradient(black, black), linear-gradient(black, black);
-    -webkit-mask-clip: content-box, border-box;
-    mask-clip: content-box, border-box;
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    animation: spin 3s linear infinite running;
+  content: " ";
+  position: absolute;
+  inset: calc(var(--border-width) * -1);
+  z-index: -1;
+  border: inherit;
+  border-radius: inherit;
+  background-image: conic-gradient(
+    from var(--angle) at 50% 50%,
+    #eeebff 0deg,
+    #00bfff 90deg,
+    #3dfcff 180deg,
+    #7dd4ff 270deg,
+    #eeebff 360deg
+  );
+  background-origin: border-box;
+  -webkit-mask: linear-gradient(black, black), linear-gradient(black, black);
+  mask: linear-gradient(black, black), linear-gradient(black, black);
+  -webkit-mask-clip: content-box, border-box;
+  mask-clip: content-box, border-box;
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: spin 3s linear infinite running;
 }
 
 .gradient-border .glow,
 .gradient-border2 .glow,
 .gradient-border3 .glow {
-    position: absolute;
-    inset: calc(var(--border-width) * -1);
-    border-radius: inherit;
+  position: absolute;
+  inset: calc(var(--border-width) * -1);
+  border-radius: inherit;
 }
 
 .gradient-border .glow::after,
 .gradient-border2 .glow::after,
 .gradient-border3 .glow::after {
-    content: "";
-    position: absolute;
-    inset: calc(var(--border-width) * -1);
-    z-index: -1;
-    border: calc(var(--border-width) * 2) solid transparent;
-    /* safariで枠が見える問題 box-shadow: 0 0 50px rgba(255, 235, 255, 1);を追加したら治った */
-    box-shadow: 0 0 50px rgba(255, 235, 255, 1);
-    border-radius: inherit;
-    background-image: conic-gradient(
-        from var(--angle) at 50% 50%,
-        #eeebff 0deg,
-        transparent 90deg,
-        transparent 180deg,
-        transparent 270deg,
-        #eeebff 360deg
-    );
-    background-origin: border-box;
-    -webkit-mask: linear-gradient(black, black), linear-gradient(black, black);
-    mask: linear-gradient(black, black), linear-gradient(black, black);
-    -webkit-mask-clip: content-box, border-box;
-    mask-clip: content-box, border-box;
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    animation: spin 4s linear infinite running;
+  content: "";
+  position: absolute;
+  inset: calc(var(--border-width) * -1);
+  z-index: -1;
+  border: calc(var(--border-width) * 2) solid transparent;
+  /* safariで枠が見える問題 box-shadow: 0 0 50px rgba(255, 235, 255, 1);を追加したら治った */
+  box-shadow: 0 0 50px rgba(255, 235, 255, 1);
+  border-radius: inherit;
+  background-image: conic-gradient(
+    from var(--angle) at 50% 50%,
+    #eeebff 0deg,
+    transparent 90deg,
+    transparent 180deg,
+    transparent 270deg,
+    #eeebff 360deg
+  );
+  background-origin: border-box;
+  -webkit-mask: linear-gradient(black, black), linear-gradient(black, black);
+  mask: linear-gradient(black, black), linear-gradient(black, black);
+  -webkit-mask-clip: content-box, border-box;
+  mask-clip: content-box, border-box;
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: spin 4s linear infinite running;
 }
 
 .white-glow {
-    filter: blur(20px);
+  filter: blur(20px);
 }
 .purple-glow {
-    filter: blur(7px);
+  filter: blur(7px);
 }
 .red-glow {
-    filter: blur(8px);
+  filter: blur(8px);
 }
 .cyan-glow {
-    filter: blur(15px);
+  filter: blur(15px);
 }
 
 .gradient-border .purple-glow::after,
 .gradient-border2 .purple-glow::after,
-.gradient-border3 .purple-glow::after  {
-    background-image: conic-gradient(
-        from var(--angle) at 50% 50%,
-        transparent 0deg,
-        #00b7ff 90deg,
-        transparent 180deg
-    );
-    border: calc(var(--border-width) * 1) solid transparent;
+.gradient-border3 .purple-glow::after {
+  background-image: conic-gradient(
+    from var(--angle) at 50% 50%,
+    transparent 0deg,
+    #00b7ff 90deg,
+    transparent 180deg
+  );
+  border: calc(var(--border-width) * 1) solid transparent;
 }
 
 .gradient-border .red-glow::after,
- .gradient-border2 .red-glow::after
- .gradient-border3 .red-glow::after {
-    background-image: conic-gradient(
-        from var(--angle) at 50% 50%,
-        transparent 180deg,
-        #43dcff 270deg,
-        transparent 360deg
-    );
-    border: calc(var(--border-width) * 1) solid transparent;
+.gradient-border2 .red-glow::after .gradient-border3 .red-glow::after {
+  background-image: conic-gradient(
+    from var(--angle) at 50% 50%,
+    transparent 180deg,
+    #43dcff 270deg,
+    transparent 360deg
+  );
+  border: calc(var(--border-width) * 1) solid transparent;
 }
 
 .gradient-border .cyan-glow::after,
 .gradient-border2 .cyan-glow::after,
-.gradient-border3 .cyan-glow::after  {
-    background-image: conic-gradient(
-        from var(--angle) at 50% 50%,
-        transparent 90deg,
-        #3dfcff 180deg,
-        transparent 270deg
-    );
-    border: calc(var(--border-width) * 2) solid transparent;
+.gradient-border3 .cyan-glow::after {
+  background-image: conic-gradient(
+    from var(--angle) at 50% 50%,
+    transparent 90deg,
+    #3dfcff 180deg,
+    transparent 270deg
+  );
+  border: calc(var(--border-width) * 2) solid transparent;
 }
 
 .gradient-border:hover,
 .gradient-border2:hover,
-.gradient-border3:hover  {
-    background-color: transparent;
-    cursor: pointer;
+.gradient-border3:hover {
+  background-color: transparent;
+  cursor: pointer;
 }
 
 .gradient-border span,
 .gradient-border2 span,
 .gradient-border3 span {
-    transition: transform 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .gradient-border:hover span,
 .gradient-border3:hover span {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 .animation-delay-1000 {
-    animation-delay: 1s;
+  animation-delay: 1s;
 }
 
 .animation-delay-2000 {
-    animation-delay: 2s;
+  animation-delay: 2s;
 }
 
 .animation-delay-3000 {
-    animation-delay: 3s;
+  animation-delay: 3s;
 }
 
 .animation-delay-4000 {
-    animation-delay: 4s;
+  animation-delay: 4s;
 }
 
 .animation-delay-5000 {
-    animation-delay: 5s;
+  animation-delay: 5s;
 }
 
 .animation-delay-6000 {
-    animation-delay: 6s;
+  animation-delay: 6s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(30px);
+  visibility: hidden;
+  transition: opacity 0.9s ease-in-out,
+    transform 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+  will-change: opacity, visibility;
+}
+
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
 }
