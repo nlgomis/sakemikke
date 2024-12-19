@@ -218,20 +218,20 @@ export default function Component() {
         </section>
         {/* Product Section */}
         <section className="py-24 px-4">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl md:text-3xl text-center mb-16">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-3xl md:text-4xl text-center mb-24">
               酒見っけとは
             </h2>
             <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div className="relative h-[400px]">
+              <div className="relative h-[560px]">
                 <Image
-                  src="/placeholder.svg"
+                  src="/images/about.png"
                   alt="Sake bottles"
                   fill
                   className="object-contain"
                 />
               </div>
-              <div className="space-y-6 text-sm md:text-base">
+              <div className="space-y-8 text-base md:text-lg">
                 <p>
                   初心者から通まで利用できる自分にピッタリな日本酒を見つけることができる体験型ウェブサイトです。
                 </p>
@@ -252,7 +252,7 @@ export default function Component() {
           </div>
         </section>
         {/* Menu Section */}
-        <section className="py-6 md:py-10  md:px-4">
+        <section className="py-6 md:pt-20 pb-8">
           <div className="w-full min-h-[300px] md:min-h-[400px]  md:p-8">
             <div className="container mx-auto max-w-full">
               <div className="flex flex-col items-center border-t border-b border-white py-6 md:py-6 relative">
@@ -291,7 +291,7 @@ export default function Component() {
                                   : "translate-y-full opacity-0"
                               }`}
                             >
-                              <span className="text-sm md:text-base text-white px-4 text-center">
+                              <span className="text-base md:text-lg text-white px-4 text-center">
                                 {section.description}
                               </span>
                             </div>
@@ -308,9 +308,9 @@ export default function Component() {
             </div>
           </div>
         </section>
-        <section className="py-24 px-4">
+        <section className="pt-12 pb-24 px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl md:text-3xl text-center mb-20">
+            <h2 className="text-2xl md:text-4xl text-center mb-20">
               酒見っけの独自性
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6 ">
@@ -337,7 +337,7 @@ export default function Component() {
                       {feature.num}
                     </span>
                   </div>
-                  <p className="text-base md:text-lg mt-6 leading-tight whitespace-pre-line">
+                  <p className="text-base md:text-xl mt-6 leading-tight whitespace-pre-line">
                     {feature.text}
                   </p>
                 </div>
@@ -349,7 +349,7 @@ export default function Component() {
           <div className="relative w-full">
             <div className="absolute inset-x-0 top-0 h-px bg-white" />
             <div className="container mx-auto">
-              <h2 className="py-6 text-center text-xl font-medium tracking-wider text-white sm:text-3xl md:text-4xl">
+              <h2 className="py-6 text-center text-xl font-medium tracking-wider text-white sm:text-4xl md:text-5xl">
                 ここに見っけ！ あなたの一杯、
               </h2>
             </div>
@@ -360,10 +360,10 @@ export default function Component() {
         <section className="relative w-full overflow-hidden pt-16 pb-24  md:py-28">
           <div className="absolute inset-0 bg-gradient-to-br" />
           <div className="container relative mx-auto px-4">
-            <h2 className="mb-16 text-center text-3xl  text-white md:text-3xl">
+            <h2 className="mb-20 text-center text-3xl  text-white md:text-4xl">
               利用者の声
             </h2>
-            <div className="mx-auto max-w-3xl space-y-8">
+            <div className="mx-auto max-w-4xl space-y-8">
               {testimonials.map((testimonial, index) => (
                 <div
                   key={index}
@@ -375,7 +375,7 @@ export default function Component() {
                     <img
                       src={testimonial.imageSrc}
                       alt={testimonial.imageAlt}
-                      className="h-28 w-auto  object-cover"
+                      className="h-24 md:h-28 w-auto  object-cover"
                     />
                   </div>
                   <div
@@ -385,7 +385,7 @@ export default function Component() {
                         : "from-blue-900/50 to-purple-900/50"
                     }`}
                   >
-                    <p className="relative z-10 text-sm leading-relaxed md:text-base">
+                    <p className="relative z-10 text-sm leading-relaxed md:text-lg">
                       {testimonial.text}
                     </p>
                   </div>
