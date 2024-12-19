@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
+import { useFadeInOnScroll } from "../hooks/useFadeInOnScroll";
 
 const LocationTimeHeader = () => {
   const [time, setTime] = useState("");
@@ -162,13 +163,25 @@ export default function Component() {
     },
   ];
 
+  const [heroRef, isHeroVisible] = useFadeInOnScroll(0);
+  const [imageRef, isImageVisible] = useFadeInOnScroll(0); // 即時表示
+  const [textRef, isTextVisible] = useFadeInOnScroll(400); // 0.4秒遅延
+  const [menuRef, isMenuVisible] = useFadeInOnScroll(0);
+  const [featuresRef, isFeaturesVisible] = useFadeInOnScroll(100);
+  const [testimonialRef, isTestimonialVisible] = useFadeInOnScroll(100);
+
   return (
     <main className="min-h-screen  text-white relative overflow-hidden">
       {/* Content wrapper with higher z-index */}
       <div className="relative z-10">
         {/* Hero Section */}
         <section className="relative h-screen flex flex-col justify-center items-center px-4 sm:px-8">
-          <div className="relative w-full max-w-[90vw] sm:max-w-3xl mx-auto text-center">
+          <div
+            ref={heroRef}
+            className={`fade-in-section ${
+              isHeroVisible ? "is-visible" : ""
+            } relative w-full max-w-[90vw] sm:max-w-3xl mx-auto text-center`}
+          >
             <div className="inline-block text-left ">
               <h1 className="text-3xl  md:text-6xl lg:text-7xl font-bold mb-12 tracking-tighter">
                 <span className="block">HEY!</span>
@@ -222,8 +235,13 @@ export default function Component() {
             <h2 className="text-3xl md:text-4xl text-center mb-24">
               酒見っけとは
             </h2>
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div className="relative h-[560px]">
+            <div className="grid md:grid-cols-2 gap-24 items-center">
+              <div
+                ref={imageRef}
+                className={`fade-in-section ${
+                  isImageVisible ? "is-visible" : ""
+                } relative h-[560px]`}
+              >
                 <Image
                   src="/images/about.png"
                   alt="Sake bottles"
@@ -231,7 +249,12 @@ export default function Component() {
                   className="object-contain"
                 />
               </div>
-              <div className="space-y-8 text-base md:text-lg">
+              <div
+                ref={textRef}
+                className={`fade-in-section ${
+                  isTextVisible ? "is-visible" : ""
+                } space-y-8 text-base md:text-lg`}
+              >
                 <p>
                   初心者から通まで利用できる自分にピッタリな日本酒を見つけることができる体験型ウェブサイトです。
                 </p>
@@ -252,7 +275,12 @@ export default function Component() {
           </div>
         </section>
         {/* Menu Section */}
-        <section className="py-6 md:pt-20 pb-8">
+        <section
+          ref={menuRef}
+          className={`fade-in-section ${
+            isMenuVisible ? "is-visible" : ""
+          } py-6 md:pt-20 pb-8`}
+        >
           <div className="w-full min-h-[300px] md:min-h-[400px]  md:p-8">
             <div className="container mx-auto max-w-full">
               <div className="flex flex-col items-center border-t border-b border-white py-6 md:py-6 relative">
@@ -308,7 +336,12 @@ export default function Component() {
             </div>
           </div>
         </section>
-        <section className="pt-12 pb-24 px-4">
+        <section
+          ref={featuresRef}
+          className={`fade-in-section ${
+            isFeaturesVisible ? "is-visible" : ""
+          } pt-12 pb-24 px-4`}
+        >
           <div className="max-w-4xl mx-auto">
             <h2 className="text-2xl md:text-4xl text-center mb-20">
               酒見っけの独自性
@@ -357,7 +390,12 @@ export default function Component() {
           </div>
         </section>
         {/* Testimonials */}
-        <section className="relative w-full overflow-hidden pt-16 pb-24  md:py-28">
+        <section
+          ref={testimonialRef}
+          className={`fade-in-section ${
+            isTestimonialVisible ? "is-visible" : ""
+          } relative w-full overflow-hidden pt-16 pb-24 md:py-28`}
+        >
           <div className="absolute inset-0 bg-gradient-to-br" />
           <div className="container relative mx-auto px-4">
             <h2 className="mb-20 text-center text-3xl  text-white md:text-4xl">
