@@ -104,7 +104,89 @@ const translations = {
                 tbd: "TBD",
                 mlTbd: "ml TBD",
                 priceTbd: "Price TBD",
-                tooltipPolishingRatio: "The percentage of rice remaining after polishing. Higher polishing ratio results in a sweeter taste."
+                tooltipPolishingRatio: "The percentage of rice remaining after polishing. Higher polishing ratio results in a sweeter taste.",
+                tooltipSMV: "Sake Meter Value (SMV) is a numerical value that measures the specific gravity of sake in relation to water. \n The more negative the number, the sweeter it tastes, while the more positive the number, the drier it tastes."
+            },
+            rice_types: {
+                "山田錦": "Yamada Nishiki",
+                "⼭⽥錦": "Yamada Nishiki",
+                "五百万石": "Gohyakumangoku",
+                "五百万⽯": "Gohyakumangoku",
+                "美山錦": "Miyama Nishiki",
+                "雄町": "Omachi",
+                "愛山": "Aizan",
+                "八反錦": "Hattan Nishiki",
+                "出羽燦々": "Dewasansan",
+                "ひだほまれ": "Hida Homare",
+                "美郷錦": "Misato Nishiki",
+                "国産米": "Domestic Rice",
+                "兵庫県産「山田錦」": "Yamada Nishiki from Hyogo Prefecture",
+                "兵庫県産 愛山": "Aizan from Hyogo Prefecture",
+                "兵庫県三木市吉川町・特Ａ地区産「山田錦」": "Yamada Nishiki from Special A District, Yoshikawa, Miki City, Hyogo Prefecture",
+                "兵庫縣産特Ａ地區山田錦": "Yamada Nishiki from Special A District, Hyogo Prefecture",
+                "兵庫県特Ａ地区産山田錦": "Yamada Nishiki from Special A District, Hyogo Prefecture",
+                "兵庫県東条産山田錦": "Yamada Nishiki from Tojo, Hyogo Prefecture",
+                "兵庫県口吉川産特A山田錦": "Special A Yamada Nishiki from Kuchiyoshikawa, Hyogo Prefecture",
+                "五百万石、他": "Gohyakumangoku and others",
+                "五百万石、トドロキワセ、他": "Gohyakumangoku, Todorokiwase and others",
+                "五百万石、こしいぶき、トドロキワセ他": "Gohyakumangoku, Koshiibuki, Todorokiwase and others",
+                "兵庫県特A地区産山田錦100％": "100% Yamada Nishiki from Special A District, Hyogo Prefecture",
+                "糸島産山田錦100%": "100% Yamada Nishiki from Itoshima",
+                "兵庫産「山田錦」、新潟産「五百万石」": "Yamada Nishiki from Hyogo and Gohyakumangoku from Niigata",
+                "五百万石、新潟県産米": "Gohyakumangoku and Niigata Prefecture Rice",
+                "兵庫県特Ａ地区産山田錦100％使用": "100% Yamada Nishiki from Special A District, Hyogo Prefecture"
+            },
+            names: {
+                // Dassai Series
+                "獺祭 純米大吟醸45": "Dassai Junmai Daiginjo 45",
+                "獺祭 純米大吟醸 磨き三割九分": "Dassai Junmai Daiginjo Migaki Sanwari Kyubu",
+                "獺祭 純米大吟醸 磨き二割三分": "Dassai Junmai Daiginjo Migaki Niwari Sanbu",
+                "獺祭 純米大吟醸 にごりスパークリング45": "Dassai Junmai Daiginjo Nigori Sparkling 45",
+                
+                // Sparklings
+                "松竹梅白壁蔵「澪」": "Shochikubai Shirakabegura MIO",
+                "発泡清酒 すず音": "Sparkling Sake Suzune",
+                "梵 プレミアムスパークリング": "Born Premium Sparkling",
+                
+                // Kubota Series
+                "久保田 萬寿 純米大吟醸": "Kubota Manju Junmai Daiginjo",
+                "久保田 純米大吟醸": "Kubota Junmai Daiginjo",
+                "久保田 千寿 吟醸": "Kubota Senju Ginjo",
+                "久保田 碧寿": "Kubota Hekiju",
+                
+                // Juyondai Series
+                "十四代 本丸 秘伝玉返し": "Juyondai Honmaru Hidentamakaeshi",
+                "十四代 純米吟醸 龍泉": "Juyondai Junmai Ginjo Ryusen",
+                
+                // Born Series
+                "梵‧超吟": "Born Chogin",
+                
+                // Mitsui no Kotobuki Series
+                "三井の寿「大吟醸 寒乃蔵」": "Mitsui no Kotobuki Daiginjo Kannonokura",
+                
+                // Kamoshibito Kuheiji Series
+                "醸し人九平次「EAU DU DÉSIR」": "Kamoshibito Kuheiji EAU DU DÉSIR",
+                
+                // Houhou Biden Series
+                "鳳凰美田 純米吟醸 「Black Phoenix」": "Houhou Biden Junmai Ginjo Black Phoenix",
+                
+                // Hakkaisan Series
+                "八海山 清酒": "Hakkaisan Seishu",
+                "特別本醸造 八海山": "Hakkaisan Tokubetsu Honjozo",
+                "純米吟醸 八海山 55%": "Hakkaisan Junmai Ginjo 55%",
+                
+                // Kokuryu Series
+                "黒龍 純吟": "Kokuryu Jungin",
+                "黒龍 大吟醸": "Kokuryu Daiginjo",
+                "黒龍 しずく 純米大吟醸": "Kokuryu Shizuku Junmai Daiginjo",
+                
+                // Other Notable Sakes
+                "春鹿 純米超辛口": "Harushika Junmai Chokarakuchi",
+                "ほまれ麒麟 純米大吟醸": "Homare Kirin Junmai Daiginjo",
+                "飛騨自慢鬼ころし本醸造": "Hida Jiman Onikoroshi Honjozo",
+                "天狗舞 古古酒 純米大吟醸": "Tengumai Koshu Junmai Daiginjo",
+                "天狗舞 山廃純米 ひやおろし": "Tengumai Yamahai Junmai Hiyaoroshi",
+                "菊姫 山廃純米": "Kikuhime Yamahai Junmai"
             },
             types: {
                 "純米大吟醸": "Junmai Daiginjo",
@@ -171,8 +253,21 @@ const translations = {
                 "酸味": "Acidic",
                 "コク": "Rich Body",
                 "ふくよかな香り": "Full-bodied Aroma",
-                "サラリとした": "Light and Smooth"
-            }
+                "サラリとした": "Light & Smooth"
+            },
+            alcohol:{
+                alcohol: "Alcohol",
+                smv: "SMV"
+            },
+            characteristics: {
+    
+                fragrant: "fragrance",
+                sharpness: "sharpness",
+                rich: "richness",
+                acidity: "acidity",
+                
+              }
+           
         },
         taste: {
             questions: {
@@ -314,7 +409,97 @@ const translations = {
                 tbd: "未定",
                 mlTbd: "ml未定",
                 priceTbd: "価格未定",
-                tooltipPolishingRatio: "玄米を外側から削り残った割合を％で示したもの。\n高ければ高いほど白米の甘みが感じられる。"
+                tooltipPolishingRatio: "玄米を外側から削り残った割合を％で示したもの。\n高ければ高いほど白米の甘みが感じられる。",
+                tooltipSMV: "水に対する日本酒の比重を数値化したもの。\nマイナスの数字が大きいと甘口に、プラスの数字が大きいと辛口に感じる。"
+            },
+            characteristics: {
+    
+                fragrant: "華やかさ",
+                sharpness: "キレ",
+                rich: "コク",
+                acidity: "酸味",
+                
+              },
+              rice_types: {
+                "山田錦": "山田錦",
+                "⼭⽥錦": "⼭⽥錦",
+                "五百万石": "五百万石",
+                "五百万⽯": "五百万⽯",
+                "美山錦": "美山錦",
+                "雄町": "雄町",
+                "愛山": "愛山",
+                "八反錦": "八反錦",
+                "出羽燦々": "出羽燦々",
+                "ひだほまれ": "ひだほまれ",
+                "美郷錦": "美郷錦",
+                "国産米": "国産米",
+                "兵庫県産「山田錦」": "兵庫県産「山田錦」",
+                "兵庫県産 愛山": "兵庫県産 愛山",
+                "兵庫県三木市吉川町・特Ａ地区産「山田錦」": "兵庫県三木市吉川町・特Ａ地区産「山田錦」",
+                "兵庫縣産特Ａ地區山田錦": "兵庫縣産特Ａ地區山田錦",
+                "兵庫県特Ａ地区産山田錦": "兵庫県特Ａ地区産山田錦",
+                "兵庫県東条産山田錦": "兵庫県東条産山田錦",
+                "兵庫県口吉川産特A山田錦": "兵庫県口吉川産特A山田錦",
+                "五百万石、他": "五百万石、他",
+                "五百万石、トドロキワセ、他": "五百万石、トドロキワセ、他",
+                "五百万石、こしいぶき、トドロキワセ他": "五百万石、こしいぶき、トドロキワセ他",
+                "兵庫県特A地区産山田錦100％": "兵庫県特A地区産山田錦100％",
+                "糸島産山田錦100%": "糸島産山田錦100%",
+                "兵庫産「山田錦」、新潟産「五百万石」": "兵庫産「山田錦」、新潟産「五百万石」",
+                "五百万石、新潟県産米": "五百万石、新潟県産米",
+                "兵庫県特Ａ地区産山田錦100％使用": "兵庫県特Ａ地区産山田錦100％使用"
+            },
+            names: {
+                // Dassai Series
+                "獺祭 純米大吟醸45": "獺祭 純米大吟醸45",
+                "獺祭 純米大吟醸 磨き三割九分": "獺祭 純米大吟醸 磨き三割九分",
+                "獺祭 純米大吟醸 磨き二割三分": "獺祭 純米大吟醸 磨き二割三分",
+                "獺祭 純米大吟醸 にごりスパークリング45": "獺祭 純米大吟醸 にごりスパークリング45",
+                
+                // Sparklings
+                "松竹梅白壁蔵「澪」": "松竹梅白壁蔵「澪」",
+                "発泡清酒 すず音": "発泡清酒 すず音",
+                "梵 プレミアムスパークリング": "梵 プレミアムスパークリング",
+                
+                // Kubota Series
+                "久保田 萬寿 純米大吟醸": "久保田 萬寿 純米大吟醸",
+                "久保田 純米大吟醸": "久保田 純米大吟醸",
+                "久保田 千寿 吟醸": "久保田 千寿 吟醸",
+                "久保田 碧寿": "久保田 碧寿",
+                
+                // Juyondai Series
+                "十四代 本丸 秘伝玉返し": "十四代 本丸 秘伝玉返し",
+                "十四代 純米吟醸 龍泉": "十四代 純米吟醸 龍泉",
+                
+                // Born Series
+                "梵‧超吟": "梵‧超吟",
+                
+                // Mitsui no Kotobuki Series
+                "三井の寿「大吟醸 寒乃蔵」": "三井の寿「大吟醸 寒乃蔵」",
+                
+                // Kamoshibito Kuheiji Series
+                "醸し人九平次「EAU DU DÉSIR」": "醸し人九平次「EAU DU DÉSIR」",
+                
+                // Houhou Biden Series
+                "鳳凰美田 純米吟醸 「Black Phoenix」": "鳳凰美田 純米吟醸 「Black Phoenix」",
+                
+                // Hakkaisan Series
+                "八海山 清酒": "八海山 清酒",
+                "特別本醸造 八海山": "特別本醸造 八海山",
+                "純米吟醸 八海山 55%": "純米吟醸 八海山 55%",
+                
+                // Kokuryu Series
+                "黒龍 純吟": "黒龍 純吟",
+                "黒龍 大吟醸": "黒龍 大吟醸",
+                "黒龍 しずく 純米大吟醸": "黒龍 しずく 純米大吟醸",
+                
+                // Other Notable Sakes
+                "春鹿 純米超辛口": "春鹿 純米超辛口",
+                "ほまれ麒麟 純米大吟醸": "ほまれ麒麟 純米大吟醸",
+                "飛騨自慢鬼ころし本醸造": "飛騨自慢鬼ころし本醸造",
+                "天狗舞 古古酒 純米大吟醸": "天狗舞 古古酒 純米大吟醸",
+                "天狗舞 山廃純米 ひやおろし": "天狗舞 山廃純米 ひやおろし",
+                "菊姫 山廃純米": "菊姫 山廃純米"
             },
             types: {
                 "純米大吟醸": "純米大吟醸",
@@ -382,6 +567,10 @@ const translations = {
                 "コク": "コク",
                 "ふくよかな香り": "ふくよかな香り",
                 "サラリとした": "サラリとした"
+            },
+            alcohol:{
+                alcohol: "アルコール",
+                smv: "日本酒度数"
             }
         },
         beginner: {

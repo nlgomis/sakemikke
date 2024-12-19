@@ -1,6 +1,8 @@
 import React from 'react';
-
+import { useLanguage } from "../contexts/LanguageContext";
 const SakeRadarChart = ({ sakeData }) => {
+  const { t } = useLanguage();
+
   const center = 100;
   const scale = 0.7;
 
@@ -12,13 +14,16 @@ const SakeRadarChart = ({ sakeData }) => {
     return { x, y };
   };
 
+  
   // Order and position metrics to match original layout
   const metrics = [
-    { name: '華やかさ', value: sakeData.sakeGrade.fragrance, position: 'top' },
-    { name: 'キレ', value: sakeData.sakeGrade.clarity, position: 'right' },
-    { name: 'コク', value: sakeData.sakeGrade.body, position: 'bottom' },
-    { name: '酸味', value: sakeData.sakeGrade.acidity, position: 'left' }
+    { name: t.sake.characteristics.fragrant, value: sakeData.sakeGrade.fragrance, position: 'top' },
+    { name: t.sake.characteristics.sharpness, value: sakeData.sakeGrade.clarity, position: 'right' },
+    { name: t.sake.characteristics.rich, value: sakeData.sakeGrade.body, position: 'bottom' },
+    { name: t.sake.characteristics.acidity, value: sakeData.sakeGrade.acidity, position: 'left' }
   ];
+
+  
 
   const points = metrics.map((metric, i) => {
     const angle = (i * 2 * Math.PI) / metrics.length;
@@ -75,22 +80,22 @@ const SakeRadarChart = ({ sakeData }) => {
       <div className="absolute inset-0 flex items-center justify-center">
         {/* Top Label */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1 text-sm ">
-          華やかさ ({sakeData.sakeGrade.fragrance})
+        {t.sake.characteristics.fragrant} ({sakeData.sakeGrade.fragrance})
         </div>
         
         {/* Bottom Label */}
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1 text-sm">
-          コク ({sakeData.sakeGrade.body})
+        {t.sake.characteristics.rich} ({sakeData.sakeGrade.body})
         </div>
         
         {/* Left Label */}
         <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-8 text-sm">
-          酸味 ({sakeData.sakeGrade.acidity})
+        {t.sake.characteristics.acidity} ({sakeData.sakeGrade.acidity})
         </div>
         
         {/* Right Label */}
         <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-8 text-sm">
-          キレ ({sakeData.sakeGrade.clarity})
+        {t.sake.characteristics.sharpness} ({sakeData.sakeGrade.clarity})
         </div>
       </div>
     </div>
