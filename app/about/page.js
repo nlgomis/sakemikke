@@ -357,7 +357,7 @@ export default function Component() {
               ].map((feature) => (
                 <div
                   key={feature.num}
-                  className="bg-white/10 backdrop-blur-md border border-white/20 shadow-lg px-8 py-14 rounded-lg flex flex-col justify-center"
+                  className="bg-white/10 backdrop-blur-md border border-white/20 shadow-md px-8 py-14 rounded-lg flex flex-col justify-center"
                 >
                   <div className="flex items-center gap-3 mb-4">
                     <div className="flex flex-col items-center">
