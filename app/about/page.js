@@ -31,7 +31,7 @@ const LocationTimeHeader = () => {
             <img
               src="/images/marker.png"
               alt="Location Icon"
-              className="w-5 h-5 "
+              className="w-5 h-5 mr-1"
             />
             <span>TOKYO JAPAN</span>
           </div>
