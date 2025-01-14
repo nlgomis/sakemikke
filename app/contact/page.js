@@ -3,19 +3,22 @@
 import Link from "next/link";
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
+import { useLanguage } from "../contexts/LanguageContext";
 
-const directors = [
-    { name: "田 雨シン (ディレクター)", email: "ths31111@ths.hal.ac.jp" },
-    { name: "甘 曉楠（デザイナー）", email: "ths31224@ths.hal.ac.jp" },
-    { name: "鈴木 悠斗（デザイナー）", email: "ths30337@ths.hal.ac.jp" },
-    { name: "河内 弥衣（デザイナー）", email: "ths30913@ths.hal.ac.jp" },
-    { name: "田村 結（デザイナー）", email: "ths30413@ths.hal.ac.jp" },
-    { name: "Gomis Nil（エンジニア）", email: "ths30822@ths.hal.ac.jp" },
-    { name: "呉島 大暉（エンジニア）", email: "ths30169@ths.hal.ac.jp" },
-    { name: "小川 登生（エンジニア）", email: "ths31289@ths.hal.ac.jp" },
-];
+
 
 export default function ContactPage() {
+    const { t } = useLanguage();
+    const directors = [
+        { name: `田 雨シン (${t.user.director})`, email: "ths31111@ths.hal.ac.jp" },
+        { name: `甘 曉楠(${t.user.designer})`, email: "ths31224@ths.hal.ac.jp" },
+        { name: `鈴木 悠斗（${t.user.designer})`, email: "ths30337@ths.hal.ac.jp" },
+        { name: `河内 弥衣（${t.user.designer})`, email: "ths30913@ths.hal.ac.jp" },
+        { name: `田村 結（${t.user.designer})`, email: "ths30413@ths.hal.ac.jp" },
+        { name: `Gomis Nil (${t.user.engineer})`, email: "ths30822@ths.hal.ac.jp" },
+        { name: `呉島 大暉（${t.user.engineer})`, email: "ths30169@ths.hal.ac.jp" },
+        { name: `小川 登生（${t.user.engineer})`, email: "ths31289@ths.hal.ac.jp" },
+    ];
     return (
         <div className="w-full">
             <div className="pt-16 min-h-screen flex flex-col justify-between text-white z-10 relative">

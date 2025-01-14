@@ -24,6 +24,14 @@ const translations = {
             about: "About",
             contact: "Contact",
         },
+        user: {
+            mypage: 'My Page',
+            designer: 'Designer',
+            director: 'Director',
+            engineer: 'Engineer'
+
+        
+        },
         home: {
             title: "SAKEMIKKE",
             subtitle: "Find your favorite sake",
@@ -105,7 +113,11 @@ const translations = {
                 mlTbd: "ml TBD",
                 priceTbd: "Price TBD",
                 tooltipPolishingRatio: "The percentage of rice remaining after polishing. Higher polishing ratio results in a sweeter taste.",
-                tooltipSMV: "Sake Meter Value (SMV) is a numerical value that measures the specific gravity of sake in relation to water. \n The more negative the number, the sweeter it tastes, while the more positive the number, the drier it tastes."
+                tooltipSMV: "Sake Meter Value (SMV) is a numerical value that measures the specific gravity of sake in relation to water. \n The more negative the number, the sweeter it tastes, while the more positive the number, the drier it tastes.",
+                featured: "Featured Sake Collection",
+title: "A curated selection of world-renowned sake. Your perfect sake is waiting to be discovered here.",
+find: "Find Your Sake Now!",
+polishing: "Polishing"
             },
             rice_types: {
                 "山田錦": "Yamada Nishiki",
@@ -226,6 +238,22 @@ const translations = {
                 "岐阜県高山市": "Takayama City, Gifu Prefecture",
                 "石川県": "Ishikawa Prefecture"
             },
+            regionsTypes: {
+                "山口県": "Yamaguchi Prefecture",
+                "京都府": "Kyoto Prefecture",
+                "宮城県": "Miyagi Prefecture",
+                "新潟県": "Niigata Prefecture",
+                "福井県": "Fukui Prefecture",
+                "山形県": "Yamagata Prefecture",
+                "福岡県": "Fukuoka Prefecture",
+                "愛知県": "Aichi Prefecture",
+                "栃木県": "Tochigi Prefecture",
+                "兵庫県": "Hyogo Prefecture",
+                "奈良県": "Nara Prefecture",
+                "岐阜県高山市": "Takayama City, Gifu Prefecture",
+                "石川県": "Ishikawa Prefecture"
+                
+            },
             keywords: {
                 "フルーティー": "Fruity",
                 "華やか": "Elegant",
@@ -266,9 +294,39 @@ const translations = {
                 rich: "richness",
                 acidity: "acidity",
                 
-              }
-           
-        },
+            },
+            description: {
+                "獺祭 純米大吟醸45": "A sake widely appreciated by both beginners and sake enthusiasts, particularly notable for its elegant aroma and clean finish. The subtle acidity and mild richness enhance its drinkability.",
+                "獺祭 純米大吟醸 磨き三割九分": "Combines lightness and depth, with its fruity aroma particularly enhanced when served chilled.",
+                "獺祭 純米大吟醸 磨き二割三分": "Made from rice polished to 23%, pairs well with white fish sashimi and lightly seasoned Japanese dishes. Perfect for special occasion toasts.",
+                "松竹梅白壁蔵「澪」": "Fruity and light, with low alcohol content, making it popular among beginners and those who typically don't prefer sake.",
+                "発泡清酒 すず音": "Named after the bell-like sound its delicate bubbles make when poured into a glass. Features a low 5% alcohol content with a sweet-tart, fruity flavor.",
+                "久保田 萬寿 純米大吟醸": "Named with the meaning 'wishing longevity for all things,' featuring an easy-drinking mouthfeel and a rich yet fruity aroma.",
+                "十四代 本丸 秘伝玉返し": "Known for its soft, gentle sweetness and mild muscat-like aroma, particularly praised for its drinkability among the Juyondai series.",
+                "梵 プレミアムスパークリング": "A premium sparkling sake made from Yamada Nishi rice polished to 20% and aged for over a year at -10°C. Features elegant, deep aromas and ultra-fine bubbles in a slightly cloudy unpasteurized sake.",
+                "三井の寿「大吟醸 寒乃蔵」": "Characterized by its elegant aroma and delicate taste, best enjoyed chilled. Pairs well with sashimi and lightly seasoned Japanese dishes.",
+                "醸し人九平次「EAU DU DÉSIR」": "Pairs excellently with both French cuisine and delicate Japanese dishes, highly regarded as a food-pairing sake with its elegant, fruity aroma.",
+                "梵‧超吟": "Aged for about 5 years at -10°C, featuring rich fruit aromas and a smooth, deep flavor. A jewel representing Japanese sake culture.",
+                "十四代 純米吟醸 龍泉": "A rare sake from Takagi Brewery in Yamagata Prefecture, known for being particularly difficult to obtain. Features a smooth mouthfeel with fruity aromas and rich umami.",
+                "鳳凰美田 純米吟醸 「Black Phoenix」": "A limited edition sake from Kobayashi Brewery in Tochigi Prefecture, using rare Aiyama sake rice from Hyogo Prefecture. Features rich acidity and a soft, mellow mouthfeel.",
+                "久保田 純米大吟醸": "Pairs well with various dishes, particularly complementing Japanese cuisine and simply seasoned dishes.",
+                "久保田 千寿 吟醸": "Features a mild aroma and crisp mouthfeel, a versatile dry sake that can be enjoyed both chilled or warm.",
+                "八海山 清酒": "Crafted with food pairing in mind, offering a clean mouthfeel and crisp dry finish without any off-flavors.",
+                "特別本醸造 八海山": "A signature sake from Hakkaisan Brewery in Niigata, featuring a soft mouthfeel and clean taste. Can be enjoyed both chilled or warm.",
+                "純米吟醸 八海山 55%": "A junmai ginjo that perfectly balances crisp dryness with rice umami, offering versatile enjoyment across a wide range of temperatures.",
+                "黒龍 純吟": "A junmai ginjo that brings out the natural umami of rice while pursuing a refreshing drinking experience. Characterized by a deep umami created by the harmony of taste and aroma.",
+                "黒龍 大吟醸": "A popular daiginjo from Kokuryu Brewery in Fukui Prefecture, known for its full-bodied aroma, clear throat feel, and refreshing drinking experience.",
+                "黒龍 しずく 純米大吟醸": "A daiginjo made from premium Yamada Nishi rice, carefully fermented at low temperatures. Features a crystal-clear taste with grapefruit and plum blossom aromas.",
+                "獺祭 純米大吟醸 にごりスパークリング45": "Offers a harmonious blend of nigori sake's rice sweetness and refreshing carbonation, delivering a delicate yet distinctive taste.",
+                "春鹿 純米超辛口": "Despite being super dry with a sake meter value of +12, features a light and mellow mouthfeel. Achieves a crisp taste using highly polished rice and hard brewing water.",
+                "ほまれ麒麟 純米大吟醸": "Blends equal parts Hyogo Yamada Nishi and Niigata Gohyakumangoku rice, featuring elegant aroma, delicate umami, and smooth throat feel. Appreciated both chilled and warm.",
+                "飛騨自慢鬼ころし本醸造": "A traditional dry sake from Ota Brewery in Takayama, Gifu Prefecture, dating back to mid-Edo period. Features a clean, proper mouthfeel with moderate umami in a light, dry style.",
+                "久保田 碧寿": "Combines the depth and richness characteristic of yamahai brewing with Kubota's signature crispness. While excellent chilled, its umami particularly shines when served warm.",
+                "天狗舞 古古酒 純米大吟醸": "Aged for over 2 years, developing mild aromas and complex flavors, resulting in an exceptionally smooth and well-balanced taste.",
+                "天狗舞 山廃純米 ひやおろし": "A seasonal sake from Shata Brewery in Ishikawa Prefecture. Features a harmonious balance of acidity and umami characteristic of yamahai brewing, with a rich and crisp flavor profile.",
+                "菊姫 山廃純米": "Released in 1983 as the first sake in the industry to be labeled as 'yamahai-jikomi'. Features the powerful acidity and rich umami characteristic of yamahai brewing, standing out as a distinctive 'masculine' sake that tends to elicit strong opinions."
+            },
+    },
         taste: {
             questions: {
                 taste: "What flavor of sake are you looking for?",
@@ -360,6 +418,13 @@ const translations = {
             about: "酒見っけとは",
             contact: "お問い合わせ",
         },
+        user: {
+            mypage: 'マイページ',
+            designer: 'デザイナー',
+            director: 'ディレクター',
+            engineer: 'エンジニア'
+
+        },
         home: {
             title: "酒みっけ",
             subtitle: "あなた好みの日本酒が見つかる。",
@@ -410,7 +475,11 @@ const translations = {
                 mlTbd: "ml未定",
                 priceTbd: "価格未定",
                 tooltipPolishingRatio: "玄米を外側から削り残った割合を％で示したもの。\n高ければ高いほど白米の甘みが感じられる。",
-                tooltipSMV: "水に対する日本酒の比重を数値化したもの。\nマイナスの数字が大きいと甘口に、プラスの数字が大きいと辛口に感じる。"
+                tooltipSMV: "水に対する日本酒の比重を数値化したもの。\nマイナスの数字が大きいと甘口に、プラスの数字が大きいと辛口に感じる。",
+                featured: "ピックアップ日本酒一覧",
+                title: "世界的に名高い日本酒をピックアップ。あなたにぴったりの日本酒が、ここにあるはず。",
+                find: "今すぐ酒みっけ！",
+polishing: "精米"
             },
             characteristics: {
     
@@ -539,6 +608,21 @@ const translations = {
                 "岐阜県高山市": "岐阜県高山市",
                 "石川県": "石川県"
             },
+            regionsTypes: {
+                "山口県": "山口県産",
+                "京都府": "京都府産",
+                "宮城県": "宮城県産",
+                "新潟県": "新潟県産",
+                "福井県": "福井県産",
+                "山形県": "山形県産",
+                "福岡県": "福岡県産",
+                "愛知県": "愛知県産",
+                "栃木県": "栃木県産",
+                "兵庫県": "兵庫県産",
+                "奈良県": "奈良県産",
+                "岐阜県高山市": "岐阜県高山市産",
+                "石川県": "石川県産"
+            },
             keywords: {
                 "フルーティー": "フルーティー",
                 "華やか": "華やか",
@@ -571,7 +655,38 @@ const translations = {
             alcohol:{
                 alcohol: "アルコール",
                 smv: "日本酒度数"
-            }
+            },
+            description: {
+                "獺祭 純米大吟醸45": "初心者から日本酒愛好家まで幅広い層に支持される日本酒で、特にその華やかな香りとクリアな後味が際立っている。控えめな酸味と穏やかなコクが、飲みやすさをさらに引き立てている。",
+                "獺祭 純米大吟醸 磨き三割九分": "軽やかさと深みを兼ね備えており、特に冷やして飲むとそのフルーティーな香りが引き立ちます。",
+                "獺祭 純米大吟醸 磨き二割三分": "山田錦を23%まで精米し、白身魚の刺身や軽い味付けの和食と相性が良く、特別な日の乾杯酒としても最適です。",
+                "松竹梅白壁蔵「澪」": "フルーティーで軽やかな、低アルコールで飲みやすく、日本酒が苦手な方や初心者向けとして人気が高いです。",
+                "発泡清酒 すず音": "グラスに注いだ際に立ち上る繊細な泡が鈴の音を奏でるように見えることから名付けられた。アルコール度数は5%と低めで、甘酸っぱくフルーティーな味わいが特徴。",
+                "久保田 萬寿 純米大吟醸": "「万物の寿を願う酒」という意味が込められて、飲みやすい口当たりや、重厚的でありながらフルーティーな香りが特徴。",
+                "十四代 本丸 秘伝玉返し": "柔らかく優しい甘みと穏やかなマスカットのような香りが特徴で、十四代シリーズの中でも特に飲みやすいと評判。",
+                "梵 プレミアムスパークリング": "兵庫県特A地区産の契約栽培山田錦を20%まで精米し、マイナス10℃で1年以上熟成させている高品質なスパークリング日本酒。上品で深みのある香りと、超微細な泡が特徴の薄にごり生原酒。",
+                "三井の寿「大吟醸 寒乃蔵」": "華やかな香りと繊細な味わいが特徴で、特に冷やして飲むとその魅力が引き立っている。刺身や軽い味付けの和食と相性が良いとされている。",
+                "醸し人九平次「EAU DU DÉSIR」": "フレンチや和食の繊細な料理ともよく合い、上品でフルーティな香りが、食中酒としても優れた評価を得ています。",
+                "梵‧超吟": "約5年間、-10℃の氷温で熟成され、豊かな果実香と滑らかで深みのある味わいが特徴。日本の酒文化を代表する珠玉の名酒。",
+                "十四代 純米吟醸 龍泉": "山形県の高木酒造が醸造する希少な日本酒で、特に入手困難な銘柄として知られている。口当たりは滑らかでありながら、フルーティーな香りと濃厚な旨味が特徴。",
+                "鳳凰美田 純米吟醸 「Black Phoenix」": "栃木県の小林酒造が醸す限定品で、兵庫県産の希少な酒米「愛山」を使用している。厚みのある酸味と柔らかで芳醇な口当たりが特徴。",
+                "久保田 純米大吟醸": "様々な料理との相性も良く、特に和食やシンプルな味付けの料理と組み合わせると引き立ちます。",
+                "久保田 千寿 吟醸": "穏やかな香りとスッキリとした飲み口が特徴で、冷酒からぬる燗まで楽しむことができる柔軟な味わいの淡麗辛口日本酒。",
+                "八海山 清酒": "料理との相性を重視して造られており、雑味のないクリアな口当たりと、キレのある辛口が楽しめます。",
+                "特別本醸造 八海山": "新潟県の八海醸造が手掛ける日本酒で、やわらかな口当たりと淡麗な味わいが特徴。冷やしても燗にしても楽しめる、八海山を代表するお酒。",
+                "純米吟醸 八海山 55%": "キレの良い辛口と米の旨味が絶妙に調和した純米吟醸酒で、冷酒からお燗まで、幅広い温度で風味を楽しむことができます。",
+                "黒龍 純吟": "米本来の旨味を引き出しつつ、爽やかな飲み心地を追求した純米吟醸酒。味と香りのハーモニーが醸す深い旨さが特徴。",
+                "黒龍 大吟醸": "福井県の黒龍酒造が醸す日本酒で、ふくよかな香り、透明な喉ごし、爽やかな飲み心地が人気の大吟醸。",
+                "黒龍 しずく 純米大吟醸": "最高級の酒米「山田錦」を使用し、じっくりと丁寧に低温発酵させた大吟醸酒。透き通るように綺麗な味わいと、グレープフルーツや梅の花の香りが特徴。",
+                "獺祭 純米大吟醸 にごりスパークリング45": "にごり酒ならではの米の甘みと、爽やかな炭酸が調和し、繊細かつ存在感のある味わいが楽しめます。",
+                "春鹿 純米超辛口": "日本酒度+12の超辛口ながら、軽快でまろやかな口当たりが特徴。高精白された米と硬水の仕込み水を使用し、キレの良い味わいを実現している。",
+                "ほまれ麒麟 純米大吟醸": "兵庫県産の山田錦と新潟県産の五百万石を等量ブレンドして、上品な香りときめ細やかな旨味、そして滑らかな喉ごしが特徴。冷やしても燗でも楽しめるお酒として評価されている。",
+                "飛騨自慢鬼ころし本醸造": "岐阜県高山市の老田酒造店が醸造する日本酒で、江戸時代中期から続く伝統的な辛口酒。サラリとした端正な飲み口に、適度な旨味を感じる淡麗辛口の味わいが特徴。",
+                "久保田 碧寿": "山廃仕込み特有の深みとコクがありながら、久保田シリーズらしいキレの良さも兼ね備えている。冷やしはもちろん、特に燗酒にすると、旨味が一層引き立ち、豊かな味わいを楽しめます。",
+                "天狗舞 古古酒 純米大吟醸": "2年以上の熟成によって穏やかな香りと複雑な風味が加わり、口当たりが非常に滑らかでバランスの取れた味わいが楽しめる。",
+                "天狗舞 山廃純米 ひやおろし": "石川県の車多酒造が醸す季節限定の日本酒。山廃仕込み特有の酸味と旨味が調和し、豊かでキレの良い香味が特徴。",
+                "菊姫 山廃純米": "昭和58年に日本酒業界初となる「山廃仕込」と表示した純米酒として発売された。山廃仕込み特有の力強い酸味と濃醇な旨味が特徴で、好き嫌いのはっきり分かれる「男酒」として個性が光る。"
+              },
         },
         beginner: {
             questions: {
