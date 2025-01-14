@@ -25,13 +25,13 @@ const LocationTimeHeader = () => {
   return (
     <div className="w-full py-8 px-4">
       <div className="container mx-auto pb-10">
-        <div className="flex items-center justify-between gap-20 sm:gap-8 md:gap-16 lg:gap-56 text-sm md:text-base text-white">
+        <div className="flex items-center justify-between gap-11 sm:gap-8 md:gap-16 lg:gap-56 text-xs md:text-base text-white">
           {/* Location with Icon */}
           <div className="font text-xs md:text-lg tracking-wider flex-1 text-right flex items-center justify-end">
             <img
               src="/images/marker.png"
               alt="Location Icon"
-              className="w-6 h-6 mr-1"
+              className="w-5 h-5 "
             />
             <span>TOKYO JAPAN</span>
           </div>
