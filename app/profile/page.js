@@ -32,8 +32,8 @@ export default function Profile() {
       
       try {
         const API_URL = process.env.NODE_ENV === 'production'
-          ? 'https://sakemikke-server-d7f7dhdgabfaawa5.japaneast-01.azurewebsites.net/api/users/quiz-history'
-          : 'https://sakemikke-server-d7f7dhdgabfaawa5.japaneast-01.azurewebsites.net/api/users/quiz-history';
+          ? 'https://backmikke.onrender.com/api/users/quiz-history'
+          : 'https://backmikke.onrender.com/api/users/quiz-history';
 
         const response = await fetch(API_URL, {
           credentials: 'include',
