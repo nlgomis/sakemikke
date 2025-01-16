@@ -43,13 +43,62 @@ const translations = {
             greeting: getGreeting("en"),
             login: {
                 name: "Login",
+                mail: "Email Address:",
+                password: "Password:",
+                logging: "Logging in...",
+                loginButton: "Login",
+                loginFailed: "Login failed",
+                serverError: "Failed to communicate with the server",
+                firstTime: "First time user?"
             },
             logout: {
                 name: "Logout",
             },
             register: {
-                name: "Sign up",
+                name: "Sign Up",
+                username: "Username:",
+                mail: "Email Address:",
+                password: "Password:",
+                confirmPassword: "Please enter your password again to confirm:",
+                registering: "Registering...",
+                toConfirmation: "Proceed to Confirmation",
+                registerFailed: "Registration failed",
+                serverError: "Failed to communicate with the server",
+                loginFailed: "Login failed",
+                haveAccount: "Already have an account?"
             },
+        },
+        about: {
+            whatIs: {
+                title: "What is SAKEMIKKE",
+                description: "An interactive website where anyone from beginners to experts can find their perfect sake match."
+            },
+            category1: {
+                title: "Beginner",
+                description: "For those trying sake for the first time"
+            },
+            category2: {
+                title: "Taste",
+                description: "Find sake that matches your taste preferences"
+            },
+            category3: {
+                title: "Japanese Food",
+                description: "Find sake that pairs well with Japanese cuisine"
+            },
+            mainDescription: "Choose from three categories - beginner, taste, or food pairing - and answer questions to find your perfect sake match",
+            slogan: "Found here! Your perfect cup,",
+            feature1: "Wide Selection",
+            feature2: "Beginner-Friendly Explanations",
+            feature3: "Detailed Sake Information",
+            feature4: "View User History",
+            feature5: "Multilingual Support",
+            feature6: "PC & Smartphone Access\nAnytime, Anywhere",
+            additionalFeature1: "Accessible on both smartphones and PCs with saved diagnosis results for checking anytime, anywhere!",
+            additionalFeature2: "Available in English and Japanese to accommodate a wide range of users.",
+            additionalFeature3: "Easy to understand explanations and detailed sake introductions make it worry-free for beginners!",
+            testimonial1: "As a sake beginner, the questions were easy to understand and the diagnosis was really fun! I'll definitely use it again when I'm unsure about sake!",
+            testimonial2: "I love that it's available in English as I'm more comfortable with it than Japanese! I want to recommend this to my foreign friends!",
+            testimonial3: "I'm a regular drinker but was never sure which sake suited me best. Using SAKEMIKKE, I found the perfect sake and I'm very satisfied!"
         },
         quiz: {
             title: "Sake tailored to your tastes",
@@ -436,13 +485,63 @@ polishing: "Polishing"
             greeting: getGreeting("ja"),
             login: {
                 name: "ログイン",
+                mail: "メールアドレス：",
+                password: "パスワード：",
+                logging: "ログイン中...",
+                loginButton: "ログイン",
+                loginFailed: "ログインに失敗しました",
+                serverError: "サーバーとの通信に失敗しました",
+                firstTime: "初めてご利用の方"
             },
             logout: {
                 name: "ログアウト",
             },
             register: {
                 name: "サインアップ",
+                username: "ユーザー名：",
+                mail: "メールアドレス：",
+                password: "パスワード：",
+                confirmPassword: "確認のためもう一度ご入力ください：",
+                registering: "登録中...",
+                toConfirmation: "確認画面へ",
+                registerFailed: "登録に失敗しました",
+                serverError: "サーバーとの通信に失敗しました",
+                loginFailed: "ログインに失敗しました",
+                haveAccount: "既にアカウントをお持ちの方"
             },
+            
+        },
+        about: {
+            whatIs: {
+                title: "酒見っけとは",
+                description: "初心者から通まで利用できる自分にピッタリな日本酒を見つけることができる体験型ウェブサイトです。"
+            },
+            category1: {
+                title: "初心者",
+                description: "日本酒を始めて飲む方"
+            },
+            category2: {
+                title: "味わい",
+                description: "好みの味を合わせて日本酒を見つける"
+            },
+            category3: {
+                title: "和食",
+                description: "和食に合う日本酒を見つける"
+            },
+            mainDescription: "初心者、味わい、料理の三つのカテゴリーから選んで質問に答えて自分に合った日本酒を見つけよう",
+            slogan: "ここに見っけ！ あなたの一杯、",
+            feature1: "豊富な選択肢",
+            feature2: "初心者でも​わかりやすい説明",
+            feature3: "銘酒の詳細",
+            feature4: "ユーザー履歴の​​閲覧",
+            feature5: "多言語 海外の人にも",
+            feature6: "PC・スマホ\n どこでも、いつでも",
+            additionalFeature1: "スマートフォンどちらからもアクセス可能で過去の診断結果も保存できるからいつでもどこでも確認可能！",
+            additionalFeature2: "また、英語、日本語に対応で幅広いユーザーに利用していただけます。",
+            additionalFeature3: "お酒初心者の方でもわかりやすい説明と銘酒の詳しい紹介があるので初心者でも心配なし！",
+            testimonial1: "お酒初心者の私でもわかりやすい質問でとても楽しく診断できたよ！またお酒に迷ったら利用したい！！",
+            testimonial2: "日本語よりも英語のが慣れているので英語に対応しているのがとても良いと思う！外国人の友人にも紹介したい！",
+            testimonial3: "普段からお酒は飲むほうですがいまいち自分に合ったお酒がわからなかったので、酒見っけを利用してぴったりなお酒が見つけられてとても満足！"
         },
         quiz: {
             title: "あなた好みに合わせた日本酒を。",

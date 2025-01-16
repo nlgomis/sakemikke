@@ -24,7 +24,7 @@ export default function RegisterPage() {
   
     try {
       // 1. Register the user
-      const registerResponse = await fetch('https://sakemikke-server-d7f7dhdgabfaawa5.japaneast-01.azurewebsites.net/api/users/register', {
+      const registerResponse = await fetch('https://backmikke.onrender.com/api/users/register', {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -38,7 +38,7 @@ export default function RegisterPage() {
       
       if (registerResponse.ok) {
         // 2. If registration successful, immediately login
-        const loginResponse = await fetch('https://sakemikke-server-d7f7dhdgabfaawa5.japaneast-01.azurewebsites.net/api/users/login', {
+        const loginResponse = await fetch('https://backmikke.onrender.com/api/users/login', {
           method: 'POST',
           credentials: 'include',
           headers: {

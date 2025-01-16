@@ -94,7 +94,7 @@ export default function SakeTypesPage() {
     async function fetchSakeData() {
       try {
         const response = await fetch(
-          "https://sakemikke-server-d7f7dhdgabfaawa5.japaneast-01.azurewebsites.net/api/sake/"
+          "https://backmikke.onrender.com/api/sake/"
         );
         const result = await response.json();
 

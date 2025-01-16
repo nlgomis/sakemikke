@@ -52,7 +52,7 @@ export default function QuizResult() {
         const fetchSakeData = async () => {
             try {
                 const response = await fetch(
-                    `https://sakemikke-server-d7f7dhdgabfaawa5.japaneast-01.azurewebsites.net/api/sake/${result}`
+                    `https://backmikke.onrender.com/api/sake/${result}`
                 );
                 if (!response.ok) {
                     throw new Error("Failed to fetch sake data");
