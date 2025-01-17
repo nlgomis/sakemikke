@@ -6,7 +6,7 @@ import HomeButton from "../components/HomeButton";
 import { useLanguage } from "../contexts/LanguageContext";
 
 export default function SakeTypesPage() {
-  const {t} = useLanguage();
+  const { t } = useLanguage();
   const [sortedSakeList, setSortedSakeList] = useState({
     淡麗甘口: [],
     濃醇甘口: [],
@@ -171,8 +171,7 @@ export default function SakeTypesPage() {
                     </span>
                   </h1>
                   <p className="text-white/80 mt-6 text-base md:text-lg max-w-2xl leading-relaxed">
-                  {t.sake.labels.title}
-
+                    {t.sake.labels.title}
                   </p>
                 </div>
               </div>
@@ -240,7 +239,9 @@ export default function SakeTypesPage() {
             >
               <div className="p-4">
                 <div className="mb-3">
-                  <div className="text-sm text-white/90">{t.sake.types[sake.type]}</div>
+                  <div className="text-sm text-white/90">
+                    {t.sake.types[sake.type]}
+                  </div>
                   <div className="text-xl font-bold text-white">
                     {t.sake.names[sake.name]}
                   </div>
@@ -301,7 +302,9 @@ export default function SakeTypesPage() {
                   <div
                     className={`rounded-md bg-gradient-to-r p-1 ${classificationStyles[activeTab].gradient}`}
                   >
-                    <div className="text-white truncate">{t.sake.regionsTypes[sake.region]}</div>
+                    <div className="text-white truncate">
+                      {t.sake.regionsTypes[sake.region]}
+                    </div>
                   </div>
                   <div
                     className={`rounded-md bg-gradient-to-r p-1 ${classificationStyles[activeTab].gradient}`}
