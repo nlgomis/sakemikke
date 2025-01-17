@@ -24,34 +24,32 @@ export default function QuizResult() {
 
 
   const drink = searchParams.get("d");
-  const concern = searchParams.get("c");
-  const occasion = searchParams.get("o");
+    const concern = searchParams.get("c");
+    const occasion = searchParams.get("o");
 
-  const result = getResult(drink, concern, occasion);
+    const result = getResult(drink, concern, occasion);
 
-  // Helper function to transform data with current language
-  const transformData = (data) => {
-    if (!data) return null;
-    return {
-      id: data.id,
-      name: t.sake.names[data.name] || data.name,
-      type: t.sake.types[data.type] || data.type,
-      origin: t.sake.regions[data.region] || data.region,
-      rice: t.sake.rice_types[data.riceType] || data.riceType,
-      classificationGradient: data.classification,
-      classification:
-        t.sake.classification[data.classification] || data.classification,
-      polishingRatio: `${data.polishingRate}%`,
-      price:
-        data.price === null || data.price === undefined
-          ? t.sake.labels.priceTbd
-          : `¥${data.price.toLocaleString()} (${
-              data.volume || t.sake.labels.mlTbd
-            })ml`,
-      alcohol: `${data.alcoholContent}%`,
-      sakeValue: data.sakeLevel,
-      tastePosition: calculateTastePosition(data.classification),
-      sakeGrade: data.sakeGrade,
+    // Helper function to transform data with current language
+    const transformData = (data) => {
+        if (!data) return null;
+        return {
+            id: data.id,
+            name: t.sake.names[data.name] || data.name,
+            type: t.sake.types[data.type] || data.type,
+            origin: t.sake.regions[data.region] || data.region,
+            rice: t.sake.rice_types[data.riceType] || data.riceType,
+            classificationGradient: data.classification,
+            classification: t.sake.classification[data.classification] || data.classification,
+            polishingRatio: `${data.polishingRate}%`,
+            price: data.price === null || data.price === undefined 
+                ? t.sake.labels.priceTbd
+                : `¥${data.price.toLocaleString()} (${data.volume || t.sake.labels.mlTbd})ml`,
+            alcohol: `${data.alcoholContent}%`,
+            sakeValue: data.sakeLevel,
+            tastePosition: calculateTastePosition(data.classification),
+            sakeGrade: data.sakeGrade,
+        };
+    };
 
     // Fetch data only once
     useEffect(() => {
@@ -98,57 +96,7 @@ export default function QuizResult() {
             濃醇甘口: { x: 20, y: 80 }, // Rich and sweet
         };
         return positions[classification] || { x: 50, y: 50 }; // Default to center if unknown
-
     };
-  };
-
-  // Fetch data only once
-  useEffect(() => {
-    const fetchSakeData = async () => {
-      try {
-        const response = await fetch(
-          `https://backmikke.onrender.com/api/sake/${result}`
-        );
-        if (!response.ok) {
-          throw new Error("Failed to fetch sake data");
-        }
-        const data = await response.json();
-        setRawSakeData(data);
-        setIsLoading(false);
-
-        setTimeout(() => {
-          setShowContent(true);
-        }, 2000);
-      } catch (error) {
-        console.error("Error fetching sake data:", error);
-        setRawSakeData(getFallbackRawData());
-        setIsLoading(false);
-        setTimeout(() => {
-          setShowContent(true);
-        }, 2000);
-      }
-    };
-
-    fetchSakeData();
-  }, [result]);
-
-  // Transform data whenever language changes or raw data updates
-  useEffect(() => {
-    if (rawSakeData) {
-      setSakeData(transformData(rawSakeData));
-    }
-  }, [t, rawSakeData]); // Dependencies include both language context and raw data
-
-  const calculateTastePosition = (classification) => {
-    const positions = {
-      淡麗辛口: { x: 80, y: 20 }, // Light and dry
-      淡麗甘口: { x: 20, y: 20 }, // Light and sweet
-      濃醇辛口: { x: 80, y: 80 }, // Rich and dry
-      濃醇甘口: { x: 20, y: 80 }, // Rich and sweet
-    };
-    return positions[classification] || { x: 50, y: 50 }; // Default to center if unknown
-  };
-
   const getFallbackRawData = () => ({
     id: "default",
     name: "日本酒",
