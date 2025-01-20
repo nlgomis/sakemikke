@@ -51,7 +51,6 @@ export default function QuizResult() {
       sakeValue: data.sakeLevel,
       tastePosition: calculateTastePosition(data.classification),
       sakeGrade: data.sakeGrade,
-
     };
   };
 
@@ -252,7 +251,7 @@ export default function QuizResult() {
         </div>
       </main>
 
-      <footer className="py-4 sm:py-6 text-center text-white mt-auto">
+      <footer className="py-5 pt-10 sm:py-6 text-center text-white">
         <p className="text-xs sm:text-sm font-light tracking-wider px-4">
           {t.home.copyright}
         </p>
