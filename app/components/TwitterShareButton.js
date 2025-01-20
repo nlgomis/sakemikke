@@ -23,7 +23,7 @@ const TwitterShareButton = ({ url, result }) => {
       aria-label="Share on Twitter"
     >
       <img
-        src="/images/x_icon_new.png"
+        src="/images/X_icon_new.png"
         alt="X icon"
         className="w-6 h-6 hover:brightness-75"
       />

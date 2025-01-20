@@ -22,7 +22,6 @@ export default function QuizResult() {
   const [isLoading, setIsLoading] = useState(true);
   const [showContent, setShowContent] = useState(false);
 
-
   const category = searchParams.get("c");
   const specific = searchParams.get("s");
 
@@ -54,7 +53,6 @@ export default function QuizResult() {
     };
   };
 
-   
   // Fetch data only once
   useEffect(() => {
     const fetchSakeData = async () => {
@@ -252,7 +250,7 @@ export default function QuizResult() {
         </div>
       </main>
 
-      <footer className="py-4 sm:py-6 text-center text-white mt-auto">
+      <footer className="py-5 pt-10 sm:py-6 text-center text-white">
         <p className="text-xs sm:text-sm font-light tracking-wider px-4">
           {t.home.copyright}
         </p>
