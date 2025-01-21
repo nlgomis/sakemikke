@@ -4,12 +4,12 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-
+import { useLanguage } from '../contexts/LanguageContext';
 export default function LoginPage() {
   const { login } = useAuth();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-
+  const { t } = useLanguage();
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -44,10 +44,10 @@ export default function LoginPage() {
           }
         });
       } else {
-        setError(data.message || 'ログインに失敗しました');
+        setError(data.message || t.auth.login.loginFailed);
       }
     } catch (error) {
-      setError('サーバーとの通信に失敗しました');
+      setError(t.auth.login.serverError);
       console.error('Login error:', error);
     } finally {
       setLoading(false);
@@ -85,7 +85,7 @@ export default function LoginPage() {
 
               <div className="relative z-10 p-8">
                 <h1 className="text-4xl text-white font-extralight mb-8 tracking-wider">
-                  ログイン
+                  {t.auth.login.name}  
                 </h1>
 
                 {error && (
@@ -97,7 +97,7 @@ export default function LoginPage() {
                 <form onSubmit={handleLogin} className="space-y-6">
                   <div className="space-y-2">
                     <label htmlFor="email" className="block text-white/90 text-sm font-light">
-                      メールアドレス：
+                      {t.auth.login.mail}
                     </label>
                     <input
                       id="email"
@@ -110,7 +110,7 @@ export default function LoginPage() {
 
                   <div className="space-y-2">
                     <label htmlFor="password" className="block text-white/90 text-sm font-light">
-                      パスワード：
+                      {t.auth.login.password}
                     </label>
                     <input
                       id="password"
@@ -127,7 +127,7 @@ export default function LoginPage() {
                     className="w-full mt-4 backdrop-blur-xl bg-white/10 hover:bg-white/20 text-white rounded-xl px-6 py-3.5 transition-all duration-300 relative overflow-hidden group disabled:opacity-50"
                   >
                     <span className="relative z-10 font-light tracking-wide">
-                      {loading ? 'ログイン中...' : 'ログイン'}
+                      {loading ? t.auth.login.logging : t.auth.login.name}
                     </span>
                     <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 via-blue-500/20 to-pink-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   </button>
@@ -138,7 +138,7 @@ export default function LoginPage() {
                     href="/register" 
                     className="text-white/70 hover:text-white transition-colors text-sm font-light"
                   >
-                    初めてご利用の方
+                    {t.auth.login.firstTime}
                   </Link>
                 </div>
               </div>

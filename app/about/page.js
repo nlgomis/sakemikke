@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { useFadeInOnScroll } from "../hooks/useFadeInOnScroll";
+import { useLanguage } from "../contexts/LanguageContext";
 
 const LocationTimeHeader = () => {
   const [time, setTime] = useState("");
@@ -124,39 +125,42 @@ const YoutubeIcon = () => (
   </svg>
 );
 
+
+
 export default function Component() {
   const [hoveredSection, setHoveredSection] = useState(null);
+  const { t } = useLanguage();
 
   const sections = [
     {
-      title: "初心者",
-      description: "日本酒を始めて飲む方",
+      title: t.about.category1.title,
+      description: t.about.category1.description,
     },
     {
-      title: "味わい",
-      description: "好みの味を合わせて日本酒を見つける",
+      title: t.about.category2.title,
+      description: t.about.category2.description,
     },
     {
-      title: "和食",
-      description: "和食に合う日本酒を見つける",
+      title: t.about.category3.title,
+      description: t.about.category3.description,
     },
   ];
 
   const testimonials = [
     {
-      text: "お酒初心者の私でもわかりやすい質問でとても楽しく診断できたよ！またお酒に迷ったら利用したい！！",
+      text: t.about.testimonial1,
       imageSrc: "/images/human1.png?height=80&width=80",
       imageAlt: "Testimonial 1",
       position: "left",
     },
     {
-      text: "日本語よりも英語のが慣れているので英語に対応しているのがとても良いと思う！外国人の友人にも紹介したい！",
+      text: t.about.testimonial2,
       imageSrc: "/images/human2.png?height=80&width=80",
       imageAlt: "Testimonial 2",
       position: "right",
     },
     {
-      text: "普段からお酒は飲むほうですがいまいち自分に合ったお酒がわからなかったので、酒見っけを利用してぴったりなお酒が見つけられてとても満足！",
+      text: t.about.testimonial3,
       imageSrc: "/images/human3.png?height=80&width=80",
       imageAlt: "Testimonial 3",
       position: "left",
@@ -233,7 +237,7 @@ export default function Component() {
         <section className="py-24 px-4">
           <div className="max-w-5xl mx-auto">
             <h2 className="text-3xl md:text-4xl text-center mb-24">
-              酒見っけとは
+             {t.about.whatIs.title}
             </h2>
             <div className="grid md:grid-cols-2 gap-24 items-center">
               <div
@@ -255,20 +259,18 @@ export default function Component() {
                   isTextVisible ? "is-visible" : ""
                 } space-y-8 text-base md:text-lg`}
               >
+                <p>{t.about.whatIs.description}                </p>
                 <p>
-                  初心者から通まで利用できる自分にピッタリな日本酒を見つけることができる体験型ウェブサイトです。
+                  {t.about.mainDescription}
                 </p>
                 <p>
-                  初心者、味わい、料理の三つのカテゴリーから選んで質問に答えて自分に合った日本酒を見つけよう
+                  {t.about.additionalFeature1}
                 </p>
                 <p>
-                  PC,スマートフォンどちらからもアクセス可能で過去の診断結果も保存できるからいつでもどこでも確認可能！
+                  {t.about.additionalFeature2}
                 </p>
                 <p>
-                  また、英語、日本語に対応で幅広いユーザーに利用していただけます。
-                </p>
-                <p>
-                  お酒初心者の方でもわかりやすい説明と銘酒の詳しい紹介があるので初心者でも心配なし！
+                {t.about.additionalFeature3}
                 </p>
               </div>
             </div>
@@ -344,16 +346,16 @@ export default function Component() {
         >
           <div className="max-w-4xl mx-auto">
             <h2 className="text-2xl md:text-4xl text-center mb-20">
-              酒見っけの独自性
+              {t.about.unique}
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6 ">
               {[
-                { num: "1", text: "豊富な選択肢​\n　　　　　　　　　​​" },
-                { num: "2", text: "初心者でも​\n​わかりやすい説明　　" },
-                { num: "3", text: "銘酒の詳細​\n　　　　　　　　　　​" },
-                { num: "4", text: "ユーザー履歴の​​閲覧​\n　　　　　　" },
-                { num: "5", text: "多言語 海外の人にも​\n　　　　​​　" },
-                { num: "6", text: "PC・スマホ\n どこでも、いつでも​​" },
+                { num: "1", text: t.about.feature1},
+                { num: "2", text: t.about.feature2 },
+                { num: "3", text: t.about.feature3 },
+                { num: "4", text: t.about.feature4 },
+                { num: "5", text: t.about.feature5 },
+                { num: "6", text: t.about.feature6 },
               ].map((feature) => (
                 <div
                   key={feature.num}
@@ -383,7 +385,7 @@ export default function Component() {
             <div className="absolute inset-x-0 top-0 h-px bg-white" />
             <div className="container mx-auto">
               <h2 className="py-6 text-center text-xl font-medium tracking-wider text-white sm:text-4xl md:text-5xl">
-                ここに見っけ！ あなたの一杯、
+                {t.about.slogan}
               </h2>
             </div>
             <div className="absolute inset-x-0 bottom-0 h-px bg-white" />
@@ -399,7 +401,7 @@ export default function Component() {
           <div className="absolute inset-0 bg-gradient-to-br" />
           <div className="container relative mx-auto px-4">
             <h2 className="mb-20 text-center text-3xl  text-white md:text-4xl">
-              利用者の声
+              {t.about.testimonials}
             </h2>
             <div className="mx-auto max-w-4xl space-y-8">
               {testimonials.map((testimonial, index) => (

@@ -61,7 +61,7 @@ const translations = {
                 password: "Password:",
                 confirmPassword: "Please enter your password again to confirm:",
                 registering: "Registering...",
-                toConfirmation: "Proceed to Confirmation",
+                toConfirmation: "Register",
                 registerFailed: "Registration failed",
                 serverError: "Failed to communicate with the server",
                 loginFailed: "Login failed",
@@ -69,6 +69,8 @@ const translations = {
             },
         },
         about: {
+            testimonials: "Testimonials",
+
             whatIs: {
                 title: "What is SAKEMIKKE",
                 description: "An interactive website where anyone from beginners to experts can find their perfect sake match."
@@ -86,13 +88,14 @@ const translations = {
                 description: "Find sake that pairs well with Japanese cuisine"
             },
             mainDescription: "Choose from three categories - beginner, taste, or food pairing - and answer questions to find your perfect sake match",
-            slogan: "Found here! Your perfect cup,",
+            slogan: "Find it here! Your perfect sake",
             feature1: "Wide Selection",
             feature2: "Beginner-Friendly Explanations",
             feature3: "Detailed Sake Information",
             feature4: "View User History",
             feature5: "Multilingual Support",
             feature6: "PC & Smartphone Access\nAnytime, Anywhere",
+            unique: "Our Uniqueness",
             additionalFeature1: "Accessible on both smartphones and PCs with saved diagnosis results for checking anytime, anywhere!",
             additionalFeature2: "Available in English and Japanese to accommodate a wide range of users.",
             additionalFeature3: "Easy to understand explanations and detailed sake introductions make it worry-free for beginners!",
@@ -512,6 +515,8 @@ polishing: "Polishing"
             
         },
         about: {
+            testimonials: "利用者の声",
+            
             whatIs: {
                 title: "酒見っけとは",
                 description: "初心者から通まで利用できる自分にピッタリな日本酒を見つけることができる体験型ウェブサイトです。"
@@ -530,13 +535,14 @@ polishing: "Polishing"
             },
             mainDescription: "初心者、味わい、料理の三つのカテゴリーから選んで質問に答えて自分に合った日本酒を見つけよう",
             slogan: "ここに見っけ！ あなたの一杯、",
-            feature1: "豊富な選択肢",
-            feature2: "初心者でも​わかりやすい説明",
-            feature3: "銘酒の詳細",
-            feature4: "ユーザー履歴の​​閲覧",
-            feature5: "多言語 海外の人にも",
-            feature6: "PC・スマホ\n どこでも、いつでも",
-            additionalFeature1: "スマートフォンどちらからもアクセス可能で過去の診断結果も保存できるからいつでもどこでも確認可能！",
+            feature1: "豊富な選択肢​\n　　　　　　　　　​",
+            feature2: "初心者でも​\n​わかりやすい説明　　",
+            feature3: "銘酒の詳細​\n　　　　　　　　　　",
+            feature4: "ユーザー履歴の​​閲覧​\n　　　　　　",
+            feature5: "多言語 海外の人にも​\n　　　　​​　",
+            feature6: "PC・スマホ\n どこでも、いつでも​",
+            unique: "酒見っけの独自性",
+            additionalFeature1: "PC,スマートフォンどちらからもアクセス可能で過去の診断結果も保存できるからいつでもどこでも確認可能！",
             additionalFeature2: "また、英語、日本語に対応で幅広いユーザーに利用していただけます。",
             additionalFeature3: "お酒初心者の方でもわかりやすい説明と銘酒の詳しい紹介があるので初心者でも心配なし！",
             testimonial1: "お酒初心者の私でもわかりやすい質問でとても楽しく診断できたよ！またお酒に迷ったら利用したい！！",
