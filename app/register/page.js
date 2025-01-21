@@ -4,13 +4,14 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext'; // Make sure to import useAuth
+import { useLanguage } from "../contexts/LanguageContext";
 
 export default function RegisterPage() {
   const router = useRouter();
   const { login } = useAuth();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-
+  const { t } = useLanguage();
   const handleRegister = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -59,14 +60,14 @@ export default function RegisterPage() {
           await login(loginData.token);
           router.push('/'); // Redirect to main page
         } else {
-          throw new Error(loginData.message || 'ログインに失敗しました');
+          throw new Error(loginData.message || t.auth.register.loginFailed);
         }
       } else {
-        throw new Error(registerData.message || '登録に失敗しました');
+        throw new Error(registerData.message || t.auth.register.registerFailed);
       }
     } catch (error) {
       console.error('Registration/Login error:', error);
-      setError(error.message || 'サーバーとの通信に失敗しました');
+      setError(error.message || t.auth.register.serverError);
     } finally {
       setLoading(false);
     }
@@ -102,7 +103,7 @@ export default function RegisterPage() {
 
               <div className="relative z-10 p-8">
                 <h1 className="text-4xl text-white font-extralight mb-8 tracking-wider">
-                  新規登録
+                  {t.auth.register.name}
                 </h1>
 
                 {error && (
@@ -114,7 +115,7 @@ export default function RegisterPage() {
                 <form onSubmit={handleRegister} className="space-y-6">
                   <div className="space-y-2">
                     <label htmlFor="name" className="block text-white/90 text-sm font-light">
-                      ユーザー名：
+                      {t.auth.register.username}
                     </label>
                     <input
                       id="name"
@@ -127,7 +128,7 @@ export default function RegisterPage() {
 
                   <div className="space-y-2">
                     <label htmlFor="email" className="block text-white/90 text-sm font-light">
-                      メールアドレス：
+                      {t.auth.register.mail}
                     </label>
                     <input
                       id="email"
@@ -140,7 +141,7 @@ export default function RegisterPage() {
 
                   <div className="space-y-2">
                     <label htmlFor="password" className="block text-white/90 text-sm font-light">
-                      パスワード：
+                      {t.auth.register.password}
                     </label>
                     <input
                       id="password"
@@ -153,7 +154,7 @@ export default function RegisterPage() {
 
                   <div className="space-y-2">
                     <label htmlFor="confirmPassword" className="block text-white/90 text-sm font-light">
-                      確認のためもう一度ご入力ください：
+                      {t.auth.register.confirmPassword}
                     </label>
                     <input
                       id="confirmPassword"
@@ -170,7 +171,7 @@ export default function RegisterPage() {
                     className="w-full mt-4 backdrop-blur-xl bg-white/10 hover:bg-white/20 text-white rounded-xl px-6 py-3.5 transition-all duration-300 relative overflow-hidden group disabled:opacity-50"
                   >
                     <span className="relative z-10 font-light tracking-wide">
-                      {loading ? '登録中...' : '確認画面へ'}
+                      {loading ? t.auth.register.registering : t.auth.register.toConfirmation}
                     </span>
                     <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 via-blue-500/20 to-pink-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   </button>
@@ -181,7 +182,7 @@ export default function RegisterPage() {
                     href="/login" 
                     className="text-white/70 hover:text-white transition-colors text-sm font-light"
                   >
-                    既にアカウントをお持ちの方
+                    {t.auth.register.haveAccount}
                   </Link>
                 </div>
               </div>
