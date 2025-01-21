@@ -4,6 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 import HomeButton from "../components/HomeButton";
 import { useLanguage } from "../contexts/LanguageContext";
+import LikeButton from "@/app/components/LikeButton";
+import ShoppingCartButton from "@/app/components/ShoppingCartButton";
 
 export default function SakeTypesPage() {
   const { t } = useLanguage();
@@ -238,15 +240,20 @@ export default function SakeTypesPage() {
               className="bg-transparent overflow-hidden transition-all duration-300 group/sake"
             >
               <div className="p-4">
-                <div className="mb-3">
-                  <div className="text-sm text-white/90">
-                    {t.sake.types[sake.type]}
+                <div className="mb-3 flex justify-between items-start">
+                  <div>
+                    <div className="text-sm text-white/90">
+                      {t.sake.types[sake.type]}
+                    </div>
+                    <div className="text-xl font-bold text-white">
+                      {t.sake.names[sake.name]}
+                    </div>
                   </div>
-                  <div className="text-xl font-bold text-white">
-                    {t.sake.names[sake.name]}
+                  <div className="flex gap-4 scale-75 ">
+                    <ShoppingCartButton sakeId={sake.id} />
+                    <LikeButton sakeId={sake.id} />
                   </div>
                 </div>
-
                 <div className="relative h-80 mb-4 group">
                   <Image
                     src={`https://spheriart.s3.ap-northeast-1.amazonaws.com/${sake.id}.png`}
