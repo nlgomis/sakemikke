@@ -1,213 +1,246 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
-import { useAuth } from '../contexts/AuthContext';
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { useAuth } from "../contexts/AuthContext";
 import { useLanguage } from "../contexts/LanguageContext";
 
 export default function RegisterPage() {
-  const router = useRouter();
-  const { login } = useAuth();
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
-  const { t } = useLanguage();
+    const router = useRouter();
+    const { login } = useAuth();
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
+    const { t } = useLanguage();
 
-  const handleRegister = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError('');
-    
-    const password = e.target.password.value;
-    const confirmPassword = e.target.confirmPassword.value;
-    
-    // Check if passwords match
-    if (password !== confirmPassword) {
-      setError(t.auth.register.passwordMismatch || 'Passwords do not match');
-      setLoading(false);
-      return;
-    }
-  
-    const formData = {
-      name: e.target.name.value,
-      email: e.target.email.value,
-      password: password
-    };
-  
-    try {
-      // 1. Register the user
-      const registerResponse = await fetch('https://backmikke.onrender.com/api/users/register', {
-        method: 'POST',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-        },
-        body: JSON.stringify(formData)
-      });
-  
-      const registerData = await registerResponse.json();
-      
-      if (registerResponse.ok) {
-        // 2. If registration successful, immediately login
-        const loginResponse = await fetch('https://backmikke.onrender.com/api/users/login', {
-          method: 'POST',
-          credentials: 'include',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-          },
-          body: JSON.stringify({
-            email: formData.email,
-            password: formData.password
-          })
-        });
+    const handleRegister = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        setError("");
 
-        const loginData = await loginResponse.json();
+        const password = e.target.password.value;
+        const confirmPassword = e.target.confirmPassword.value;
 
-        if (loginResponse.ok) {
-          // Store token and update auth context
-          localStorage.setItem('token', loginData.token);
-          await login(loginData.token);
-          router.push('/'); // Redirect to main page
-        } else {
-          throw new Error(loginData.message || t.auth.register.loginFailed);
+        // Check if passwords match
+        if (password !== confirmPassword) {
+            setError(
+                t.auth.register.passwordMismatch || "Passwords do not match"
+            );
+            setLoading(false);
+            return;
         }
-      } else {
-        throw new Error(registerData.message || t.auth.register.registerFailed);
-      }
-    } catch (error) {
-      console.error('Registration/Login error:', error);
-      setError(error.message || t.auth.register.serverError);
-    } finally {
-      setLoading(false);
-    }
-  };
 
-  return (
-    <div className="relative min-h-screen">
-      {/* Main container */}
-      <div className="relative z-10 min-h-screen flex flex-col">
-        {/* Content area */}
-        <div className="flex-grow flex items-center justify-center p-4">
-          <div className="w-full max-w-md mt-20">
-            {/* Glass card wrapper */}
-            <div className="backdrop-blur-xl bg-white/10 rounded-3xl shadow-[0_8px_32px_0_rgba(0,0,0,0.16)] relative overflow-hidden">
-              {/* Enhanced gradient overlay */}
-              <div 
-                className="absolute inset-0 rounded-3xl opacity-30"
-                style={{
-                  background: 'linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05))',
-                  filter: 'blur(10px)',
-                }}
-              />
-              
-              {/* Animated glow effect */}
-              <div 
-                className="absolute inset-0 rounded-3xl opacity-40"
-                style={{
-                  background: 'linear-gradient(45deg, rgba(0,37,206,0.2), rgba(0,234,255,0.2))',
-                  filter: 'blur(30px)',
-                  animation: 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite'
-                }}
-              />
+        const formData = {
+            name: e.target.name.value,
+            email: e.target.email.value,
+            password: password,
+        };
 
-              <div className="relative z-10 p-8">
-                <h1 className="text-4xl text-white font-extralight mb-8 tracking-wider">
-                  {t.auth.register.name}
-                </h1>
+        try {
+            // 1. Register the user
+            const registerResponse = await fetch(
+                "https://backmikke.onrender.com/api/users/register",
+                {
+                    method: "POST",
+                    credentials: "include",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Accept: "application/json",
+                    },
+                    body: JSON.stringify(formData),
+                }
+            );
 
-                {error && (
-                  <div className="mb-6 p-4 rounded-lg backdrop-blur-md bg-red-500/10 border border-red-500/20 text-red-200 text-sm">
-                    {error}
-                  </div>
-                )}
+            const registerData = await registerResponse.json();
 
-                <form onSubmit={handleRegister} className="space-y-6">
-                  <div className="space-y-2">
-                    <label htmlFor="name" className="block text-white/90 text-sm font-light">
-                      {t.auth.register.username}
-                    </label>
-                    <input
-                      id="name"
-                      name="name"
-                      type="text"
-                      className="w-full bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-white/30 focus:ring-2 focus:ring-white/10 transition-all duration-300"
-                      required
-                    />
-                  </div>
+            if (registerResponse.ok) {
+                // 2. If registration successful, immediately login
+                const loginResponse = await fetch(
+                    "https://backmikke.onrender.com/api/users/login",
+                    {
+                        method: "POST",
+                        credentials: "include",
+                        headers: {
+                            "Content-Type": "application/json",
+                            Accept: "application/json",
+                        },
+                        body: JSON.stringify({
+                            email: formData.email,
+                            password: formData.password,
+                        }),
+                    }
+                );
 
-                  <div className="space-y-2">
-                    <label htmlFor="email" className="block text-white/90 text-sm font-light">
-                      {t.auth.register.mail}
-                    </label>
-                    <input
-                      id="email"
-                      name="email"
-                      type="email"
-                      className="w-full bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-white/30 focus:ring-2 focus:ring-white/10 transition-all duration-300"
-                      required
-                    />
-                  </div>
+                const loginData = await loginResponse.json();
 
-                  <div className="space-y-2">
-                    <label htmlFor="password" className="block text-white/90 text-sm font-light">
-                      {t.auth.register.password}
-                    </label>
-                    <input
-                      id="password"
-                      name="password"
-                      type="password"
-                      className="w-full bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-white/30 focus:ring-2 focus:ring-white/10 transition-all duration-300"
-                      required
-                    />
-                  </div>
+                if (loginResponse.ok) {
+                    // Store token and update auth context
+                    localStorage.setItem("token", loginData.token);
+                    await login(loginData.token);
+                    router.push("/"); // Redirect to main page
+                } else {
+                    throw new Error(
+                        loginData.message || t.auth.register.loginFailed
+                    );
+                }
+            } else {
+                throw new Error(
+                    registerData.message || t.auth.register.registerFailed
+                );
+            }
+        } catch (error) {
+            console.error("Registration/Login error:", error);
+            setError(error.message || t.auth.register.serverError);
+        } finally {
+            setLoading(false);
+        }
+    };
 
-                  <div className="space-y-2">
-                    <label htmlFor="confirmPassword" className="block text-white/90 text-sm font-light">
-                      {t.auth.register.confirmPassword}
-                    </label>
-                    <input
-                      id="confirmPassword"
-                      name="confirmPassword"
-                      type="password"
-                      className="w-full bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-white/30 focus:ring-2 focus:ring-white/10 transition-all duration-300"
-                      required
-                    />
-                  </div>
+    return (
+        <div className="relative min-h-screen">
+            {/* Main container */}
+            <div className="relative z-10 min-h-screen flex flex-col">
+                {/* Content area */}
+                <div className="flex-grow flex items-center justify-center p-4">
+                    <div className="w-full max-w-md mt-20">
+                        {/* Glass card wrapper */}
+                        <div className="backdrop-blur-xl bg-white/10 rounded-3xl shadow-[0_8px_32px_0_rgba(0,0,0,0.16)] relative overflow-hidden">
+                            {/* Enhanced gradient overlay */}
+                            <div
+                                className="absolute inset-0 rounded-3xl opacity-30"
+                                style={{
+                                    background:
+                                        "linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05))",
+                                    filter: "blur(10px)",
+                                }}
+                            />
 
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="w-full mt-4 backdrop-blur-xl bg-white/10 hover:bg-white/20 text-white rounded-xl px-6 py-3.5 transition-all duration-300 relative overflow-hidden group disabled:opacity-50"
-                  >
-                    <span className="relative z-10 font-light tracking-wide">
-                      {loading ? t.auth.register.registering : t.auth.register.toConfirmation}
-                    </span>
-                    <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 via-blue-500/20 to-pink-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  </button>
-                </form>
+                            {/* Animated glow effect */}
+                            <div
+                                className="absolute inset-0 rounded-3xl opacity-40"
+                                style={{
+                                    background:
+                                        "linear-gradient(45deg, rgba(0,37,206,0.2), rgba(0,234,255,0.2))",
+                                    filter: "blur(30px)",
+                                    animation:
+                                        "pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+                                }}
+                            />
 
-                <div className="mt-8 text-center">
-                  <Link 
-                    href="/login" 
-                    className="text-white/70 hover:text-white transition-colors text-sm font-light"
-                  >
-                    {t.auth.register.haveAccount}
-                  </Link>
+                            <div className="relative z-10 p-8">
+                                <h1 className="text-4xl text-white font-extralight mb-8 tracking-wider">
+                                    {t.auth.register.name}
+                                </h1>
+
+                                {error && (
+                                    <div className="mb-6 p-4 rounded-lg backdrop-blur-md bg-red-500/10 border border-red-500/20 text-red-200 text-sm">
+                                        {error}
+                                    </div>
+                                )}
+
+                                <form
+                                    onSubmit={handleRegister}
+                                    className="space-y-6"
+                                >
+                                    <div className="space-y-2">
+                                        <label
+                                            htmlFor="name"
+                                            className="block text-white/90 text-sm font-light"
+                                        >
+                                            {t.auth.register.username}
+                                        </label>
+                                        <input
+                                            id="name"
+                                            name="name"
+                                            type="text"
+                                            className="w-full bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-white/30 focus:ring-2 focus:ring-white/10 transition-all duration-300"
+                                            required
+                                        />
+                                    </div>
+
+                                    <div className="space-y-2">
+                                        <label
+                                            htmlFor="email"
+                                            className="block text-white/90 text-sm font-light"
+                                        >
+                                            {t.auth.register.mail}
+                                        </label>
+                                        <input
+                                            id="email"
+                                            name="email"
+                                            type="email"
+                                            className="w-full bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-white/30 focus:ring-2 focus:ring-white/10 transition-all duration-300"
+                                            required
+                                        />
+                                    </div>
+
+                                    <div className="space-y-2">
+                                        <label
+                                            htmlFor="password"
+                                            className="block text-white/90 text-sm font-light"
+                                        >
+                                            {t.auth.register.password}
+                                        </label>
+                                        <input
+                                            id="password"
+                                            name="password"
+                                            type="password"
+                                            className="w-full bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-white/30 focus:ring-2 focus:ring-white/10 transition-all duration-300"
+                                            required
+                                        />
+                                    </div>
+
+                                    <div className="space-y-2">
+                                        <label
+                                            htmlFor="confirmPassword"
+                                            className="block text-white/90 text-sm font-light"
+                                        >
+                                            {t.auth.register.confirmPassword}
+                                        </label>
+                                        <input
+                                            id="confirmPassword"
+                                            name="confirmPassword"
+                                            type="password"
+                                            className="w-full bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-white/30 focus:ring-2 focus:ring-white/10 transition-all duration-300"
+                                            required
+                                        />
+                                    </div>
+
+                                    <button
+                                        type="submit"
+                                        disabled={loading}
+                                        className="w-full mt-4 backdrop-blur-xl bg-white/10 hover:bg-white/20 text-white rounded-xl px-6 py-3.5 transition-all duration-300 relative overflow-hidden group disabled:opacity-50"
+                                    >
+                                        <span className="relative z-10 font-light tracking-wide">
+                                            {loading
+                                                ? t.auth.register.registering
+                                                : t.auth.register
+                                                      .toConfirmation}
+                                        </span>
+                                        <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 via-blue-500/20 to-pink-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                                    </button>
+                                </form>
+
+                                <div className="mt-8 text-center">
+                                    <Link
+                                        href="/login"
+                                        className="text-white/70 hover:text-white transition-colors text-sm font-light"
+                                    >
+                                        {t.auth.register.haveAccount}
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
+
+                {/* Footer */}
+                <footer className="py-4 sm:py-6 text-center text-white mt-auto">
+                    <p className="text-xs sm:text-sm font-light tracking-wider px-4">
+                        {t.home.copyright}
+                    </p>
+                </footer>
             </div>
-          </div>
         </div>
-                
-        {/* Footer */}
-        <div className="p-6 text-center">
-          <div className="text-white/40 text-md font-light">
-            © 2024 SAKEMIKKE. All rights reserved.
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+    );
 }
