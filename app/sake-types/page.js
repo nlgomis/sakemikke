@@ -241,7 +241,7 @@ export default function SakeTypesPage() {
             >
               <div className="p-4">
                 <div className="mb-3 flex justify-between items-start">
-                  <div>
+                  <div className="flex-grow pr-4">
                     <div className="text-sm text-white/90">
                       {t.sake.types[sake.type]}
                     </div>
@@ -249,7 +249,7 @@ export default function SakeTypesPage() {
                       {t.sake.names[sake.name]}
                     </div>
                   </div>
-                  <div className="flex gap-4 scale-75 ">
+                  <div className="flex gap-4 scale-75 flex-shrink-0">
                     <ShoppingCartButton sakeId={sake.id} />
                     <LikeButton sakeId={sake.id} />
                   </div>
