@@ -250,7 +250,7 @@ export default function SakeTypesPage() {
                     </div>
                   </div>
                   <div className="flex gap-4 scale-75 flex-shrink-0">
-                    <ShoppingCartButton sakeId={sake.id} />
+                    <ShoppingCartButton sake={sake} />
                     <LikeButton sakeId={sake.id} />
                   </div>
                 </div>

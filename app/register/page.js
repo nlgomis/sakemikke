@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { useAuth } from '../contexts/AuthContext'; // Make sure to import useAuth
+import { useAuth } from '../contexts/AuthContext';
 import { useLanguage } from "../contexts/LanguageContext";
 
 export default function RegisterPage() {
@@ -12,15 +12,26 @@ export default function RegisterPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const { t } = useLanguage();
+
   const handleRegister = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError('');
+    
+    const password = e.target.password.value;
+    const confirmPassword = e.target.confirmPassword.value;
+    
+    // Check if passwords match
+    if (password !== confirmPassword) {
+      setError(t.auth.register.passwordMismatch || 'Passwords do not match');
+      setLoading(false);
+      return;
+    }
   
     const formData = {
       name: e.target.name.value,
       email: e.target.email.value,
-      password: e.target.password.value
+      password: password
     };
   
     try {
