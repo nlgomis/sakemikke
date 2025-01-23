@@ -65,7 +65,8 @@ const translations = {
                 registerFailed: "Registration failed",
                 serverError: "Failed to communicate with the server",
                 loginFailed: "Login failed",
-                haveAccount: "Already have an account?"
+                haveAccount: "Already have an account?",
+                passwordMismatch: "Passwords do not match",
             },
         },
         about: {
@@ -510,7 +511,8 @@ polishing: "Polishing"
                 registerFailed: "登録に失敗しました",
                 serverError: "サーバーとの通信に失敗しました",
                 loginFailed: "ログインに失敗しました",
-                haveAccount: "既にアカウントをお持ちの方"
+                haveAccount: "既にアカウントをお持ちの方",
+                paswordMissmatch: "パスワードが一致しません"
             },
             
         },

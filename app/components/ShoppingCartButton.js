@@ -1,11 +1,10 @@
 import React from "react";
 
-const ShoppingCartButton = ({ url }) => {
+const ShoppingCartButton = ({ sake }) => {
   const handleClick = (e) => {
     e.preventDefault();
-    // URLが提供されている場合はそのページに遷移
-    if (url) {
-      window.location.href = url;
+    if (sake.url) {
+      window.open(sake.url, '_blank');
     }
   };
 

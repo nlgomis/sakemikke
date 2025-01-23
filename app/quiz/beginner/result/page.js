@@ -240,7 +240,7 @@ export default function QuizResult() {
         top-full left-1/2 -translate-x-1/2 sm:translate-x-0
     "
             >
-              <ShoppingCartButton url={"https://www.amazon.co.jp/"} />
+               <ShoppingCartButton sake={sake} />
               <TwitterShareButton
                 url={typeof window !== "undefined" ? window.location.href : ""}
                 result={sakeData.name}
