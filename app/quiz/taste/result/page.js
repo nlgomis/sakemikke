@@ -41,6 +41,7 @@ export default function QuizResult() {
       classification:
         t.sake.classification[data.classification] || data.classification,
       polishingRatio: `${data.polishingRate}%`,
+      url: data.url,
       price:
         data.price === null || data.price === undefined
           ? t.sake.labels.priceTbd

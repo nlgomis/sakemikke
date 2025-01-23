@@ -1,6 +1,7 @@
 import React from "react";
 
 const ShoppingCartButton = ({ sake }) => {
+  console.log("sake", sake.url);
   const handleClick = (e) => {
     e.preventDefault();
     if (sake.url) {
