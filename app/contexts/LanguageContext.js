@@ -238,7 +238,7 @@ polishing: "Polishing"
                 // Hakkaisan Series
                 "八海山 清酒": "Hakkaisan Seishu",
                 "特別本醸造 八海山": "Hakkaisan Tokubetsu Honjozo",
-                "純米吟醸 八海山 55%": "Hakkaisan Junmai Ginjo 55%",
+                "純米吟醸 八海山 55": "Hakkaisan Junmai Ginjo 55",
                 
                 // Kokuryu Series
                 "黒龍 純吟": "Kokuryu Jungin",
@@ -366,7 +366,7 @@ polishing: "Polishing"
                 "久保田 千寿 吟醸": "Features a mild aroma and crisp mouthfeel, a versatile dry sake that can be enjoyed both chilled or warm.",
                 "八海山 清酒": "Crafted with food pairing in mind, offering a clean mouthfeel and crisp dry finish without any off-flavors.",
                 "特別本醸造 八海山": "A signature sake from Hakkaisan Brewery in Niigata, featuring a soft mouthfeel and clean taste. Can be enjoyed both chilled or warm.",
-                "純米吟醸 八海山 55%": "A junmai ginjo that perfectly balances crisp dryness with rice umami, offering versatile enjoyment across a wide range of temperatures.",
+                "純米吟醸 八海山 55": "A junmai ginjo that perfectly balances crisp dryness with rice umami, offering versatile enjoyment across a wide range of temperatures.",
                 "黒龍 純吟": "A junmai ginjo that brings out the natural umami of rice while pursuing a refreshing drinking experience. Characterized by a deep umami created by the harmony of taste and aroma.",
                 "黒龍 大吟醸": "A popular daiginjo from Kokuryu Brewery in Fukui Prefecture, known for its full-bodied aroma, clear throat feel, and refreshing drinking experience.",
                 "黒龍 しずく 純米大吟醸": "A daiginjo made from premium Yamada Nishi rice, carefully fermented at low temperatures. Features a crystal-clear taste with grapefruit and plum blossom aromas.",
@@ -662,7 +662,7 @@ polishing: "精米"
                 // Hakkaisan Series
                 "八海山 清酒": "八海山 清酒",
                 "特別本醸造 八海山": "特別本醸造 八海山",
-                "純米吟醸 八海山 55%": "純米吟醸 八海山 55%",
+                "純米吟醸 八海山 55": "純米吟醸 八海山 55",
                 
                 // Kokuryu Series
                 "黒龍 純吟": "黒龍 純吟",
@@ -781,7 +781,7 @@ polishing: "精米"
                 "久保田 千寿 吟醸": "穏やかな香りとスッキリとした飲み口が特徴で、冷酒からぬる燗まで楽しむことができる柔軟な味わいの淡麗辛口日本酒。",
                 "八海山 清酒": "料理との相性を重視して造られており、雑味のないクリアな口当たりと、キレのある辛口が楽しめます。",
                 "特別本醸造 八海山": "新潟県の八海醸造が手掛ける日本酒で、やわらかな口当たりと淡麗な味わいが特徴。冷やしても燗にしても楽しめる、八海山を代表するお酒。",
-                "純米吟醸 八海山 55%": "キレの良い辛口と米の旨味が絶妙に調和した純米吟醸酒で、冷酒からお燗まで、幅広い温度で風味を楽しむことができます。",
+                "純米吟醸 八海山 55": "キレの良い辛口と米の旨味が絶妙に調和した純米吟醸酒で、冷酒からお燗まで、幅広い温度で風味を楽しむことができます。",
                 "黒龍 純吟": "米本来の旨味を引き出しつつ、爽やかな飲み心地を追求した純米吟醸酒。味と香りのハーモニーが醸す深い旨さが特徴。",
                 "黒龍 大吟醸": "福井県の黒龍酒造が醸す日本酒で、ふくよかな香り、透明な喉ごし、爽やかな飲み心地が人気の大吟醸。",
                 "黒龍 しずく 純米大吟醸": "最高級の酒米「山田錦」を使用し、じっくりと丁寧に低温発酵させた大吟醸酒。透き通るように綺麗な味わいと、グレープフルーツや梅の花の香りが特徴。",
