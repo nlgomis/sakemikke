@@ -245,7 +245,7 @@ export default function SakeTypesPage() {
                     <div className="text-sm text-white/90">
                       {t.sake.types[sake.type]}
                     </div>
-                    <div className="text-xl font-bold text-white">
+                    <div className="text-xl font-bold text-white line-clamp-2 h-14">
                       {t.sake.names[sake.name]}
                     </div>
                   </div>
