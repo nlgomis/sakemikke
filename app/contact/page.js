@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { useLanguage } from "../contexts/LanguageContext";
 
 export default function ContactPage() {
+
   const { t } = useLanguage();
 
   // フォームデータの状態管理
@@ -46,6 +47,7 @@ export default function ContactPage() {
 
     // 送信済み状態に設定
     setIsSubmitted(true);
+
 
     // 3秒後に元の状態に戻す
     setTimeout(() => {
