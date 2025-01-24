@@ -200,7 +200,7 @@ export default function SakeTypesPage() {
                       : "bg-white/10 backdrop-blur-sm"
                   }
                 `}
-              >
+              > 
                 <span
                   className={`
                     text-sm whitespace-nowrap 
@@ -338,7 +338,7 @@ export default function SakeTypesPage() {
       </div>
       <div className="mx-auto text-center mb-16">
         <Link href="/quiz" className=" text-white">
-          <HomeButton>今すぐ酒みっけ！</HomeButton>
+          <HomeButton> {t.sake.labels.find}</HomeButton>
         </Link>
       </div>
 
