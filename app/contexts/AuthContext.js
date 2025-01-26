@@ -1,4 +1,3 @@
-// app/contexts/AuthContext.js
 'use client';
 
 import { createContext, useContext, useState, useEffect } from 'react';
@@ -19,11 +18,13 @@ export function AuthProvider({ children }) {
         const token = localStorage.getItem('token');
         const userName = localStorage.getItem('userName');
         const userEmail = localStorage.getItem('userEmail');
+        const userImage = localStorage.getItem('userImage');
         
         if (token && userName) {
           setUser({
             name: userName,
             email: userEmail,
+            image: userImage,
             token: token
           });
           setIsAuthenticated(true);
@@ -50,12 +51,24 @@ export function AuthProvider({ children }) {
       window.removeEventListener('storage', checkAuth);
     };
   }, []);
-
+  const updateUser = (updatedUser) => {
+    try {
+      setUser(updatedUser);
+      localStorage.setItem('userName', updatedUser.name);
+      localStorage.setItem('userEmail', updatedUser.email);
+      if (updatedUser.image) {
+        localStorage.setItem('userImage', updatedUser.image);
+      }
+    } catch (error) {
+      console.error('Error updating user:', error);
+    }
+  };
   const login = (userData) => {
     try {
       const userInfo = {
         name: userData.user?.name || userData.name,
         email: userData.user?.email || userData.email,
+        image: userData.user?.image || userData.image,
         token: userData.token
       };
       
@@ -69,6 +82,9 @@ export function AuthProvider({ children }) {
         localStorage.setItem('userName', userInfo.name);
         if (userInfo.email) {
           localStorage.setItem('userEmail', userInfo.email);
+        }
+        if (userInfo.image) {
+          localStorage.setItem('userImage', userInfo.image);
         }
         
         router.push('/');
@@ -89,6 +105,7 @@ export function AuthProvider({ children }) {
       localStorage.removeItem('token');
       localStorage.removeItem('userName');
       localStorage.removeItem('userEmail');
+      localStorage.removeItem('userImage');
       
       // Redirect to login
       router.push('/login');
@@ -97,18 +114,7 @@ export function AuthProvider({ children }) {
     }
   };
 
-  const updateUser = (updatedUser) => {
-    try {
-      setUser(updatedUser);
-      localStorage.setItem('userName', updatedUser.name);
-      if (updatedUser.email) {
-        localStorage.setItem('userEmail', updatedUser.email);
-      }
-    } catch (error) {
-      console.error('Error updating user:', error);
-    }
-  };
-
+ 
   // Don't render children until we've checked auth status
   if (loading) {
     return null; // Or a loading spinner component

@@ -40,6 +40,7 @@ export default function LoginPage() {
                     token: data.token,
                     user: {
                         name: data.user?.name || data.name,
+                        image: data.user?.image || data.image,
                     },
                 });
             } else {
