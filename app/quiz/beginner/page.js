@@ -3,16 +3,21 @@
 import { useState, useEffect, useLayoutEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useLanguage } from "../../contexts/LanguageContext";
+import { useAuth } from "../../contexts/AuthContext";
 import SpinningRings from "@/app/components/SpinningRings";
 import BackButton from "@/app/components/BackButton";
+import { getResult } from "./getResult";
 
 export default function BeginnerQuiz() {
     const router = useRouter();
     const { t } = useLanguage();
+    const { user } = useAuth();
     const [state, setState] = useState({
         currentQuestion: 0,
         answers: {},
     });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
 
     const [buttonAnimations, setButtonAnimations] = useState([]);
     const [visibleOptions, setVisibleOptions] = useState([]);
@@ -120,7 +125,36 @@ export default function BeginnerQuiz() {
         setButtonAnimations(shuffledAnimations);
     }, [state.currentQuestion]);
 
-    const handleAnswer = (answer) => {
+    const saveQuizResult = async (result) => {
+        try {
+            const API_URL = process.env.NODE_ENV === 'production'
+                ? 'https://backmikke.onrender.com/api/users/update-quizzes'
+                : 'https://backmikke.onrender.com/api/users/update-quizzes';
+    
+            const response = await fetch(API_URL, {
+                method: 'PUT',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                },
+                body: JSON.stringify({
+                    quizResult: result
+                })
+            });
+    
+            if (!response.ok) {
+                throw new Error('Failed to save quiz result');
+            }
+    
+            return await response.json();
+        } catch (error) {
+            console.error('Error saving quiz result:', error);
+            throw error;
+        }
+    };
+
+    const handleAnswer = async (answer) => {
         const newAnswers = { ...state.answers };
 
         switch (state.currentQuestion) {
@@ -135,17 +169,26 @@ export default function BeginnerQuiz() {
                 break;
         }
 
-        const newState = {
-            currentQuestion: state.currentQuestion + 1,
-            answers: newAnswers,
-        };
-
         if (state.currentQuestion === 2) {
+            if (user) {
+                setIsSubmitting(true);
+                try {
+                    const result = getResult(newAnswers.drink, newAnswers.concern, answer);
+                    await saveQuizResult(result);
+                } catch (error) {
+                    console.error('Failed to save quiz result:', error);
+                } finally {
+                    setIsSubmitting(false);
+                }
+            }
             router.push(
-                `/quiz/beginner/result?d=${newAnswers.drink}&c=${newAnswers.concern}&o=${newAnswers.occasion}`
+                `/quiz/beginner/result?d=${newAnswers.drink}&c=${newAnswers.concern}&o=${answer}`
             );
         } else {
-            setState(newState);
+            setState({
+                currentQuestion: state.currentQuestion + 1,
+                answers: newAnswers,
+            });
         }
     };
 
@@ -292,23 +335,23 @@ export default function BeginnerQuiz() {
                             }
                             `}
                             >
-                                <button
-                                    onClick={() => handleAnswer(option.value)}
-                                    disabled={!allOptionsVisible}
-                                    className={`
-                                        relative
-                                        w-full
-                                        h-full
-                                        aspect-square
-                                        rounded-full
-                                        flex flex-col items-center justify-center
-                                        p-4 
-                                        text-lg font-light tracking-wide
-                                        group
-                                        ${buttonAnimations[index] || ""}
-                                        ${!allOptionsVisible ? "cursor-not-allowed " : ""}
-                                    `}
-                                >
+                               <button
+                onClick={() => handleAnswer(option.value)}
+                disabled={!allOptionsVisible || isSubmitting}
+                className={`
+                    relative
+                    w-full
+                    h-full
+                    aspect-square
+                    rounded-full
+                    flex flex-col items-center justify-center
+                    p-4 
+                    text-lg font-light tracking-wide
+                    group
+                    ${buttonAnimations[index] || ""}
+                    ${!allOptionsVisible || isSubmitting ? "cursor-not-allowed" : ""}
+                `}
+            >
                                     <SpinningRings rings={customRings} />
                                     <div className="absolute  w-full h-full">
                                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[90%]">
