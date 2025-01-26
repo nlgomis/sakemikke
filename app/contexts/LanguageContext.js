@@ -68,6 +68,14 @@ const translations = {
                 haveAccount: "Already have an account?",
                 passwordMismatch: "Passwords do not match",
             },
+            profile: {
+                liked: "Liked Sakes",
+                history: "Quiz History",
+                avatar: "Choose your avatar",
+                noHistory: "No quiz history yet",
+                noLiked: "No liked sakes yet",
+
+            }
         },
         about: {
             testimonials: "Testimonials",
@@ -88,7 +96,7 @@ const translations = {
                 title: "Japanese Food",
                 description: "Find sake that pairs well with Japanese cuisine"
             },
-            mainDescription: "Choose from three categories - beginner, taste, or food pairing - and answer questions to find your perfect sake match",
+            mainDescription: "Choose from three categories - beginner, taste, or food pairing - and answer questions to find your perfect sake match.",
             slogan: "Find it here! Your perfect sake",
             feature1: "Wide Selection",
             feature2: "Beginner-Friendly Explanations",
@@ -514,6 +522,14 @@ polishing: "Polishing"
                 haveAccount: "既にアカウントをお持ちの方",
                 paswordMissmatch: "パスワードが一致しません"
             },
+            profile: {
+                liked: "お気に入りの日本酒",
+                history: "診断履歴",
+                avatar: "アバターを選択",
+                noHistory: "診断履歴がありません",
+                noLiked: "お気に入りの日本酒がありません"
+
+            }
             
         },
         about: {

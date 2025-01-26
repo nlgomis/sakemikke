@@ -1,22 +1,66 @@
-import React, { useState } from "react";
+'use client';
+import React, { useState, useEffect } from "react";
+import { useAuth } from "../contexts/AuthContext";
+import { useRouter } from "next/navigation";
 
 const LikeButton = ({ sakeId }) => {
-  // localStorage から初期状態を取得
-  const [isLiked, setIsLiked] = useState(() => {
-    if (typeof window !== "undefined") {
-      const liked = localStorage.getItem(`sake-liked-${sakeId}`);
-      return liked === "true";
-    }
-    return false;
-  });
+  const [isLiked, setIsLiked] = useState(false);
+  const { user, isAuthenticated } = useAuth();
+  const router = useRouter();
 
-  const handleLike = (e) => {
+  useEffect(() => {
+    const checkLikeStatus = async () => {
+      if (!isAuthenticated) return;
+
+      try {
+        const response = await fetch(
+          `https://backmikke.onrender.com/api/likes/check/${sakeId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${user.token}`,
+            },
+          }
+        );
+        const data = await response.json();
+        setIsLiked(data.liked);
+      } catch (error) {
+        console.error("Error checking like status:", error);
+      }
+    };
+
+    checkLikeStatus();
+  }, [sakeId, isAuthenticated, user]);
+
+  const handleLike = async (e) => {
     e.preventDefault();
+    
+    if (!isAuthenticated) {
+      router.push('/login');
+      return;
+    }
+
     setIsLiked(!isLiked);
 
-    // localStorage に状態を保存
-    if (typeof window !== "undefined") {
-      localStorage.setItem(`sake-liked-${sakeId}`, (!isLiked).toString());
+    try {
+      const response = await fetch(
+        "https://backmikke.onrender.com/api/likes/toggle",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user.token}`,
+          },
+          body: JSON.stringify({ sakeId }),
+        }
+      );
+
+      const data = await response.json();
+      if (data.liked !== !isLiked) {
+        setIsLiked(data.liked);
+      }
+    } catch (error) {
+      setIsLiked(!isLiked);
+      console.error("Error toggling like:", error);
     }
   };
 
